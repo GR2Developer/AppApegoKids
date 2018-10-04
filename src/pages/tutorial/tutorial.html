@@ -1,0 +1,38 @@
+<ion-header no-shadow>
+  <ion-navbar>
+     <!-- <div text-center>                         centralizar o texto
+    <ion-title><i><b>TUTORIAL</b></i></ion-title>    TEXTO
+    </div> -->
+    <ion-buttons end *ngIf="showSkip">
+      <button ion-button icon-start (click)="startApp()" color="light"><ion-icon name="star">Pular</ion-icon></button> <!--BUTTON SKIP-->
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!--<ion-icon name="star">Pular</ion-icon>    usa isso pra colocar icone no nome , antes tem que linkar ele no button-->
+
+
+<ion-content no-bounce>
+  <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)"> <!--Startando o evento criado no .ts-->
+    <ion-slide *ngFor="let slide of slides">
+      <img [src]="slide.image" class="slide-image" />
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+    </ion-slide>
+    <ion-slide> <!-- Esse slide é separado pq ele é o ultimo???????????-->
+      <img src="assets/img/slide4.png" class="slide-image" />
+      <h2 class="slide-title">Pronto para começar?</h2>
+      <button ion-button icon-end large clear (click)="startApp()"> <!--Criando o button ''Continue''-->
+        Continue
+        <ion-icon name="arrow-forward"></ion-icon>  <!-- Aqui fica o icon seta que vai no ''continuar''-->
+        
+      </button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+
+
+
+
+
