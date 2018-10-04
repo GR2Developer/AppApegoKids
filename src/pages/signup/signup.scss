@@ -1,0 +1,41 @@
+page-signup {
+    .top{
+        margin-top: 40%;
+        margin-bottom: 5vh;
+    }
+
+    .page-content{
+       margin-top: 65%;
+        margin-bottom: 5vh;
+    }
+    .image-background{
+       
+       position: fixed;
+       //z-index: -1;
+     //background-image: linear-gradient(#f33464,#3f33ec);
+         
+    }
+    .item.item-trns {
+        top: 40%;
+        background-color: rgba(0, 0, 0, 0);
+        color: white; 
+    }
+    .item.item-trns2 {
+        
+        background-color: rgba(0, 0, 0, 0);
+        color: white; 
+    }
+    .item.item-trns3 {
+      
+        background-color: rgba(0, 0, 0, 0);
+        color: white; 
+    }
+    .reg{
+        margin-top: 40%;
+        margin-bottom: 5vh;
+    }
+
+}
+
+
+

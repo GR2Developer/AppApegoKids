@@ -1,0 +1,80 @@
+<!-- -->
+<ion-content class="auth-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div padding text-center>
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary" color="light">
+        <strong >Cadastre-se</strong>
+      </h2>
+    </div>
+
+    <!-- Login form -->
+    <form class="list-form">
+
+      <ion-item class="item item-trns">
+        <ion-label floating color="light">
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Nome completo
+        </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item class="item item-trns2">
+        <ion-label floating color="light">
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="Email"></ion-input>
+      </ion-item>
+
+      <ion-item class="item item-trns3">
+        <ion-label floating color="light">
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input type="Password"></ion-input>
+      </ion-item>
+    </form>
+
+    <div margin-top>
+      <button ion-button block color="dark" tappable (click)="HomePage()">
+        SIGN UP
+      </button>
+
+      <p text-center ion-text color="primary"><strong >Entrar com:</strong></p>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button icon-only color="primary"  round block class="btn-facebook">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only color="primary"  round block class="btn-twitter">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only color="primary"  round block class="btn-gplus">
+              <ion-icon name="logo-googleplus"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="primary" tappable (click)="login()"><strong >Já tenho uma conta!</strong></span>
+    </div>
+
+  </div>
+</ion-content>
+<ion-content class="image-background">
+
+  <img src="assets/img/bg1.png">
+
+</ion-content>
