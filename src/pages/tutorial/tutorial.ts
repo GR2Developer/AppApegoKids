@@ -47,6 +47,7 @@ export class TutorialPage {
     
 }
 startApp() {
+  console.log('cliquei no startapp');
   this.navCtrl.setRoot('HomePage');
 }
 
