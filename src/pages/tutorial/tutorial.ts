@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController,} from 'ionic-angular';
-import { HomePage } from '../home/home';
+
 
 
 
@@ -47,7 +47,7 @@ export class TutorialPage {
     
 }
 startApp() {
-  this.navCtrl.setRoot(HomePage);
+  this.navCtrl.setRoot('HomePage');
 }
 
 
