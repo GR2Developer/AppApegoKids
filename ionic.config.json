@@ -1,0 +1,7 @@
+{
+  "name": "AppApegoKids",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
