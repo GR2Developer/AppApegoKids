@@ -18,6 +18,7 @@ import { EmailValidator } from '../../validators/email';
 })
 export class SignupPage {
 
+  public signupForm: FormGroup;
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
