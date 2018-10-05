@@ -85,7 +85,7 @@
     </form>
 
     <div margin-top>
-      <button ion-button block type="submit" [disabled]="!signupForm.valid">
+      <button ion-button block type="submit" [disabled]="!signupForm.valid" (click)="goToHomePage()">
         Cadastrar
       </button>
       <p text-center ion-text color="primary"><strong>Entrar com:</strong></p>

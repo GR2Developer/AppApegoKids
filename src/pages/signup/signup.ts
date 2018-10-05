@@ -7,9 +7,12 @@ import {
   LoadingController,
   NavController
 } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators,} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
+// import { User } from 'firebase';
+
+
 
 @IonicPage()
 @Component({
@@ -19,14 +22,15 @@ import { EmailValidator } from '../../validators/email';
 })
 
 export class SignupPage {
+  
   public signupForm: FormGroup;
+  
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
-    formBuilder: FormBuilder
-  ) {
+    formBuilder: FormBuilder  ) {
     
     this.signupForm = formBuilder.group({
       name: [ '',Validators.required],  
