@@ -47,7 +47,7 @@ export class TutorialPage {
     
 }
 startApp() {
-  this.navCtrl.setRoot('SigninPage');
+  this.navCtrl.setRoot('SignupPage');
   console.log('cliquei no startapp');
 
 }

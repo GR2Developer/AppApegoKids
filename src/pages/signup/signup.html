@@ -6,60 +6,105 @@
     <div padding text-center>
       <div class="logo"></div>
       <h2 ion-text class="text-primary" color="light">
-        <strong >Cadastre-se</strong>
+        <strong>Cadastre-se</strong>
       </h2>
     </div>
 
-    <!-- Login form -->
-    <form class="list-form">
+
+
+    <form [formGroup]="signupForm" (submit)="loginUser()" novalidate>
+
+      <!--........... NOME .............-->
 
       <ion-item class="item item-trns">
         <ion-label floating color="light">
           <ion-icon name="person" item-start class="text-primary"></ion-icon>
           Nome completo
         </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input formControlName="name" type="text">
+        </ion-input>
       </ion-item>
+      <ion-item class="error-message" *ngIf="!signupForm.controls.name.valid
+      && signupForm.controls.name.touched">
+        <p>Por favor insira um nome.</p>
+      </ion-item>
+
+      <!--........... EMAIL .............-->
 
       <ion-item class="item item-trns2">
         <ion-label floating color="light">
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
           Email
         </ion-label>
-        <ion-input type="Email"></ion-input>
+        <ion-input formControlName="email" type="email">
+        </ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid &&
+      signupForm.controls.email.touched">
+        <p>Por favor insira um email válido.</p>
       </ion-item>
 
-      <ion-item class="item item-trns3">
+      <!--........... CONFIRME EMAIL .............-->
+
+      
+
+      <!--........... SENHA .............-->
+
+      <ion-item class="item item-trns4">
         <ion-label floating color="light">
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
-          Password
+          Senha
         </ion-label>
-        <ion-input type="Password"></ion-input>
+        <ion-input formControlName="password" type="password">
+        </ion-input>
       </ion-item>
+      <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid
+      && signupForm.controls.password.touched">
+        <p>Sua senha precisa ter ao menos 6 caracteres.</p>
+      </ion-item>
+
+       <!--........... Confirme SENHA .............-->
+       
+      <ion-item class="item item-trns5">
+        <ion-label floating color="light">
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Confirme sua senha
+        </ion-label>
+        <ion-input formControlName="rePassword" type="Password">
+        </ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!signupForm.controls.rePassword.valid
+        && signupForm.controls.rePassword.touched">
+        <p>Confirme sua senha.</p>
+      </ion-item>
+
+
+
+
+      
     </form>
 
     <div margin-top>
-      <button ion-button block color="dark" tappable (click)="HomePage()">
-        SIGN UP
+      <button ion-button block type="submit" [disabled]="!signupForm.valid" (click)="goToHomePage()">
+        Cadastrar
       </button>
-
-      <p text-center ion-text color="primary"><strong >Entrar com:</strong></p>
+      <p text-center ion-text color="primary"><strong>Entrar com:</strong></p>
 
       <ion-grid>
         <ion-row>
           <ion-col col-4>
-            <button ion-button icon-only color="primary"  round block class="btn-facebook">
+            <button ion-button icon-only color="primary" round block class="btn-facebook">
               <ion-icon name="logo-facebook"></ion-icon>
             </button>
           </ion-col>
           <ion-col col-4>
-            <button ion-button icon-only color="primary"  round block class="btn-twitter">
+            <button ion-button icon-only color="primary" round block class="btn-twitter">
               <ion-icon name="logo-twitter"></ion-icon>
             </button>
           </ion-col>
           <ion-col col-4>
-            <button ion-button icon-only color="primary"  round block class="btn-gplus">
-              <ion-icon name="logo-googleplus"></ion-icon>
+            <button ion-button icon-only color="primary" round block class="btn-g">
+              <ion-icon name="logo-google"></ion-icon>
             </button>
           </ion-col>
         </ion-row>
@@ -68,7 +113,7 @@
 
     <!-- Other links -->
     <div text-center margin-top>
-      <span ion-text color="primary" tappable (click)="login()"><strong >Já tenho uma conta!</strong></span>
+      <span ion-text color="primary" tappable (click)="login()"><strong>Já tenho uma conta!</strong></span>
     </div>
 
   </div>
