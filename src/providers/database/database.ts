@@ -1,17 +1,74 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the DatabaseProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+import * as firebase from 'firebase';
+import 'firebase/firestore';
+
+
 @Injectable()
 export class DatabaseProvider {
 
+  private database: any;
+  private collectionUserProfiles: string = 'UserProfiles';
+
+
   constructor(public http: HttpClient) {
-    console.log('Hello DatabaseProvider Provider');
+
+    this.database = firebase.firestore();
   }
+
+  addUser(collectionObj: string,
+    dataObj: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.database.collection(collectionObj).add(dataObj)
+        .then((obj: any) => {
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }
+
+  getUser(uid: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      //this.database.collection
+    });
+  }
+
+  getAllUsers(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.database.collection(this.collectionUserProfiles)
+        .get()
+        .then((querySnapshot) => {
+
+
+          let obj: any = [];
+
+
+          querySnapshot
+            .forEach((doc: any) => {
+              obj.push({
+                id: doc.id,
+                name: doc.data().nome,
+                email: doc.data().email,
+                uid: doc.data().uid
+              });
+            });
+
+
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }
+
+
+
+
 
 }

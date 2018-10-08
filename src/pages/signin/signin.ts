@@ -6,7 +6,8 @@ import {
   Loading,
   LoadingController,
   NavController,
-  NavParams
+  NavParams,
+  MenuController
 } from 'ionic-angular';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -28,8 +29,10 @@ export class SigninPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
+    public menuCtrl: MenuController,
     formBuilder: FormBuilder
   ) {
+    this.menuCtrl.enable(false);
     this.signinForm = formBuilder.group({
       email: [
         '',
@@ -82,5 +85,7 @@ export class SigninPage {
     }
   }
 
-
+  goToSignup() {
+    this.navCtrl.setRoot('SignupPage');
+  }
 }

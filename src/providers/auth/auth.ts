@@ -34,5 +34,16 @@ export class AuthProvider {
     return firebase.auth().signOut();
   }
 
+  getCurrentUser(): any{
+    let user = firebase.auth().currentUser;
+    if (user != null){
+      return user;
+    }
+    else{
+      return null;
+    }
+
+  }
+
   
 }

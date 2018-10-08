@@ -12,7 +12,7 @@
 
 
 
-    <form [formGroup]="signupForm" (submit)="loginUser()" novalidate>
+    <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
 
       <!--........... NOME .............-->
 
@@ -46,7 +46,7 @@
 
       <!--........... CONFIRME EMAIL .............-->
 
-      
+
 
       <!--........... SENHA .............-->
 
@@ -63,8 +63,8 @@
         <p>Sua senha precisa ter ao menos 6 caracteres.</p>
       </ion-item>
 
-       <!--........... Confirme SENHA .............-->
-       
+      <!--........... Confirme SENHA .............-->
+
       <ion-item class="item item-trns5">
         <ion-label floating color="light">
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
@@ -78,16 +78,13 @@
         <p>Confirme sua senha.</p>
       </ion-item>
 
-
-
-
-      
-    </form>
-
-    <div margin-top>
-      <button ion-button block type="submit" [disabled]="!signupForm.valid" (click)="goToHomePage()">
+      <button ion-button block type="submit" [disabled]="!signupForm.valid">
         Cadastrar
       </button>
+
+    </form>
+<!-------------------------------------------------------End Form-------------------------------------->
+    <div margin-top>
       <p text-center ion-text color="primary"><strong>Entrar com:</strong></p>
 
       <ion-grid>
@@ -113,7 +110,7 @@
 
     <!-- Other links -->
     <div text-center margin-top>
-      <span ion-text color="primary" tappable (click)="login()"><strong>Já tenho uma conta!</strong></span>
+      <span ion-text color="primary" tappable (click)="goToLogin()"><strong>Já tenho uma conta!</strong></span>
     </div>
 
   </div>
