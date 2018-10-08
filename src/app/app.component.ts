@@ -15,7 +15,7 @@ import firebase, { Unsubscribe } from 'firebase';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = 'TutorialPage';
+  rootPage: any = 'HomePage';
 
   pages: Array<{title: string, component: any}>;
 

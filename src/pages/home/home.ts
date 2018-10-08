@@ -8,7 +8,10 @@ import { DatabaseProvider } from '../../providers/database/database';
 
 
 
+export interface Slide {    //Exportando a interface onde ficam os slides
 
+  image: string;
+}
 
 
 
@@ -18,6 +21,9 @@ import { DatabaseProvider } from '../../providers/database/database';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  slides: Slide[];
+  showSkip = true;
+  dir: string = 'ltr';
 
   /**TEST AREA */
   public users: any;
@@ -33,15 +39,31 @@ export class HomePage {
     public databaseProvider: DatabaseProvider
   ) {
 
-    
- 
+    //let currentUser = firebase.auth().currentUser;
+    //console.log("currentUser email: " + currentUser.email);
+
+    this.slides = [                                                             //estrutura dos slides
+      {
+        image: 'assets/img/padrinhos3.png',
+      },
+      {
+        image: 'assets/img/padrinhos4.png',
+      },
+      {
+        image: 'assets/img/padrinhos5.png',
+      }
+
+    ];
+
   }
+
+
 
   ionViewDidLoad() {
     this.menuCtrl.enable(true);
 
     this.currentUser = this.authProvider.getCurrentUser();
-    if(this.currentUser != null){
+    if (this.currentUser != null) {
       console.log("(home.ts)this.currentUser.email: " + this.currentUser.email);
       console.log("(home.ts)this.currentUser.displayName: " + this.currentUser.displayName);
     }
@@ -62,4 +84,7 @@ export class HomePage {
     this.navCtrl.setRoot('SigninPage');
   }
 
+  onSlideChangeStart(slider) {                                //starta o slide
+    this.showSkip = !slider.isEnd();
+  }
 }
