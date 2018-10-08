@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { DatabaseProvider } from '../../providers/database/database';
+import { MyApp } from '../../app/app.component'; // Usado para mostrar as opções de usuário no side menu
 // import { User } from 'firebase';
 
 
@@ -35,6 +36,7 @@ export class SignupPage {
     public authProvider: AuthProvider,
     public databaseProvider: DatabaseProvider,
     public menuCtrl: MenuController,
+    public myApp: MyApp,
     formBuilder: FormBuilder) {
 
     this.menuCtrl.enable(false);
@@ -72,7 +74,7 @@ export class SignupPage {
 
 
 
-  async signupUser(): Promise<void> {
+  signupUser(): void {
     if (!this.signupForm.valid) {
       console.log(
         `Form is not valid yet, current value: ${this.signupForm.value}`
@@ -92,6 +94,9 @@ export class SignupPage {
           let uid = data.user.uid;
           let email = data.user.email;
           let name = this.signupForm.value.name;
+
+          //define que é para mostrar as opções de usuário no menu
+          this.myApp.showUserTabInMenu = true;
 
           this.databaseProvider.addUser(this._collection,
             {

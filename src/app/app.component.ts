@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { environment } from '../environment';
 import firebase, { Unsubscribe } from 'firebase';
+import { AuthProvider } from '../providers/auth/auth';
+
 
 
 
@@ -16,10 +18,18 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'HomePage';
+  //Mostra a aba de perfil do usuário no menu
+  public showUserTabInMenu: boolean = false;
 
   pages: Array<{title: string, component: any}>;
+  hiddenPages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public authProvider: AuthProvider
+    ) {
   
     firebase.initializeApp(environment.firebase);
 
@@ -30,11 +40,12 @@ export class MyApp {
         unsubscribe();
         console.log("(app.component.ts) entrei no if user");
         console.log("(app.component.ts) usuário unsubscribe: " + user.email);
-        //this.showLogOutInMenu();
+        this.showUserTabInMenu = true;
       } else {  //Caso NÃO exista algum usuário autenticado, escrever código aqui
         console.log("(app.component.ts) entrei no else (no user)");
         this.rootPage = 'TutorialPage';
         unsubscribe();
+        this.showUserTabInMenu = false;
         ///this.hideLogOutInMenu();
       }
     });
@@ -43,7 +54,11 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: 'HomePage' },
       { title: 'Tutorial', component: 'TutorialPage'},
-      //{ title: 'SignIn', component: 'SigninPage'}
+      { title: 'Test', component: 'TestPage'}
+    ];
+
+    this.hiddenPages = [
+      { title: 'Minha conta', component: 'UserProfilePage' },
     ];
 
     platform.ready().then(() => {
@@ -61,4 +76,20 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  goToSigninPage(){
+    this.nav.setRoot('SigninPage');
+  }
+
+  logOut(): void {
+    console.log("entrei funçao logOut");
+    this.authProvider.logoutUser().then(() => {
+      this.showUserTabInMenu = false;
+      this.nav.setRoot('SigninPage');
+    });
+
+  }
+
+
+
 }

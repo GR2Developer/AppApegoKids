@@ -67,6 +67,18 @@ export class DatabaseProvider {
     });
   }
 
+  addDocument(collectionObj: string,
+    dataObj: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.database.collection(collectionObj).add(dataObj)
+        .then((obj: any) => {
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }
 
 
 

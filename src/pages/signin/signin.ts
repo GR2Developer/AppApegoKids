@@ -13,6 +13,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
+import { MyApp } from '../../app/app.component';
 
 
 @IonicPage()
@@ -30,6 +31,7 @@ export class SigninPage {
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
     public menuCtrl: MenuController,
+    public myApp: MyApp,
     formBuilder: FormBuilder
   ) {
     this.menuCtrl.enable(false);
@@ -71,7 +73,9 @@ export class SigninPage {
       )
         .then(() => {
           loading.dismiss();
+          this.myApp.showUserTabInMenu = true;
           this.navCtrl.setRoot('HomePage');
+          
         })
         .catch((error) => {
           loading.dismiss();
@@ -87,6 +91,7 @@ export class SigninPage {
 
   goToSignup() {
     this.navCtrl.setRoot('SignupPage');
+    
   }
 
   goToResetPassword() {
