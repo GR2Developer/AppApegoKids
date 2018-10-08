@@ -18,7 +18,9 @@
 
 
 <ion-content no-bounce class="slide">
-
+    <body>
+        <div class='parent'>
+         <div class='slider'>
   <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
     <!--Startando o evento criado no .ts-->
     <ion-slide *ngFor="let slide of slides">
@@ -38,7 +40,10 @@
       </button>
     </ion-slide>
   </ion-slides>
+  </div>
+ </div>
 
+</body>
 </ion-content>
 
 <ion-content class="image-background">

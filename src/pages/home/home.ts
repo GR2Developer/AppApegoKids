@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
-import firebase from 'firebase';
 
 
 
+export interface Slide {    //Exportando a interface onde ficam os slides
 
-
+  image: string;
+}
 
 
 
@@ -17,18 +18,37 @@ import firebase from 'firebase';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  slides: Slide[];
+  showSkip = true;
+  dir: string = 'ltr';
 
   constructor(
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public authProvider: AuthProvider
-    ) {
+  ) {
 
-    let currentUser = firebase.auth().currentUser;
-    console.log("currentUser email: " + currentUser.email);
+    //let currentUser = firebase.auth().currentUser;
+    //console.log("currentUser email: " + currentUser.email);
+
+    this.slides = [                                                             //estrutura dos slides
+      {
+        image: 'assets/img/padrinhos3.png',
+      },
+      {
+        image: 'assets/img/padrinhos4.png',
+      },
+      {
+        image: 'assets/img/padrinhos5.png',
+      }
+      
+    ];
+    
   }
 
-  ionViewDidLoad(){
+  
+
+  ionViewDidLoad() {
     this.menuCtrl.enable(true);
   }
 
@@ -38,4 +58,7 @@ export class HomePage {
     this.navCtrl.setRoot('SigninPage');
   }
 
+  onSlideChangeStart(slider) {                                //starta o slide
+    this.showSkip = !slider.isEnd();
+  }
 }
