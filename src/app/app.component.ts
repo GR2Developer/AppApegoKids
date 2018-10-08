@@ -33,7 +33,7 @@ export class MyApp {
         //this.showLogOutInMenu();
       } else {  //Caso NÃO exista algum usuário autenticado, escrever código aqui
         console.log("(app.component.ts) entrei no else (no user)");
-        this.rootPage = 'SigninPage';
+        this.rootPage = 'TutorialPage';
         unsubscribe();
         ///this.hideLogOutInMenu();
       }

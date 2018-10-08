@@ -88,4 +88,8 @@ export class SigninPage {
   goToSignup() {
     this.navCtrl.setRoot('SignupPage');
   }
+
+  goToResetPassword() {
+    this.navCtrl.push('ResetPasswordPage');
+  }
 }

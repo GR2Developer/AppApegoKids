@@ -22,6 +22,7 @@ export class HomePage {
   /**TEST AREA */
   public users: any;
   public currentUser: any;
+  //public storage: Storage
   /*--------------------------------- */
 
 
