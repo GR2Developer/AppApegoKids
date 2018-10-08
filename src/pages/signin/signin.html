@@ -7,7 +7,7 @@
 </ion-header>
 
 
-<ion-content padding center text-center class="auth-page">
+<ion-content padding center text-center>
   <form [formGroup]="signinForm" (submit)="loginUser()" novalidate>
     <ion-item>
       <ion-label stacked>Email</ion-label>
@@ -16,17 +16,17 @@
     </ion-item>
     <ion-item class="error-message" *ngIf="!signinForm.controls.email.valid &&
     signinForm.controls.email.touched">
-      <p>Please enter a valid email address.</p>
+      <p>Por favor insira um email válido.</p>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Password</ion-label>
+      <ion-label stacked>Senha</ion-label>
       <ion-input formControlName="password" type="password" placeholder="Your password">
       </ion-input>
     </ion-item>
     <ion-item class="error-message" *ngIf="!signinForm.controls.password.valid
     && signinForm.controls.password.touched">
-      <p>Your password needs more than 6 characters.</p>
+      <p>Sua senha precisa ter ao menos 6 caracteres</p>
     </ion-item>
     
 
@@ -36,10 +36,10 @@
   </form>
 
   <button ion-button block clear (click)="goToSignup()">
-    Create a new account
+    Quero me cadastrar
   </button>
 
   <button ion-button block clear (click)="goToResetPassword()">
-    I forgot my password :(
+    Esqueci a senha :(
   </button>
 </ion-content>

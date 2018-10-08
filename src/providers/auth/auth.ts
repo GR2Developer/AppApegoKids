@@ -34,5 +34,20 @@ export class AuthProvider {
     return firebase.auth().signOut();
   }
 
+  resetPassword(email: string): Promise<void> {
+    return firebase.auth().sendPasswordResetEmail(email);
+  }
+
+  getCurrentUser(): any{
+    let user = firebase.auth().currentUser;
+    if (user != null){
+      return user;
+    }
+    else{
+      return null;
+    }
+
+  }
+
   
 }

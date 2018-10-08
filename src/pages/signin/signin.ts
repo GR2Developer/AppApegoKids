@@ -6,13 +6,14 @@ import {
   Loading,
   LoadingController,
   NavController,
-  NavParams
+  NavParams,
+  MenuController
 } from 'ionic-angular';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
-import firebase from 'firebase';
+
 
 @IonicPage()
 @Component({
@@ -28,8 +29,10 @@ export class SigninPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
+    public menuCtrl: MenuController,
     formBuilder: FormBuilder
   ) {
+    this.menuCtrl.enable(false);
     this.signinForm = formBuilder.group({
       email: [
         '',
@@ -62,7 +65,7 @@ export class SigninPage {
       const email = this.signinForm.value.email;
       const password = this.signinForm.value.password;
 
-      const loginUser = this.authProvider.loginUser(
+      this.authProvider.loginUser(
         email,
         password
       )
@@ -82,5 +85,11 @@ export class SigninPage {
     }
   }
 
+  goToSignup() {
+    this.navCtrl.setRoot('SignupPage');
+  }
 
+  goToResetPassword() {
+    this.navCtrl.push('ResetPasswordPage');
+  }
 }
