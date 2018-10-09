@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { environment } from '../environment';
 import firebase, { Unsubscribe } from 'firebase';
 import { AuthProvider } from '../providers/auth/auth';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -25,6 +26,7 @@ export class MyApp {
   hiddenPages: Array<{title: string, component: any}>;
 
   constructor(
+    private storage: Storage,
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
@@ -36,12 +38,23 @@ export class MyApp {
     //Iniciar o aplicativo com o usuário atual
     const unsubscribe: Unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) { //Caso exista algum usuário autenticado, escrever código aqui
+        this.storage.remove('uid');
+        this.storage.set('user', {uid: user.uid, email: user.email}).then((data) => {
+          console.log("(app.component.ts) storage set uid: " + data.uid);
+        });
+        /*this.storage.get('uid').then((data) => {
+          console.log("(app.component.ts) storage uid, get uid: " + data);
+        });*/
         this.rootPage = 'HomePage';
         unsubscribe();
-        console.log("(app.component.ts) entrei no if user");
-        console.log("(app.component.ts) usuário unsubscribe: " + user.email);
+        console.log("(app.component.ts) entrei no if user, storage uid");
+        console.log("(app.component.ts) usuário unsubscribe: " + user.uid);
         this.showUserTabInMenu = true;
       } else {  //Caso NÃO exista algum usuário autenticado, escrever código aqui
+        this.storage.set('uid', '').then((data) => {
+          console.log("(no user), uid: " + data);
+        })
+        
         console.log("(app.component.ts) entrei no else (no user)");
         this.rootPage = 'TutorialPage';
         unsubscribe();
@@ -83,6 +96,9 @@ export class MyApp {
 
   logOut(): void {
     console.log("entrei funçao logOut");
+    this.storage.remove('user').then((user) => {
+      console.log("(logout) user removed from storage, user: " + user);
+    });
     this.authProvider.logoutUser().then(() => {
       this.showUserTabInMenu = false;
       this.nav.setRoot('SigninPage');

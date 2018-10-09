@@ -26,4 +26,25 @@
     Adicionar Novo Produto
   </button>
   <!---------------------------------------------------------------->
+  <ion-list>
+    <ion-item *ngFor="let product of myProducts; let i = index" (click)="setIndex(i)">
+      <h2>{{ product.name }}</h2>
+      <p>
+        Descrição: {{ product.description }}<br>
+        Preço: {{ product.price }}
+      </p>
+
+
+      <button ion-button color="secondary" (click)="updateDocument(product)">
+        Editar produto
+      </button>
+
+
+      <button ion-button color="danger" (click)="deleteDocument(product)">
+        Remover produto
+      </button>
+
+
+    </ion-item>
+  </ion-list>
 </ion-content>

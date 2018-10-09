@@ -10,6 +10,7 @@ import {
   LoadingController
 } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -21,18 +22,22 @@ export class ManageProductPage {
   private databaseCollection: string = "Products";  //Collection no firestore
 
   public form: any;
-  public records: any;
-
-  public name: string = '';
-  public description: string = '';
-  public price: string = '';
-  public uid: string = '';
-  public docID: string = '';
-
   public isEditable: boolean = false;
   public title: string = 'Adicionar novo produto';
 
+  //variáveis do produto e o uid do usuário que vai publicar/editar o produto
+  public uid: string = '';
+  public name: string = '';
+  public description: string = '';
+  public price: string = '';
+  public docId: string = '';
+  //-------------------------------------------------------------//
+
+
+
   constructor(
+    private storage: Storage,
+
     public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
@@ -52,26 +57,26 @@ export class ManageProductPage {
       'price': ['', Validators.required]
     });
 
-    /**printar uid */
-    //let record = navParams.get('record');
-    //console.log("(manage-products) user uid: " + record.uid);
-    /** ************************/
-
     if (this.navParams.get('isEdited')) {
-      let record = navParams.get('record');
+      //Pegando o uid do storage
+      this.storage.get('user').then((data) => {
+        this.uid = data.uid;
+      });
 
+      let record = navParams.get('record');
       this.name = record.product.name;
       this.description = record.product.description;
       this.price = record.product.price;
-      this.uid = record.uid;
-      this.docID = record.product.docID;
+      this.docId = record.product.docId;
       this.isEditable = true;
       this.title = 'Atualizar produto';
     }
     else {
-      let record = navParams.get('record');
-      this.uid = record.uid;
-      this.databaseCollection = record.collection;
+      //Pegando o uid do storage
+      this.storage.get('user').then((data) => {
+        this.uid = data.uid;
+      });
+      //this.databaseCollection = navParams.get('collection');
       console.log("(manage-products) user uid: " + this.uid);
       console.log("(manage-products) dbCollection: " + this.databaseCollection);
 
@@ -94,25 +99,25 @@ export class ManageProductPage {
 
     if (this.isEditable) {
 
-      /*this.databaseProvider.updateDocument(this._COLL,
-        this.docID,
+      this.databaseProvider.updateDocument(this.databaseCollection,
+        this.docId,
         {
           name: name,
-          population: population,
-          established: established
+          description: description,
+          price: price
         })
-        .then((data) => {
+        .then(() => {
           this.clearForm();
-          this.displayAlert('Success', 'The document ' + city + ' was successfully updated');
+          this.displayAlert('Feito!', 'O produto ' + name + ' foi atualizado com sucesso');
         })
         .catch((error) => {
           this.displayAlert('Updating document failed', error.message);
-        });*/
+        });
 
     }
 
 
-    else {
+    else {//Usuário está cadastrando um produto, adicionar as flags de visibilidade (hot, promoção, etc.)
 
       console.log("nome do formulário: " + name);
       console.log("price do formulário: " + price);
@@ -129,7 +134,7 @@ export class ManageProductPage {
         })
         .then((data) => {
           this.clearForm();
-          this.displayAlert('Sucesso!', 'O produto ' + name + ' foi adicionado com sucesso.');
+          this.displayAlert('Feito!', 'O produto ' + name + ' foi adicionado com sucesso.');
         })
         .catch((error) => {
           this.displayAlert('Adicionar produto falhou', error.message);

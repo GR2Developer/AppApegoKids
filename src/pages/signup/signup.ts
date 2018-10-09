@@ -13,6 +13,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { DatabaseProvider } from '../../providers/database/database';
 import { MyApp } from '../../app/app.component'; // Usado para mostrar as opções de usuário no side menu
+import { Storage } from '@ionic/storage';
 // import { User } from 'firebase';
 
 
@@ -30,6 +31,8 @@ export class SignupPage {
   private _collection: string = "UserProfiles";
 
   constructor(
+    private storage: Storage,
+
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
@@ -91,9 +94,15 @@ export class SignupPage {
         password
       )
         .then((data) => { //then do auth
+          
           let uid = data.user.uid;
           let email = data.user.email;
           let name = this.signupForm.value.name;
+
+          this.storage.set(
+            'user',
+            {uid: uid, email: email}
+            );
 
           //define que é para mostrar as opções de usuário no menu
           this.myApp.showUserTabInMenu = true;
@@ -101,7 +110,7 @@ export class SignupPage {
           this.databaseProvider.addUser(this._collection,
             {
               uid: uid,
-              nome: name,
+              name: name,
               email: email
             }).then(() => { //then do firestore
               loading.dismiss();

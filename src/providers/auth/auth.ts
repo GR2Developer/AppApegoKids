@@ -41,8 +41,6 @@ export class AuthProvider {
   getCurrentUser(): firebase.User{
     let user = firebase.auth().currentUser;
     return user;
-
-
   }
 
  /* getCurrentUser(): Promise<any> {

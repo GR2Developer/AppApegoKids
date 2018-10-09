@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 import { DatabaseProvider } from '../../providers/database/database';
-import { MyApp } from '../../app/app.component';
+import { Storage } from '@ionic/storage';
+//import { MyApp } from '../../app/app.component';
 
 
 
@@ -34,6 +35,8 @@ export class HomePage {
 
 
   constructor(
+    private storage: Storage,
+
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public authProvider: AuthProvider,
@@ -55,6 +58,11 @@ export class HomePage {
       }
 
     ];
+
+    this.storage.get('user').then((user) => {
+      console.log("(hom.ts) user do storage: ");
+      console.dir(user);
+    });
 
   }
 
