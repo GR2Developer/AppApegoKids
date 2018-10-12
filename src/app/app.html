@@ -7,9 +7,25 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <button menuClose ion-item text-center (click)="openCategories()">
+          Categorias template
+        </button>
+
+      <button menuClose ion-item text-center *ngIf="!showUserTabInMenu" (click)="goToSigninPage()">
+        Entrar
+      </button>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p.component)">
         {{p.title}}
       </button>
+      <ion-item *ngIf="showUserTabInMenu">
+        <button menuClose ion-item *ngFor="let p of hiddenPages" (click)="openPage(p.component)">
+          Minha conta
+        </button>
+        <button menuClose ion-item (click)="logOut()">
+          Log Out
+        </button>
+      </ion-item>
+
     </ion-list>
   </ion-content>
 

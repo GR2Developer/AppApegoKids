@@ -13,6 +13,8 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
+import { MyApp } from '../../app/app.component';
+import { Storage } from '@ionic/storage';
 
 
 @IonicPage()
@@ -24,12 +26,15 @@ export class SigninPage {
 
   public signinForm: FormGroup;
   constructor(
+    private storage: Storage,
+
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
     public menuCtrl: MenuController,
+    public myApp: MyApp,
     formBuilder: FormBuilder
   ) {
     this.menuCtrl.enable(false);
@@ -48,6 +53,8 @@ export class SigninPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SigninPage');
   }
+
+  
 
   //Loga o usuário com base no email e password,
   //Obs.: olhar no auth provider o ref() onde os usuários estão cadastrados
@@ -69,9 +76,16 @@ export class SigninPage {
         email,
         password
       )
-        .then(() => {
+        .then((userCredential) => {
+          this.storage.set(
+          'user',
+          {uid: userCredential.user.uid, email: userCredential.user.email}
+          );
+          
           loading.dismiss();
+          this.myApp.showUserTabInMenu = true;
           this.navCtrl.setRoot('HomePage');
+          
         })
         .catch((error) => {
           loading.dismiss();
@@ -87,6 +101,7 @@ export class SigninPage {
 
   goToSignup() {
     this.navCtrl.setRoot('SignupPage');
+    
   }
 
   goToResetPassword() {
