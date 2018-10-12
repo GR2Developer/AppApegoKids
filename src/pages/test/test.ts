@@ -43,6 +43,99 @@ export class TestPage {
       })
       .catch();
 
+    /**Criar collections de categorias e adicionar documentos, falta Roupas*/
+    /*
+    this.databaseProvider.addDocument('Categories', { category: 'Brinquedos' }, 'Brinquedos').then(() => {
+      console.log("categoria adicionada");
+    });
+
+    this.databaseProvider.addDocument('Categories', { category: 'Decoração' }, 'Decoração').then(() => {
+      console.log("categoria adicionada");
+    });
+    this.databaseProvider.addDocument('Categories', { category: 'Banho' }, 'Banho').then(() => {
+      console.log("categoria adicionada");
+    });
+    this.databaseProvider.addDocument('Categories', { category: 'Higiene' }, 'Higiene').then(() => {
+      console.log("categoria adicionada");
+    });
+    this.databaseProvider.addDocument('Categories', { category: 'Acessórios' }, 'Acessórios').then(() => {
+      console.log("categoria adicionada");
+    });
+    this.databaseProvider.addDocument('Categories', { category: 'Perfumaria' }, 'Perfumaria').then(() => {
+      console.log("categoria adicionada");
+    });
+    this.databaseProvider.addDocument('Categories', { category: 'Calçados' }, 'Calçados').then(() => {
+      console.log("categoria adicionada");
+    });*/
+
+
+    /**Update collections de categorias e adicionar chaves nos documentos */
+    /*
+    this.databaseProvider.updateDocument(
+      'Categories',
+      'Roupas',
+      { categoryFilters: ['body', 'calça', 'blusa', 'conjunto'] }
+    )
+      .then(() => {
+        console.log("categoria adicionada");
+      });
+    this.databaseProvider.updateDocument(
+      'Categories',
+      'Brinquedos',
+      { categoryFilters: ['carrinhos', 'barbie', 'marvel', 'brinquedos educativos'] }
+    )
+      .then(() => {
+        console.log("categoria adicionada");
+      });
+    this.databaseProvider.updateDocument(
+      'Categories',
+      'Decoração',
+      { categoryFilters: ['cortinas', 'papel de parede', 'adesivos'] }
+    )
+      .then(() => {
+        console.log("categoria adicionada");
+      });
+    this.databaseProvider.updateDocument(
+      'Categories',
+      'Banho',
+      { categoryFilters: ['shampoo', 'sabonete', 'condicionador', 'banheira'] }
+    )
+      .then(() => {
+        console.log("categoria adicionada");
+      });
+    this.databaseProvider.updateDocument(
+      'Categories',
+      'Higiene',
+      { categoryFilters: ['escova de dentes', 'pasta de dente', 'lenço umedecido'] }
+    )
+      .then(() => {
+        console.log("categoria adicionada");
+      });
+    this.databaseProvider.updateDocument(
+      'Categories',
+      'Acessórios',
+      { categoryFilters: ['carrinho de bebê', 'bijouterias', 'bebê conforto', 'canguru'] }
+    )
+      .then(() => {
+        console.log("categoria adicionada");
+      });
+    this.databaseProvider.updateDocument(
+      'Categories',
+      'Perfumaria',
+      { categoryFilters: ['perfume', 'loção', 'hidratante', 'água de cheiro'] }
+    )
+      .then(() => {
+        console.log("categoria adicionada");
+      });
+    this.databaseProvider.updateDocument(
+      'Categories',
+      'Calçados',
+      { categoryFilters: ['botas', 'sandálias', 'meias', 'all-star'] }
+    )
+      .then(() => {
+        console.log("categoria adicionada");
+      });*/
+      
 
   }
 

@@ -13,6 +13,7 @@ export class DatabaseProvider {
   private database: firebase.firestore.Firestore;
   private collectionUserProfiles: string = 'UserProfiles';
   private collectionProducts: string = 'Products';
+  private collectionCategories: string = 'Categories';
 
 
   constructor(public http: HttpClient) {
@@ -20,10 +21,10 @@ export class DatabaseProvider {
     this.database = firebase.firestore();
   }
 
-   /** 
-   * Cada usuário adicionado deve ser do tipo
-   * "user: {uid: 'value', name: 'value', email: 'value'}"
-  */
+  /** 
+  * Cada usuário adicionado deve ser do tipo
+  * "user: {uid: 'value', name: 'value', email: 'value'}"
+ */
   addUser(collectionObj: string,
     dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -38,10 +39,13 @@ export class DatabaseProvider {
   }
 
 
-  /** 
-   * Cada usuário retornado é do tipo
-   * "user: {docId: 'value', name: 'value', email: 'value'}"
-  */
+
+
+  /**
+   * Retorna um vetor com dados dos usuários onde uid do usuário = parâmetro uid
+   * ex.: ret1 = [user1Data, user2Data]; Para acessar: ret1[0].property
+   * @param uid 
+   */
   getUserData(uid: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.database.collection(this.collectionUserProfiles).where('uid', '==', uid).get()
@@ -68,6 +72,9 @@ export class DatabaseProvider {
 
   }
 
+  /**
+   * 
+   */
   getAllUsers(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.database.collection(this.collectionUserProfiles)
@@ -97,16 +104,35 @@ export class DatabaseProvider {
     });
   }
 
-  addDocument(collectionObj: string,
-    dataObj: any): Promise<any> {
+
+  /**
+   * 
+   * @param collectionObj - String que representa a coleção
+   * @param dataObj - Dados a serem adicionados, ex.: {key1: 'value', key2: 'value'}
+   * @param docObj - Opcional, nome do documento a ser adicionado (evita que um docId auto-gerado seja alocado)
+   */
+  addDocument(collectionObj: string, dataObj: any, docObj?: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.database.collection(collectionObj).add(dataObj)
-        .then((obj: any) => {
-          resolve(obj);
-        })
-        .catch((error: any) => {
-          reject(error);
-        });
+      if (docObj) {
+        this.database.collection(collectionObj).doc(docObj).set(dataObj)
+          .then((obj: any) => {
+            resolve(obj);
+          })
+          .catch((error: any) => {
+            reject(error);
+          });
+
+      }
+      else {
+        this.database.collection(collectionObj).add(dataObj)
+          .then((obj: any) => {
+            resolve(obj);
+          })
+          .catch((error: any) => {
+            reject(error);
+          });
+      }
+
     });
   }
 
@@ -143,10 +169,12 @@ export class DatabaseProvider {
     });
   }
 
-  /** 
-   * Cada produto retornado é do tipo
-   * "product: {docId: 'value', name: 'value', description: 'value', price: 'value'}"
-  */
+/**
+ * Cada produto retornado é do tipo
+ * "product: {docId: 'value', name: 'value', description: 'value', price: 'value'}"
+ * 
+ * @param uid - uid do usuário para identificação
+ */
   getUserProducts(uid: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.database.collection(this.collectionProducts).where('uid', '==', uid).get()
@@ -171,6 +199,37 @@ export class DatabaseProvider {
 
     });
 
+
+  }
+
+
+/**
+ * 
+ * @param category - Categoria desejada (documentId no firestore)
+ */
+  getCategoryData(category: string): Promise<any> {
+
+    return new Promise((resolve, reject) => {
+      this.database.collection(this.collectionCategories).where('category', '==', category).get()
+        .then((querySnapshot) => {
+          let obj: any = [];
+
+          querySnapshot.forEach(doc => {
+            obj.push({
+              docId: doc.id,
+              category: doc.data().category,
+              categoryFilters: doc.data().categoryFilters,
+            });
+          });
+
+          resolve(obj);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+
+
+    });
 
   }
 
