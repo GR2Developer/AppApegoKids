@@ -1,46 +1,314 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle color="light">
+      <ion-icon name="menu" color="light"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <label ion-text class="text-primary" color="light">
+      Apego Kids
+    </label>
+
+
+    <ion-buttons end>
+      <button ion-button (click)="search()" color="light">
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="goToCart()" color="light">
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-
-<ion-content  no-bounce>
-  <div class ="slide">
-  <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)"> <!--Startando o evento criado no, .TS-->
-    <ion-slide *ngFor="let slide of slides">
-      <img [src]="slide.image" class="slide-image" />
+<ion-content>
+  <!--SLIDE-->
+  <div class="slide" no-bounce>
+    <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
+      <!--Startando o evento criado no, .TS-->
+      <ion-slide *ngFor="let slide of slides">
+        <img [src]="slide.image" class="slide-image" />
       </ion-slide>
 
-    <ion-slide> 
-      <img src="assets/img/padrinhos1.png" class="slide-image" />
-   </ion-slide>
- </ion-slides>
-</div>
-</ion-content>
+      <ion-slide>
+        <img src="assets/img/padrinhos3.png" class="slide-image" />
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+
+  <!-- <div class="slideCat" no-bounce>
+    <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
+      Startando o evento criado no, .TS
+      <ion-slide>
+        <img src="assets/img/cat1.png" class="slide-image" />
+      </ion-slide>
+
+      <ion-slide>
+        <img src="assets/img/cat2.png" class="slide-image" />
+      </ion-slide>
+
+      <ion-slide>
+        <img src="assets/img/cat3.png" class="slide-image" />
+      </ion-slide>
+
+      <ion-slide>
+        <img src="assets/img/cat4.png" class="slide-image" />
+      </ion-slide>
+
+      <ion-slide>
+        <img src="assets/img/cat5.png" class="slide-image" />
+      </ion-slide>
+
+      <ion-slide>
+        <img src="assets/img/cat6.png" class="slide-image" />
+      </ion-slide>
+
+    </ion-slides>
+  </div> -->
 
 
 
-<ion-content class="card1">
 
-  <ion-card>
-    <img src="assets/img/pad3.png"/> <!--IMG DEVE TER 600PX POR 100PX-->
+  <div class="home">
+
+    <ion-card>
+      <ion-scroll scrollX="true">
+        <img src="assets/img/cat11.png" (click)="goToProducts()" />
+        <img src="assets/img/cat11.png" (click)="goToProducts()" />
+        <img src="assets/img/cat11.png" (click)="goToProducts()" />
+        <img src="assets/img/cat11.png" (click)="goToProducts()" />
+        <img src="assets/img/cat11.png" (click)="goToProducts()" />
+        <img src="assets/img/cat11.png" (click)="goToProducts()" />
+      </ion-scroll>
+    </ion-card>
+  </div>
+
+
+
+  <div class="card-background-page" padding>
+    <ion-card>
+      <img src="assets/img/pad1.png" (click)="goToProducts()" />
+      <div class="card-title">MODA BOY</div>
+      <div class="card-subtitle">2018</div>
+    </ion-card>
+
+    <ion-card>
+      <img src="assets/img/pad2.png" (click)="goToProducts()" />
+      <div class="card-title">MODA GIRL</div>
+      <div class="card-subtitle">2018</div>
+    </ion-card>
+  </div>
+
+  <div padding class="card1">
+
+    <ion-card>
+      <img src="assets/img/anuncio2.jpg" (click)="goToProducts()">
+    </ion-card>
+  </div>
+
+
+
+
+  <div class="card-produto1" padding>
+    <div>
+       <h2 text-center class="h2">MELHORES OFERTAS</h2>
+    </div>
+     
+
+
+      <ion-card>
+        <img src="assets/img/vestido1.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+      </ion-card>
+   
+
+    <ion-card>
+        <img src="assets/img/vestido3.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+    <ion-card>
+        <img src="assets/img/vestido4.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+      </ion-card>
+   
+
+    <ion-card>
+        <img src="assets/img/vestidos.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+
     
-  </ion-card>
+    <ion-card>
+        <img src="assets/img/vestido6.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+      </ion-card>
+   
+
+    <ion-card>
+        <img src="assets/img/conjunto1.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+    <ion-card>
+        <img src="assets/img/conjunto2.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+    <ion-card>
+        <img src="assets/img/conjunto3.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+    <ion-card>
+        <img src="assets/img/conjunto4.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+    <ion-card>
+        <img src="assets/img/conjunto5.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+    <ion-card>
+        <img src="assets/img/conjunto6.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+    <ion-card>
+        <img src="assets/img/conjunto7.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+    <ion-card>
+        <img src="assets/img/conjunto8.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+    
+    <ion-card>
+        <img src="assets/img/conjunto9.jpg" (click)="goToProducts()" />
+        <div class="card-title">Blusinha e saia</div>
+        <div class="card-discricao">Blusinha com saia de bolinhas</div>
+        <div class="card-preco">R$50,00</div>
+    </ion-card>
+
+
+
+  </div>
+
+  
+  
+
+
+
+
 
 </ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<ion-content class="home1">
+    <div>
+      Example of Horizontal scrolling widget
+     <ion-card>
+       <ion-scroll scrolly="true">
+         <img src="assets/img/pad1.png" (click)="goToProducts()">
+         <img src="assets/img/pad2.png" (click)="goToProducts()">
+       </ion-scroll>
+     </ion-card>
+     </div>
+   </ion-content> -->
+
+<!-- <ion-content>          COLUNAS
+ 
+    <div class="row">
+        <div class="col s12 m4 l2"><p>Baby Boy</p></div>
+        <div class="col s12 m4 l2"><p>Baby Girl</p></div>
+        <div class="col s12 m4 l2"><p>Menina</p></div>
+        <div class="col s12 m4 l2"><p>Menino</p></div>
+       
+
+      </div>
+     
+ </ion-content>        -->
+
+<!-- <ion-content class="teste1">
+    <ion-card >
+
+        <img src="assets/img/padrinhos3.png">
+        < <ion-card-content>
+          <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+        </ion-card-content>
+</ion-card>
+  </ion-content> -->
+
+
+
+<!-- 
+
+<ion-content >
+    
+    
+    <div class="btn-group" >
+       
+        
+        <button class="button" block >Baby Boy</button>
+        <button class="button" block >Baby Girl</button>
+        <button class="button" block >Menina</button>
+        <button class="button" block >Menino</button>
+     
+      </div> 
+</ion-content> -->
 
 <!-- <ion-content padding>
   <h1 text-center>ApegoKids!</h1><br>
   <h3 *ngIf="currentUser">Bem vindo {{ currentUser.email }}</h3>
    -->
 
-  
 
-  <!-- <button ion-button secondary menuToggle>Toggle Menu</button>
+
+<!-- <button ion-button secondary menuToggle>Toggle Menu</button>
   <button ion-button block clear (click)="logOut()">
     logout
   </button>
@@ -55,12 +323,6 @@
         DocId: {{user.id}}
       </p> 
 
-<!-- 
-    </ion-item>
-<<<<<<< HEAD
-  </ion-list> -->
-=======
-  </ion-list>
--->
 
->>>>>>> 0bdfda010c44884ef58a6d546bb34899ed7de616
+    </ion-item>
+  </ion-list> -->

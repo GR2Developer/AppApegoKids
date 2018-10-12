@@ -1,17 +1,21 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>signin</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
 
 <ion-content padding center text-center>
+    <div padding text-center>
+        <div class="logo"></div>
+        <h2 ion-text class="text-primary" color="light">
+          <strong>Entrar</strong>
+        </h2>
+      </div>
+
+      
+
   <form [formGroup]="signinForm" (submit)="loginUser()" novalidate>
-    <ion-item>
-      <ion-label stacked>Email</ion-label>
-      <ion-input formControlName="email" type="email" placeholder="Seu email">
+    <ion-item class="item item-trns">
+       <ion-label floating color="light">
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+         Email
+        </ion-label>
+      <ion-input formControlName="email" type="email">
       </ion-input>
     </ion-item>
     <ion-item class="error-message" *ngIf="!signinForm.controls.email.valid &&
@@ -19,9 +23,12 @@
       <p>Por favor insira um email válido.</p>
     </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Senha</ion-label>
-      <ion-input formControlName="password" type="password" placeholder="Your password">
+    <ion-item class="item item-trns2">
+      <ion-label floating color="light">
+        <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+        Senha
+      </ion-label>
+      <ion-input formControlName="password" type="password">
       </ion-input>
     </ion-item>
     <ion-item class="error-message" *ngIf="!signinForm.controls.password.valid
@@ -30,16 +37,23 @@
     </ion-item>
     
 
-    <button ion-button block type="submit" [disabled]="!signinForm.valid">
-      Log In
+    <button class="Blogin" ion-button round block type="submit" color="light" [disabled]="!signinForm.valid">
+      Entrar
     </button>
   </form>
 
-  <button ion-button block clear (click)="goToSignup()">
+  <button ion-button block clear class="Bsignup" color="light" (click)="goToSignup()">
     Quero me cadastrar
   </button>
 
-  <button ion-button block clear (click)="goToResetPassword()">
+  <button ion-button block clear  color="light" (click)="goToResetPassword()">
     Esqueci a senha :(
   </button>
+  
+</ion-content>
+
+<ion-content class="image-background">
+
+  <img src="assets/img/bg2.png">
+
 </ion-content>

@@ -1,7 +1,140 @@
 page-home {
-.card1{
-    margin-top: 55%;
-        margin-bottom: 5vh;
+.text-primary{
+       font-size: 150%
+	}
+	
+
+    
+.toolbar-background {
+	//background: #21ade1;
+			border-color: palegoldenrod;
+			//background: #e1213b;         --> vermelho foda
+			background-image: linear-gradient(#21ade1, #24b9f0, #26c5ff );
+		  }
+		  
+
+        
+.slide{
+	margin-top: 0%;    //margem do topo
+	
 }
 
+
+ .home { 
+	 background: none;
+	 margin-top: -5%;					//margem do topo
+	 overflow-x:hidden;
+	 margin-left: -4%;					//margem da pagina esquerda
+	 margin-right: -4%;						//margem da pagina direita
+	 
+
+
+ 		ion-scroll {
+		white-space: nowrap;
+		height: 29px;					//altura
+		}
+	
+		ion-scroll img {
+			height: 25px;					//altura
+			width: inherit;				// largura
+			margin: 5px; 
+			display: inline-block;
+		}
+
+ }
+
+
+
+.card-background-page {
+		margin-top: -5%;
+		
+ 	ion-card {
+		margin: 1px; 
+ 		z-index: -1;
+ 	  	position: relative;
+ 	  	text-align: center;
+ 		height: 210px;
+ 		width: 160px;
+ 		display: inline-block; 
+ 	}
+	
+ 	.card-title {
+ 	  position: absolute;
+ 	  top: 36%;
+ 	  font-size: 2.0em;
+ 	  width: 100%;
+ 	  font-weight: bold;
+ 	  color: #fff;
+	}
+  
+ 	.card-subtitle {
+ 	  font-size: 1.0em;
+ 	  position: absolute;
+ 	  top: 70%;
+ 	  width: 100%;
+ 	  color: #fff;
+ 	}
+
+	
+  
+   }
+
+
+
 }
+
+.card1 { 
+	margin-top: -10%;
+	height: inherit; 		//altura
+	width: inherit;			// largura
+	margin-left: -2%;     	//margem da pagina esquerda
+	margin-right: -2%;		//margem da pagina direita
+}
+
+
+
+
+.card-produto1 {
+	margin-top: -5%;
+	
+		
+	ion-card {
+	   margin: 1px; 
+		z-index: -1;
+		  position: relative;
+		  text-align: center;
+		height: 280px;
+		width: 160px;
+		display: inline-block; 
+	}
+   
+	.card-title {
+  
+		margin-top: 5%;
+		font-size: 1.5em;
+		width: 100%;
+		font-weight: bold;
+		color: #21ade1;
+	 }
+	 
+	  .card-discricao {
+		font-size: 1.0em;
+		position: absolute;
+		top: 70%;
+		width: 100%;
+		color:#21ade1;
+	  }
+	  .card-preco {
+		 font-size: 1.5em;
+		 position: absolute;
+		 top: 85%;
+		 width: 100%;
+		 color:#21ade1;
+	   }
+
+	}
+
+
+
+
+

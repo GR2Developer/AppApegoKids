@@ -8,6 +8,9 @@ import { DatabaseProvider } from '../../providers/database/database';
 
 
 
+
+
+
 export interface Slide {    //Exportando a interface onde ficam os slides
 
   image: string;
@@ -24,6 +27,9 @@ export class HomePage {
   slides: Slide[];
   showSkip = true;
   dir: string = 'ltr';
+  
+  
+  
 
   /**TEST AREA */
   public users: any;
@@ -44,17 +50,19 @@ export class HomePage {
 
     this.slides = [                                                             //estrutura dos slides
       {
-        image: 'assets/img/padrinhos3.png',
+        image: 'assets/img/padrinhos1.png',
       },
       {
         image: 'assets/img/padrinhos4.png',
       },
       {
-        image: 'assets/img/padrinhos5.png',
+        image: 'assets/img/padrinhos2.png',
       }
 
     ];
-
+   
+  
+  
   }
 
 
