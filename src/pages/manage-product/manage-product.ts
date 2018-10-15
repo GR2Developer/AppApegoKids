@@ -109,6 +109,7 @@ export class ManageProductPage {
         .then(() => {
           this.clearForm();
           this.displayAlert('Feito!', 'O produto ' + name + ' foi atualizado com sucesso');
+          this.navCtrl.push('UserProductsListPage')
         })
         .catch((error) => {
           this.displayAlert('Updating document failed', error.message);
