@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 import { DatabaseProvider } from '../../providers/database/database';
+import { Storage } from '@ionic/storage';
+//import { MyApp } from '../../app/app.component';
 
 
 
@@ -39,6 +41,8 @@ export class HomePage {
 
 
   constructor(
+    private storage: Storage,
+
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public authProvider: AuthProvider,
@@ -60,9 +64,12 @@ export class HomePage {
       }
 
     ];
-   
-  
-  
+
+    this.storage.get('user').then((user) => {
+      console.log("(hom.ts) user do storage: ");
+      console.dir(user);
+    });
+
   }
 
 
@@ -70,26 +77,7 @@ export class HomePage {
   ionViewDidLoad() {
     this.menuCtrl.enable(true);
 
-    this.currentUser = this.authProvider.getCurrentUser();
-    if (this.currentUser != null) {
-      console.log("(home.ts)this.currentUser.email: " + this.currentUser.email);
-      console.log("(home.ts)this.currentUser.displayName: " + this.currentUser.displayName);
-    }
 
-
-    this.databaseProvider.getAllUsers()
-      .then((data) => {
-        this.users = data;
-      })
-      .catch();
-
-
-  }
-
-  async logOut(): Promise<void> {
-    console.log("entrei funçao logOut");
-    await this.authProvider.logoutUser();
-    this.navCtrl.setRoot('SigninPage');
   }
 
   onSlideChangeStart(slider) {                                //starta o slide

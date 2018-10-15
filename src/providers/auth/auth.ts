@@ -8,14 +8,14 @@ export class AuthProvider {
   loginUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
     return new Promise((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((data) => {
-        resolve(data);
-      })
-      .catch((error) => {
-        reject(error);
-      });
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
-    
+
   }
 
   signupUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
@@ -38,16 +38,26 @@ export class AuthProvider {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  getCurrentUser(): any{
+  getCurrentUser(): firebase.User{
     let user = firebase.auth().currentUser;
-    if (user != null){
-      return user;
-    }
-    else{
-      return null;
-    }
-
+    return user;
   }
 
-  
+ /* getCurrentUser(): Promise<any> {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) { //Caso exista algum usuário autenticado, escrever código aqui
+        console.log("(auth.ts) entrei no if user");
+        console.log("(auth.ts) usuário unsubscribe: " + user.email);
+        return user;
+        //this.showLogOutInMenu();
+      } else {  //Caso NÃO exista algum usuário autenticado, escrever código aqui
+        console.log("(auth.ts) entrei no else (no user)");
+        return null;
+        ///this.hideLogOutInMenu();
+      }
+    });
+  }*/
+    
+
+
 }

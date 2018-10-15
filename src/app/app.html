@@ -17,10 +17,6 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p.component)">
         {{p.title}}
       </button>
-
-      
-
-
       <ion-item *ngIf="showUserTabInMenu">
         <button menuClose ion-item *ngFor="let p of hiddenPages" (click)="openPage(p.component)">
           Minha conta
