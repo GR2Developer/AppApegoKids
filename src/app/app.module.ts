@@ -12,6 +12,14 @@ import { DatabaseProvider } from '../providers/database/database';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 
+import { File } from '@ionic-native/file';
+
+import { Transfer } from '@ionic-native/transfer';
+
+import { FilePath } from '@ionic-native/file-path';
+
+import { Camera } from '@ionic-native/camera';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -33,7 +41,11 @@ import { IonicStorageModule } from '@ionic/storage';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    DatabaseProvider
+    DatabaseProvider,
+    Camera,
+    File,
+    FilePath,
+    Transfer
   ]
 })
 export class AppModule {}

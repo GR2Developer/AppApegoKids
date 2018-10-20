@@ -56,6 +56,8 @@ export class SigninPage {
 
   
 
+  
+
   //Loga o usuário com base no email e password,
   //Obs.: olhar no auth provider o ref() onde os usuários estão cadastrados
   //Obs.: antes, a linha abaixo estava: 'async loginUser(): Promise<void> {'

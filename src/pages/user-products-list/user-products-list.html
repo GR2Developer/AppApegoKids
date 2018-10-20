@@ -26,25 +26,25 @@
     Adicionar Novo Produto
   </button>
   <!---------------------------------------------------------------->
-  <ion-list>
+  <ion-list class="card-produto">
+      <ion-card >
     <ion-item *ngFor="let product of myProducts; let i = index" (click)="setIndex(i)">
-      <h2>{{ product.name }}</h2>
-      <p>
-        Descrição: {{ product.description }}<br>
-        Preço: {{ product.price }}
-      </p>
-
+        <img src="assets/img/vestido1.jpg" (click)="goToProducts()" />
+        <div class="card-title">{{ product.name }}</div>
+        <div class="card-discricao">{{ product.description }}</div>
+        <div class="card-preco"> R$ {{ product.price }} </div>
 
       <button ion-button color="secondary" (click)="updateDocument(product)">
         Editar produto
       </button>
-
-
       <button ion-button color="danger" (click)="deleteDocument(product)">
         Remover produto
       </button>
 
 
     </ion-item>
+    </ion-card>
+
   </ion-list>
 </ion-content>
+
