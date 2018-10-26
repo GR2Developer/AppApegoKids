@@ -102,7 +102,7 @@ export class SigninPage {
   }
 
   goToSignup() {
-    this.navCtrl.setRoot('SignupPage');
+    this.navCtrl.setRoot('SignupPage',{},  {animate: true,animation:'transition', direction:'back'});
     
   }
 
