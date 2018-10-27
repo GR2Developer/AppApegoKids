@@ -1,4 +1,4 @@
-<ion-menu>
+<ion-menu side="left" id="authenticated" [content]="content" class="menu">
   <ion-header>
     <ion-toolbar >
       <ion-grid>
@@ -87,7 +87,6 @@
       </div>
     </div>
   </div>
-  
   
   
   <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
