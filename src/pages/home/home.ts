@@ -83,4 +83,5 @@ export class HomePage {
   onSlideChangeStart(slider) {                                //starta o slide
     this.showSkip = !slider.isEnd();
   }
+
 }

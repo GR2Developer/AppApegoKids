@@ -1,12 +1,16 @@
 page-tutorial { 
-  
-  .image-background{
+  $pink: #FF8FDE;
+  $blue: #618BFF;
+
+
+
+//   .image-background{
        
-    position: fixed;
-   //z-index: -1;
-  //background-image: linear-gradient(#f33464,#3f33ec);
+//     position: fixed;
+//    //z-index: -1;
+//   //background-image: linear-gradient(#f33464,#3f33ec);
       
- }
+//  }
 
   
   .toolbar-background {
@@ -16,9 +20,19 @@ page-tutorial {
   
  
   .slide{
-            margin-top: 10%;
-            margin-bottom: 5vh;
-  }
+    margin-top: 0vh;
+    
+    z-index: 999;
+    background: transparent;
+    
+  .p{
+    color:#ffff;
+      font-size: 2.0em;
+      font-family: 'FORMA';
+      font-style: normal;
+      src: url('../assets/fonts/forma/Signika-Semibold.ttf');
+}  
+}
 
   
 
@@ -51,7 +65,11 @@ page-tutorial {
   }
 
   
-  }
+  
+}
+
+
+
 
 
 

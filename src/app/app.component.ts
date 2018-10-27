@@ -7,6 +7,7 @@ import { environment } from '../environment';
 import firebase, { Unsubscribe } from 'firebase';
 import { AuthProvider } from '../providers/auth/auth';
 import { Storage } from '@ionic/storage';
+import { timer } from 'rxjs/observable/timer';
 
 
 
@@ -17,7 +18,7 @@ import { Storage } from '@ionic/storage';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
+  showSplash = true;
   rootPage: any;
   //Mostra a aba de perfil do usuário no menu
   public showUserTabInMenu: boolean = false;
@@ -79,6 +80,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
+      timer(3000).subscribe(() => this.showSplash = false) // <-- hide animation after 3s
     });
 
   }
@@ -122,6 +125,7 @@ export class MyApp {
     });
 
   }
+ 
 
 
 

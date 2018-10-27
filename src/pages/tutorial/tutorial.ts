@@ -12,6 +12,7 @@ export interface Slide {    //Exportando a interface onde ficam os slides
 }
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-tutorial',
@@ -27,27 +28,28 @@ export class TutorialPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, ) {
     
-      this.slides = [                                                             //estrutura dos slides
-        {
-          title: "Bem-vindo ao Apego kids ",
-          description: "Aqui você encontra todos e qualquer produtos para o uso de suas crianças",
-          image: 'assets/img/slide1.png',
-        },
-        {
-          title:"Quer começar a usar o aplicativo?",
-          description: "Basta navegar no menu, escolher a categoria desejada e começar a checar os inúmeros produtos e suas ofertas sempre com o melhor preço!",
-          image: 'assets/img/slide2.png',
-        },
-        {
-          title: "Viu como é simples? ",
-          description:"Agora você já pode começar com o uso do aplicativo, caso ainda haja dúvidas entre na sessão...",
-          image: 'assets/img/slide3.png',
-        }
-      ];
+    this.slides = [                                                             //estrutura dos slides
+      {
+        title: "",
+        description: "",
+        image: 'assets/img/vagao1.png',
+      },
+      {
+        title:"",
+        description: "",
+        image: 'assets/img/vagao2.png',
+      },
+      {
+        title: "",
+        description:"",
+        image: 'assets/img/vagao3.png',
+      }
+    ];
     
 }
 startApp() {
-  this.navCtrl.setRoot('SigninPage');
+  
+  this.navCtrl.setRoot('SigninPage', {}, {animate: true, direction: 'forward'});
   console.log('cliquei no startapp');
 
 }

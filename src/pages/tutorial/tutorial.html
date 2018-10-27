@@ -1,15 +1,16 @@
 <!--TIREI A BARRA LA DE CIMA PARA MOSTRAR APENAS O BG-->
+<ion-content no-bounce class="slide">
 
-<ion-content>
-  
+<div>
     <ion-buttons end *ngIf="showSkip">
-      <button ion-button class="button-skipp" (click)="startApp()" color="light" clear>
-        <ion-icon name="star">Pular</ion-icon>
-      </button>
-      <!--BUTTON SKIP-->
-    </ion-buttons>
-  
-</ion-content>
+    <button ion-button class="button-skipp" (click)="startApp()" color="light" clear>
+      <ion-icon name="star">Pular</ion-icon>
+    </button>
+    <!--BUTTON SKIP-->
+  </ion-buttons>
+</div>
+
+
 
 
 
@@ -17,37 +18,22 @@
 <!--<ion-icon name="star">Pular</ion-icon>    usa isso pra colocar icone no nome , antes tem que linkar ele no button-->
 
 
-<ion-content no-bounce class="slide">
-    <body>
-        <div class='parent'>
-         <div class='slider'>
-  <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
-    <!--Startando o evento criado no .ts-->
+
+  <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)"> <!--Startando o evento criado no .ts-->
     <ion-slide *ngFor="let slide of slides">
       <img [src]="slide.image" class="slide-image" />
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
       <p [innerHTML]="slide.description"></p>
     </ion-slide>
-    <ion-slide>
-      <!-- Esse slide é o ultimo-->
-      <img src="assets/img/slide4.png" class="slide-image" />
-      <h2 class="slide-title">Pronto para começar?</h2>
-      <button ion-button icon-end large clear (click)="startApp()">
-        <!--Criando o button ''Continue''-->
-        Continue
-        <ion-icon name="arrow-forward"></ion-icon> <!-- Aqui fica o icon seta que vai no ''continuar''-->
-
+    <ion-slide> <!-- Esse slide é separado pq ele é o ultimo???????????-->
+      <img src="assets/img/tren.png" class="slide-image" />
+      
+      <button ion-button icon-end large clear (click)="startApp()"> <!--Criando o button ''Continue''-->
+     
+        <ion-icon name="arrow-forward"></ion-icon>  <!-- Aqui fica o icon seta que vai no ''continuar''-->
+        
       </button>
     </ion-slide>
   </ion-slides>
-  </div>
- </div>
-
-</body>
 </ion-content>
 
-<ion-content class="image-background">
-
-  <img src="assets/img/bg1.png">
-
-</ion-content>

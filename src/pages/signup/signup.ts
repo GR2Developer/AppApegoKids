@@ -144,7 +144,7 @@ export class SignupPage {
   }
 
   goToLogin() {
-    this.navCtrl.setRoot('SigninPage');
+    this.navCtrl.setRoot('SigninPage' ,{}, {animate: true, direction: 'forward'});
   }
 
 }

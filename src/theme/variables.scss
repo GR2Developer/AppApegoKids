@@ -38,7 +38,10 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  peach:      #fdc29e,
+  peixe:      #ffd1a0,
+  blue1:      #22aee2
 );
 
 
@@ -84,5 +87,23 @@ $colors: (
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+//@import "roboto";
+//@import "noto-sans";
+
+@font-face{
+
+  font-family: 'FORMA';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/forma/Signika-Semibold.ttf');
+}
+
+$font-family-base: "FORMA";
+body{
+  font-family: "FORMA" !important;
+  font-weight: 400 !important;
+}
+
+h1, h2, button, p, title{
+  font-family: "FORMA" !important;
+}

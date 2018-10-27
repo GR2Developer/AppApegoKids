@@ -1,15 +1,43 @@
 page-home {
+
+	$blue1: #22aee2;
+	$peach: #fdc29e;
+	$peixe: #ffd1a0;
+	$pink: #f188a7;
+	$pink1: #ff9eb5;
+	$red: #fc7572;
+	$yellow: #f3ea81;
+	$purple: #ca76a4;
+	$purple1: #da579f;
+	$gelo:#ffff;
+
+	
+	.heart{
+        margin-left: 5px;
+    }
+    .home{
+        margin-left: 50px;
+    }
+    .profile{
+        margin-left: 50px;
+    }
+
+
+
 .text-primary{
        font-size: 150%
 	}
 	
+.background{
+	position: fixed;
+	background: $gelo;
 
-    
+}  
 .toolbar-background {
 	//background: #21ade1;
 			border-color: palegoldenrod;
 			//background: #e1213b;         --> vermelho foda
-			background-image: linear-gradient(#21ade1, #24b9f0, #26c5ff );
+			background-image: linear-gradient(to right, $blue1); //fixa cor tollbar Home
 		  }
 		  
 
@@ -20,41 +48,21 @@ page-home {
 }
 
 
- .home { 
-	 background: none;
-	 margin-top: -5%;					//margem do topo
-	 overflow-x:hidden;
-	 margin-left: -4%;					//margem da pagina esquerda
-	 margin-right: -4%;						//margem da pagina direita
-	 
 
-
- 		ion-scroll {
-		white-space: nowrap;
-		height: 29px;					//altura
-		}
-	
-		ion-scroll img {
-			height: 25px;					//altura
-			width: inherit;				// largura
-			margin: 5px; 
-			display: inline-block;
-		}
-
- }
 
 
 
 .card-background-page {
-		margin-top: -5%;
+	
 		
+
  	ion-card {
-		margin: 1px; 
+		margin: 0%; 
  		z-index: -1;
  	  	position: relative;
  	  	text-align: center;
- 		height: 210px;
- 		width: 160px;
+ 		height: 50%;
+ 		width: 49%;
  		display: inline-block; 
  	}
 	
@@ -84,52 +92,42 @@ page-home {
 }
 
 .card1 { 
-	margin-top: -10%;
-	height: inherit; 		//altura
-	width: inherit;			// largura
-	margin-left: -2%;     	//margem da pagina esquerda
-	margin-right: -2%;		//margem da pagina direita
+	margin-top: -5%;
+	margin-left: -5%;     	//margem da pagina esquerda
+	margin-right: -5%;		//margem da pagina direita
 }
 
 
 
 
 .card-produto1 {
-	margin-top: -5%;
-	
-		
+	margin-top: -5px;
+	    	//margem da pagina esquerda
+	//margem da pagina direita
+	padding: 10%;
 	ion-card {
-	   margin: 1px; 
+		margin: 1px; 
 		z-index: -1;
 		  position: relative;
-		  text-align: center;
-		height: 280px;
-		width: 160px;
+	
+		  height: 50%;
+		  width: 160px;
 		display: inline-block; 
 	}
    
-	.card-title {
-  
-		margin-top: 5%;
-		font-size: 1.5em;
-		width: 100%;
-		font-weight: bold;
-		color: #21ade1;
-	 }
+	
 	 
 	  .card-discricao {
 		font-size: 1.0em;
-		position: absolute;
-		top: 70%;
+		top: 75%;
 		width: 100%;
-		color:#21ade1;
+		color:#686868;
 	  }
 	  .card-preco {
 		 font-size: 1.5em;
-		 position: absolute;
-		 top: 85%;
+		 top: 90%;
 		 width: 100%;
-		 color:#21ade1;
+		 color:#5f5f5f;
 	   }
 
 	}
@@ -138,3 +136,25 @@ page-home {
 
 
 
+//  .home { 
+// 	 background: none;
+// 	 margin-top: -5%;					//margem do topo
+// 	 overflow-x:hidden;
+// 	 margin-left: -4%;					//margem da pagina esquerda
+// 	 margin-right: -4%;						//margem da pagina direita
+	 
+
+
+//  		ion-scroll {
+// 		white-space: nowrap;
+// 		height: 29px;					//altura
+// 		}
+	
+// 		ion-scroll img {
+// 			height: 25px;					//altura
+// 			width: inherit;				// largura
+// 			margin: 5px; 
+// 			display: inline-block;
+// 		}
+
+//  }
