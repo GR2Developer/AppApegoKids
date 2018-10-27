@@ -1,19 +1,24 @@
 page-home {
 
-	$blue1: #22aee2;
-	$peach: #fdc29e;
-	$peixe: #ffd1a0;
-	$pink: #f188a7;
-	$pink1: #ff9eb5;
-	$red: #fc7572;
-	$yellow: #f3ea81;
-	$purple: #ca76a4;
+	$blue1:   #22aee2;
+	$peach:   #fdc29e;
+	$peixe:   #ffd1a0;
+	$pink:    #f188a7;
+	$pink1:   #ff9eb5;
+	$red:     #fc7572;
+	$yellow:  #f3ea81;
+	$purple:  #ca76a4;
 	$purple1: #da579f;
-	$gelo:#ffff;
+	$gelo:		#ffff;
+	$red1:    #ed2f2f;
+	$red2:    #df1f1f;
 
-	
+	.h2 {
+		color: $red1;
+	}
 	.heart{
-        margin-left: 5px;
+		margin-left: 14px;
+	
     }
     .home{
         margin-left: 50px;
@@ -36,8 +41,8 @@ page-home {
 .toolbar-background {
 	//background: #21ade1;
 			border-color: palegoldenrod;
-			//background: #e1213b;         --> vermelho foda
-			background-image: linear-gradient(to right, $blue1); //fixa cor tollbar Home
+			background: $blue1;   
+			//background-image: linear-gradient(to bottom right,  $red2, $red1); //fixa cor tollbar Home
 		  }
 		  
 
@@ -45,6 +50,9 @@ page-home {
 .slide{
 	margin-top: 0%;    //margem do topo
 	
+}
+.tool{
+	height: 3vh;
 }
 
 
@@ -119,13 +127,13 @@ page-home {
 	 
 	  .card-discricao {
 		font-size: 1.0em;
-		top: 75%;
+		margin-top: 10%;
 		width: 100%;
 		color:#686868;
 	  }
 	  .card-preco {
-		 font-size: 1.5em;
-		 top: 90%;
+		 font-size: 1.0em;
+		 margin-top: 10%;
 		 width: 100%;
 		 color:#5f5f5f;
 	   }

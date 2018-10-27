@@ -51,6 +51,11 @@ export class CategoryPage {
     console.log('ionViewDidLoad CategoryPage');
   }
 
+  goToHome(){
+    this.navCtrl.setRoot('HomePage' ,{}, {animate: true, direction: 'forward'});
+    console.log('cliquei nessa poha');
+  }
+
 
 
 

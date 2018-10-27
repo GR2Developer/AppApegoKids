@@ -83,5 +83,9 @@ export class HomePage {
   onSlideChangeStart(slider) {                                //starta o slide
     this.showSkip = !slider.isEnd();
   }
+  goToHome(){
+    this.navCtrl.setRoot('HomePage' ,{}, {animate: true, direction: 'forward'});
+    console.log('cliquei nessa poha');
+  }
 
 }
