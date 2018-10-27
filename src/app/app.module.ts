@@ -11,6 +11,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+//import { FirebaseStorageProvider } from '../providers/firebase-storage/firebase-storage';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { IonicStorageModule } from '@ionic/storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     DatabaseProvider
+    //FirebaseStorageProvider
   ]
 })
 export class AppModule {}
