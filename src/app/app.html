@@ -1,26 +1,24 @@
 <ion-menu>
   <ion-header>
     <ion-toolbar >
-      <article>
-        <div class="menu">
-          <input id="menu--toggle"
-                 type="checkbox" />
-          <!-- /#menu--toggle -->
-          <label class="menu--toggle__trigger"
-                 for="menu--toggle"></label>
-          <!-- /.menu--toggle__trigger -->
-          <label class="menu--toggle__burger"
-                 for="menu--toggle"></label>
-          <!-- /.menu--toggle__burger -->
-    
-    
-          <ul class="menu__body">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+              <div class="user-avatar">
+                <img src="../assets/img/Vestidos.jpg">
+              </div>
+          </ion-col>
+          
+          <ion-col padding-top col-8>
+            <h2 ion-text class="no-margin text-white">
+              {{userName}}
+            </h2>
+            <span ion-text color="light">{{userName}}</span>
+          </ion-col>
             
-          </ul>
-          <!-- /.menu__body -->
-        </div>
-        <!-- /.menu -->
-    </article>
+        
+        </ion-row>
+      </ion-grid>
     </ion-toolbar>
   </ion-header>
 
