@@ -32,7 +32,7 @@ export class TutorialPage {
       {
         title: "",
         description: "",
-        image: 'assets/img/vagao1.png',
+        image: 'assets/img/r1.png',
       },
       {
         title:"",
