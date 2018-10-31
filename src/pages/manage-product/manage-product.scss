@@ -2,29 +2,29 @@ page-manage-product {
 
     .text-primary{
         font-size: 150%
-     }
+    }
 
 
      
     .toolbar-background {
         //background: #21ade1;
-                border-color: palegoldenrod;
-                //background: #e1213b;         --> vermelho foda
-                background-image: linear-gradient(#e1213b, #f52642, #e1213b );
-              }
-
-.produto{
-    margin-top: 0%;	
-    .img{
-        margin: 1px; 
- 		z-index: -1;
- 	  	position: center;
- 	  
- 		height: auto;
- 		width: auto;
- 		
+        border-color: palegoldenrod;
+        //background: #e1213b;         --> vermelho foda
+        background-image: linear-gradient(#e1213b, #f52642, #e1213b );
     }
-}
+
+    .produto{
+        margin-top: 0%;	
+        .img{
+            margin: 1px; 
+            z-index: -1;
+            position: center;
+        
+            height: auto;
+            width: auto;
+            
+        }
+    }
 
 
 }

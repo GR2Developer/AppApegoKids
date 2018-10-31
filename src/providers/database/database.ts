@@ -20,6 +20,7 @@ export class DatabaseProvider {
 
 
   constructor() {
+    this.storageRef = Firebase.storage().ref();
   }
 
   /** 
@@ -116,8 +117,8 @@ export class DatabaseProvider {
     return new Promise((resolve, reject) => {
       if (docObj) {
         this.database.collection(collectionObj).doc(docObj).set(dataObj)
-          .then((obj: any) => {
-            resolve(obj);
+          .then(() => {
+            resolve();
           })
           .catch((error: any) => {
             reject(error);
@@ -172,7 +173,8 @@ export class DatabaseProvider {
 
   /**
    * Cada produto retornado é do tipo
-   * "product: {docId: 'value', name: 'value', description: 'value', price: 'value'}"
+   * "product: {docId: 'value', name: 'value', description: 'value', price: 'value',
+   * imgUrl: 'value', imgPath: 'value'}"
    * 
    * @param uid - uid do usuário para identificação
    */
@@ -183,11 +185,15 @@ export class DatabaseProvider {
           let obj: any = [];
 
           querySnapshot.forEach(doc => {
+            console.log("doc database");
+            console.dir(doc.data());
             obj.push({
               docId: doc.id,
               name: doc.data().name,
               description: doc.data().description,
-              price: doc.data().price
+              price: doc.data().price,
+              imgUrl: doc.data().imgUrl,
+              imgPath: doc.data().imgPath
             });
           });
 
@@ -241,7 +247,7 @@ export class DatabaseProvider {
    */
   uploadImageAndReturnUrlAndPath(image: string, userId: string): Promise<any> {
     let imageName = this.generateUUID();
-    let imageRef = this.storageRef.child(`datapicsTest/${userId}/${imageName}.jpg`);
+    let imageRef = this.storageRef.child(`productsPictures/${userId}/${imageName}.jpg`);
     let uploadTask = imageRef.putString(image, 'data_url');
     return new Promise((resolve, reject) => {
       uploadTask.on('state_changed', (snapshot: firebase.storage.UploadTaskSnapshot) => {
@@ -269,7 +275,6 @@ export class DatabaseProvider {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
           returnArr.downloadUrl = downloadURL;
           returnArr.path = uploadTask.snapshot.ref.fullPath;
-          this.database.collection(this.collectionProducts)
           console.log('File available at', returnArr.downloadUrl);
           console.log('file.fullPath: ' + returnArr.path);
           resolve(returnArr);
@@ -292,6 +297,23 @@ export class DatabaseProvider {
     }
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
       s4() + '-' + s4() + s4() + s4();
+  }
+
+  /**
+   * 
+   * @param imgPath - Path para a imagem no firebase storage
+   */
+  deleteImageInStorage(imgPath: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.storageRef.child(imgPath).delete().then(
+        () => {
+          resolve();
+          console.log("deleted image from storage");
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
   }
 
 

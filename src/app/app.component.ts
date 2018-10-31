@@ -13,6 +13,7 @@ import { timer } from 'rxjs/observable/timer';
 
 
 
+
 @Component({
   templateUrl: 'app.html'
 })

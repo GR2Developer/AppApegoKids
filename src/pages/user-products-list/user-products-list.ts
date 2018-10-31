@@ -5,7 +5,6 @@ import {
   NavParams,
   Loading,
   LoadingController,
-  Alert,
   AlertController
 } from 'ionic-angular';
 
@@ -14,6 +13,10 @@ import {
 import { DatabaseProvider } from '../../providers/database/database';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Storage } from '@ionic/storage';
+import Firebase from 'firebase';
+
+import { ImageLoader } from 'ionic-image-loader';
+
 
 
 @IonicPage()
@@ -36,6 +39,7 @@ export class UserProductsListPage {
     public navCtrl: NavController,
     // public myApp: MyApp,
     public databaseProvider: DatabaseProvider,
+    public imgLoader: ImageLoader,
     public authProvider: AuthProvider,
     public loadingController: LoadingController,
     public alertController: AlertController,
@@ -45,18 +49,17 @@ export class UserProductsListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserProductsListPage');
-    if (this.authProvider.getCurrentUser() != null) {
-      this.currentUser = this.authProvider.getCurrentUser();
+    if (Firebase.auth().currentUser != null) {
       this.retrieveUserProducts();
     }
 
   }
 
+
+
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
-    this.currentUser = this.authProvider.getCurrentUser();
     this.retrieveUserProducts();
-    console.log('(UserProductsListPage.ts)(in refresher) user is not null: ' + this.currentUser);
     setTimeout(() => {
       refresher.complete();
     }, 1000);
@@ -77,11 +80,12 @@ export class UserProductsListPage {
 
 
   retrieveUserProducts(): void {
-    this.databaseProvider.getUserProducts(this.currentUser.uid).then((data) => {
-      console.dir(data);
-      this.myProducts = data;
-    })
-      .catch();
+    this.databaseProvider.getUserProducts(Firebase.auth().currentUser.uid).then(
+      data => {
+        console.dir(data);
+        this.myProducts = data;
+      }
+    ).catch();
 
   }
 
@@ -89,27 +93,25 @@ export class UserProductsListPage {
     this.myIndex = no;
   }
 
+
+
+
   deleteDocument(obj): void {
     //Adiciona um loading na tela para bloquear interação do usuário
     const loading: Loading = this.loadingController.create();
     loading.present();
-
-    this.databaseProvider.deleteDocument(this.databaseCollection,
-      obj.docId)
-      .then((data: any) => {
-        this.displayAlert('Feito!', 'O produto ' + obj.city + ' foi removido com sucesso.');
-      })
-      .catch((error: any) => {
-
-        this.displayAlert('Erro', error.message);
-      });
-
-
-
-    //this.myProducts.splice(this.myIndex, 1);
-    //this.navCtrl.setRoot(this.navCtrl.getActive().component);
-    loading.dismiss();
-
+    this.databaseProvider.deleteImageInStorage(obj.imgPath).then(() => {
+      this.databaseProvider.deleteDocument(this.databaseCollection,
+        obj.docId)
+        .then(() => {
+          loading.dismissAll();
+          this.displayAlert('Feito!', 'O produto ' + obj.name + ' foi removido com sucesso.');
+        })
+        .catch((error: any) => {
+          loading.dismissAll();
+          this.displayAlert('Erro', error.message);
+        });
+    });
   }
 
   displayAlert(title: string,
@@ -125,6 +127,23 @@ export class UserProductsListPage {
       }]
     });
     alert.present();
+  }
+
+  preloadImage(imgSrc, callback) {
+    let objImagePreloader: HTMLImageElement = new Image();
+
+    objImagePreloader.src = imgSrc;
+    if (objImagePreloader.complete) {
+      callback();
+      objImagePreloader.onload = () => { };
+    }
+    else {
+      objImagePreloader.onload = () => {
+        callback();
+        //    clear onLoad, IE behaves irratically with animated gifs otherwise
+        objImagePreloader.onload = function () { };
+      }
+    }
   }
 
 }

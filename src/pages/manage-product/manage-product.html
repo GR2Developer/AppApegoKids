@@ -1,17 +1,28 @@
 <ion-header>
 
   <ion-navbar>
-          <label ion-text class="text-primary" color="light">
-            {{title}}
-          </label>
+    <label ion-text class="text-primary" color="light">
+      {{title}}
+    </label>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="produto">
+  <button ion-button icon-left (click)="presentActionSheet()">
+    <ion-icon name="camera"></ion-icon>
+    Escolher Foto
+  </button>
+  <div *ngIf="isEditable">
+    <p>isEditable</p>
+    <img src="{{lastImageUrl}}" class="img" />
+  </div>
+  <div *ngIf="!isEditable">
+      <p>isNotEditable</p>
+    <img class="img" src="{{lastImageUrl}}" style="width: 100%; height: 50%" [hidden]="lastImage === null">
+  </div>
 
-    <img src="assets/img/vestido1.jpg" class="img" />
   <form [formGroup]="form" (ngSubmit)="saveDocument(form.value)">
 
     <ion-item>
@@ -28,15 +39,23 @@
 
     <ion-item>
       <ion-label stacked>Preço:</ion-label>
-      <ion-input type="text" formControlName="price" [(ngModel)]="price"></ion-input>
+      <ion-input type="number" style="color: transparent" formControlName="price" [(ngModel)]="price">
+      </ion-input>
+      <ion-label class="product-price-formated" stacked 
+      style="
+      text-align: right;
+      font-size: 1.0em;
+      color: black
+      "
+      >{{ price | currency : 'BRL' : 'symbol' : '0.2-2'}}</ion-label>
     </ion-item>
 
-   
-        
+
+
 
 
     <ion-item>
-      <button ion-button block color="primary" text-center padding-top padding-bottom [disabled]="!form.valid">
+      <button ion-button block color="primary" text-center padding-top padding-bottom [disabled]="!form.valid || !lastImageUrl">
         <div *ngIf="!isEditable">
           Adicionar produto
         </div>
@@ -46,8 +65,10 @@
         </div>
       </button>
     </ion-item>
-   
+
   </form>
+  <p>{{ price | currency : 'BRL' : 'symbol' : '2.2-2' }}</p>
+  <p>{{ price }}</p>
 
 
 
