@@ -1,5 +1,54 @@
 page-tutorial { 
- 
+  .imgRT{
+    z-index: 22;
+    margin-top: -74px;
+    margin-left: 30px;
+    
+    height: 80px;
+    width: 80px;
+  animation: spin 2s linear infinite;
+  }
+  .imgRT2{
+    z-index: 22;
+    margin-top: -71px;
+    margin-left: 200px;
+    
+    height: 70px;
+    width: 70px;
+  animation: spin 2s linear infinite;
+  
+
+  }
+  .imgRV{
+    z-index: 22;
+    margin-top: -66px;
+    margin-left: 80px;
+    
+    height: 70px;   //Altura
+    width: 70px;    //Largura
+  animation: spin 2s linear infinite;
+  }
+  .imgRV2{
+    z-index: 22;
+    margin-top: -70px;
+    margin-left: 204px;
+    
+    height: 70px;
+    width: 70px;
+  animation: spin 2s linear infinite;
+  }
+  @keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+    
+  }
+
+  .trem{
+   margin-top: -20px;
+  }
 
   // ============================================= ANIMAÇÃO DA NUVEM ==================================
   // Storyboard Timeline
@@ -42,9 +91,9 @@ page-tutorial {
       }
   }
   
-  
-    
+   
       .cloud {
+        
           margin-top: 50%;
           position: absolute;
           width: 70px;
@@ -86,19 +135,6 @@ page-tutorial {
 
 // ============================================= FIM ANIMAÇÃO DA NUVEM ==================================
 
-
-
-
-
-//   .image-background{
-       
-//     position: fixed;
-//    //z-index: -1;
-//   //background-image: linear-gradient(#f33464,#3f33ec);
-      
-//  }
-
-  
   .toolbar-background {
     background-color: rgba(0, 0, 0, 0);
         color: white; 
@@ -106,63 +142,25 @@ page-tutorial {
   
  
   .slide{
-    margin-top: 0;
-    
-    z-index: 999;
-    background: transparent;
-    
-  .p{
-    color:#ffff;
-      font-size: 2.0em;
-      font-family: 'FORMA';
-      font-style: normal;
-      src: url('../assets/fonts/forma/Signika-Semibold.ttf');
-}  
+    z-index: 4;   
+    background: none;
+    margin-top: 100px;
+    height: 500px;
+
 }
 
-  
 
-  .slide-title {
-    margin-top: 2.8rem;
-   
-
-  .slide-image {
-    max-height: 40%;
-    max-width: 60%;
-    margin: 36px 0;
-    
-  }
-
-  b {
-    font-weight: 500;
-   
-  }
-
-  p {
-    padding: 0 40px;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #fff;
-    
-
-    b {
-      color: #fff;
-    }
-  }
-
-  
-  
-}
 
 // ================= ANIMAÇÃO DO FUNDO ====================
 .animatedBackground {
- z-index: 1;
+  position: fixed;
+ 
   width: 100%;
   height: 100%;
   position: relative;
   top: 0;
   left: 0;
-  background: url("../../assets/img/TF.png");
+  background: url("../../assets/img/TF2.png");
   background-repeat: repeat;
   background-position: 0 0;
   background-size: auto 100%;
@@ -182,10 +180,115 @@ page-tutorial {
 //=============================== FIM DA ANIMAÇÃO DO FUNDO =======================
 
 
+//=============================== Animação NEVE ==================================
+
+.flake2,
+.flake3 {
+  z-index: -2;
+  background: url("../../assets/img/flocos.png");
+  background-repeat: repeat;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: fall1 30s infinite linear;
+          animation: fall1 30s infinite linear;
+  background-size: 250px;
+  -webkit-filter: blur(1px);
+          filter: blur(1px);
+}
+
+.flake2 {
+  -webkit-animation: fall2 30s infinite linear;
+          animation: fall2 30s infinite linear;
+  background-size: 300px;
+  -webkit-filter: blur(1.6px);
+          filter: blur(1.6px);
+}
+
+.flake3 {
+  background-size: 450px;
+  -webkit-animation: fall3 30s infinite linear;
+          animation: fall3 30s infinite linear;
+  -webkit-filter: blur(1.9px);
+          filter: blur(1.9px);
+}
 
 
 
+
+@-webkit-keyframes fall2 {
+  0% {
+    background-position: 0px -400px;
+  }
+  100% {
+    background-position: -180px 1200px;
+  }
+}
+
+@keyframes fall2 {
+  0% {
+    background-position: 0px -400px;
+  }
+  100% {
+    background-position: -180px 1200px;
+  }
+}
+
+@-webkit-keyframes fall3 {
+  0% {
+    background-position: 0px 200px;
+  }
+  100% {
+    background-position: 400px 2000px;
+  }
+}
+
+@keyframes fall3 {
+  0% {
+    background-position: 0px 200px;
+  }
+  100% {
+    background-position: 400px 2000px;
+  }
+}
+
+
+
+
+// .snow{
   
+//     background: url("../../assets/img/flocos.png");
+//     background-repeat: repeat;
+//     width: 100%;
+//     height: 100vh;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+   
+//     background-size: 250px;
+  
+//     -webkit-animation: snow 15s linear infinite;
+//     -moz-animation: snow 15s linear infinite;
+//     animation: snow 15s linear infinite;
+// }
+// @keyframes snow {
+//   0% {background-position:  0px;}
+  
+//   100% {background-position:  500px 500px ;}
+// }
+// @-moz-keyframes snow {
+//   0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+//   50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+//   100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+// }
+// @-webkit-keyframes snow {
+//   0% {background-position:  0px;}
+  
+//   100% {background-position:  500px 500px ;}
+// }
+ 
 
 
 }

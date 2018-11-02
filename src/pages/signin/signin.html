@@ -1,3 +1,5 @@
+<div class="flake2"></div>
+<div class="flake3"></div>
 
 <ion-content padding center text-center>
     <div padding text-center>
@@ -11,7 +13,7 @@
 
   <form [formGroup]="signinForm" (submit)="loginUser()" novalidate>
     <ion-item class="item item-trns">
-       <ion-label floating color="light">
+       <ion-label floating color="dark">
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
          Email
         </ion-label>
@@ -24,7 +26,7 @@
     </ion-item>
 
     <ion-item class="item item-trns2">
-      <ion-label floating color="light">
+      <ion-label floating color="dark">
         <ion-icon name="lock" item-start class="text-primary"></ion-icon>
         Senha
       </ion-label>
@@ -37,16 +39,16 @@
     </ion-item>
     
 
-    <button class="Blogin" ion-button round block type="submit" color="light" [disabled]="!signinForm.valid">
+    <button class="Blogin" ion-button round block type="submit" color="dark" [disabled]="!signinForm.valid">
       Entrar
     </button>
   </form>
 
-  <button ion-button block clear class="Bsignup" color="light" (click)="goToSignup()">
+  <button ion-button block clear class="Bsignup" color="dark" (click)="goToSignup()">
     Quero me cadastrar
   </button>
 
-  <button ion-button block clear  color="light" (click)="goToResetPassword()">
+  <button ion-button block clear  color="dark" (click)="goToResetPassword()">
     Esqueci a senha :(
   </button>
   
@@ -54,6 +56,6 @@
 
 <ion-content class="image-background">
 
-  <img src="assets/img/bg2.png">
+  <img src="assets/img/login1.png">
 
 </ion-content>

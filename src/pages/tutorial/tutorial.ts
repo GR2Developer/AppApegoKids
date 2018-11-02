@@ -5,11 +5,7 @@ import { IonicPage, NavController, NavParams, MenuController,} from 'ionic-angul
 
 
 
-export interface Slide {    //Exportando a interface onde ficam os slides
-  title: string;
-  description: string;
-  image: string;
-}
+
 
 
 
@@ -20,31 +16,14 @@ export interface Slide {    //Exportando a interface onde ficam os slides
 })
 
 export class TutorialPage {
-  slides: Slide[];
+  
   showSkip = true;
-  dir: string = 'ltr';
- 
+  
  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, ) {
     
-    this.slides = [                                                             //estrutura dos slides
-      {
-        title: "",
-        description: "",
-        image: 'assets/img/r1.png',
-      },
-      {
-        title:"",
-        description: "",
-        image: 'assets/img/vagao2.png',
-      },
-      {
-        title: "",
-        description:"",
-        image: 'assets/img/vagao3.png',
-      }
-    ];
+
     
 }
 startApp() {
