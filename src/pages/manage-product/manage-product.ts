@@ -34,10 +34,14 @@ export class ManageProductPage {
 
   //variáveis do produto e o uid do usuário que vai publicar/editar o produto
   //public uid: string = '';
-  public name: string = '';
-  public description: string = '';
-  public price: number = null;
-  public docId: string = '';
+  private name: string = '';
+  private description: string = '';
+  private price: number = null;
+  private category: string = '';
+  private categories: string[] = [];
+  private subcategory: string = '';
+  private subcategories: string[] = [];
+  private docId: string = '';
 
   lastImage: string = null;
   lastImageUrl: string = null;
@@ -65,6 +69,8 @@ export class ManageProductPage {
     public platform: Platform,
     private toastCtrl: ToastController
   ) {
+    this.getCategories();
+    
 
     this.form = formBuilder.group({
       'name': [
@@ -74,7 +80,9 @@ export class ManageProductPage {
       'description': ['',
         Validators.compose([Validators.required, Validators.maxLength(100)])
       ],
-      'price': ['', Validators.required]
+      'price': ['', Validators.required],
+      'category': ['', Validators.required],
+      'subcategory': ['', Validators.required]
     });
 
     if (this.navParams.get('isEdited')) {
@@ -84,6 +92,9 @@ export class ManageProductPage {
       this.description = record.product.description;
       this.price = record.product.price;
       this.docId = record.product.docId;
+      this.category = record.product.category;
+      this.updateSubcategories(this.category);
+      this.subcategory = record.product.subcategory;
       this.lastImageUrl = record.product.imgUrl;
       this.lastImageStoragePath = record.product.imgPath;
       this.isEditable = true;
@@ -98,6 +109,21 @@ export class ManageProductPage {
 
     }
 
+  }
+
+  updateSubcategories(category) {
+    this.databaseProvider.getCategoryData(category).then(categoryData=>{
+      this.subcategories = categoryData[0].subcategories;
+    })
+  }
+
+  getCategories(){
+    this.databaseProvider.getCategoryData().then((categories: any[])=>{
+      categories.forEach(element => {
+        this.categories.push(element.category);
+      });
+      console.log('this.categories: ', this.categories.join(', '));
+    });
   }
 
   public presentActionSheet() {
@@ -272,6 +298,8 @@ export class ManageProductPage {
       //ab: string = this.form.value.description,
       description: string = this.form.controls["description"].value,
       price: string = this.form.controls["price"].value,
+      category: string = this.form.controls["category"].value,
+      subcategory: string = this.form.controls["subcategory"].value,
       uid: string = Firebase.auth().currentUser.uid;
     console.log("savdocument price: " + price);
 
@@ -282,7 +310,9 @@ export class ManageProductPage {
           {
             name: name,
             description: description,
-            price: price
+            price: price,
+            category: category,
+            subcategory: subcategory
           }
         ).then(() => {
           this.clearForm();
@@ -307,6 +337,8 @@ export class ManageProductPage {
                   name: name,
                   description: description,
                   price: price,
+                  category: category,
+                  subcategory: subcategory,
                   imgUrl: imageData.downloadUrl,
                   imgPath: imageData.path
                 }
@@ -346,6 +378,8 @@ export class ManageProductPage {
                 description: description,
                 price: price,
                 uid: uid,
+                category: category,
+                subcategory: subcategory,
                 imgUrl: imageData.downloadUrl,
                 imgPath: imageData.path,
                 flagHot: false

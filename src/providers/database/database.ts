@@ -155,8 +155,7 @@ export class DatabaseProvider {
     });
   }
 
-  deleteDocument(collectionObj: string,
-    docId: string): Promise<any> {
+  deleteDocument(collectionObj: string, docId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.database
         .collection(collectionObj)
@@ -174,7 +173,7 @@ export class DatabaseProvider {
   /**
    * Cada produto retornado é do tipo
    * "product: {docId: 'value', name: 'value', description: 'value', price: 'value',
-   * imgUrl: 'value', imgPath: 'value'}"
+   * imgUrl: 'value', imgPath: 'value', category: 'value', subcategory: 'value'}"
    * 
    * @param uid - uid do usuário para identificação
    */
@@ -183,7 +182,6 @@ export class DatabaseProvider {
       this.database.collection(this.collectionProducts).where('uid', '==', uid).get()
         .then((querySnapshot) => {
           let obj: any = [];
-
           querySnapshot.forEach(doc => {
             console.log("doc database");
             console.dir(doc.data());
@@ -192,52 +190,70 @@ export class DatabaseProvider {
               name: doc.data().name,
               description: doc.data().description,
               price: doc.data().price,
+              category: doc.data().category,
+              subcategory: doc.data().subcategory,
               imgUrl: doc.data().imgUrl,
               imgPath: doc.data().imgPath
             });
           });
-
           resolve(obj);
         })
         .catch((error) => {
           reject(error);
         });
-
-
     });
-
-
   }
 
 
+
+
   /**
-   * Retorna um vetor com {id: docID(string), category: string, categoryFilters: string[]}
+   * Retorna um vetor com {id: docID(string), category: string, categoryFilters: string[], subcategories: string[]}
+   * Caso não receba parâmetros, retorna todas as categorias disponíveis
    * @param category - Categoria desejada (documentId no firestore)
    */
-  getCategoryData(category: string): Promise<any> {
+  getCategoryData(category?: string): Promise<any> {
+    if (category) {
+      return new Promise((resolve, reject) => {
+        this.database.collection(this.collectionCategories).where('category', '==', category).get()
+          .then(querySnapshot => {
+            let obj: any = [];
 
-    return new Promise((resolve, reject) => {
-      this.database.collection(this.collectionCategories).where('category', '==', category).get()
-        .then((querySnapshot) => {
-          let obj: any = [];
-
-          querySnapshot.forEach(doc => {
-            obj.push({
-              docId: doc.id,
-              category: doc.data().category,
-              categoryFilters: doc.data().categoryFilters,
+            querySnapshot.forEach(doc => {
+              obj.push({
+                docId: doc.id,
+                category: doc.data().category,
+                categoryFilters: doc.data().categoryFilters,
+                subcategories: doc.data().subcategories
+              });
             });
+
+            resolve(obj);
+          }).catch(error => {
+            reject(error);
           });
+      });
+    }
+    else{
+      return new Promise((resolve, reject) => {
+        this.database.collection(this.collectionCategories).get()
+          .then(querySnapshot => {
+            let obj: any = [];
 
-          resolve(obj);
-        })
-        .catch((error) => {
-          reject(error);
-        });
+            querySnapshot.forEach(doc => {
+              obj.push({
+                docId: doc.id,
+                category: doc.data().category,
+                categoryFilters: doc.data().categoryFilters,
+              });
+            });
 
-
-    });
-
+            resolve(obj);
+          }).catch(error => {
+            reject(error);
+          });
+      });
+    }
   }
 
   /**

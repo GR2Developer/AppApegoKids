@@ -19,7 +19,7 @@
     <img src="{{lastImageUrl}}" class="img" />
   </div>
   <div *ngIf="!isEditable">
-      <p>isNotEditable</p>
+    <p>isNotEditable</p>
     <img class="img" src="{{lastImageUrl}}" style="width: 100%; height: 50%" [hidden]="lastImage === null">
   </div>
 
@@ -36,18 +36,31 @@
       <ion-input type="text" formControlName="description" [(ngModel)]="description"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label stacked>Categoria: {{category}}</ion-label>
+      <ion-select (ionChange)="updateSubcategories($event)" formControlName="category" [(ngModel)]="category">
+        <ion-option *ngFor='let category of categories'>{{category}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="category">
+      <ion-label stacked>Subcategoria:</ion-label>
+      <ion-select formControlName="subcategory" [(ngModel)]="subcategory">
+        <ion-option *ngFor='let subcategory of subcategories'>{{subcategory}}</ion-option>
+      </ion-select>
+    </ion-item>
+
 
     <ion-item>
       <ion-label stacked>Preço:</ion-label>
       <ion-input type="number" style="color: transparent" formControlName="price" [(ngModel)]="price">
       </ion-input>
-      <ion-label class="product-price-formated" stacked 
-      style="
+      <ion-label class="product-price-formated" stacked style="
       text-align: right;
       font-size: 1.0em;
       color: black
-      "
-      >{{ price | currency : 'BRL' : 'symbol' : '0.2-2'}}</ion-label>
+      ">{{
+        price | currency : 'BRL' : 'symbol' : '0.2-2'}}</ion-label>
     </ion-item>
 
 
@@ -56,6 +69,7 @@
 
     <ion-item>
       <button ion-button block color="primary" text-center padding-top padding-bottom [disabled]="!form.valid || !lastImageUrl">
+      <!-- <button ion-button block color="primary" text-center padding-top padding-bottom [disabled]="!form.valid"> -->
         <div *ngIf="!isEditable">
           Adicionar produto
         </div>
