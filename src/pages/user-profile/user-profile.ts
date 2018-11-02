@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { DatabaseProvider } from '../../providers/database/database';
 import { Storage } from '@ionic/storage';
+import Firebase from 'firebase';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the UserProfilePage page.
@@ -19,31 +21,44 @@ import { Storage } from '@ionic/storage';
 export class UserProfilePage {
 
   public userName: any;
-  private uid: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public databaseProvider: DatabaseProvider,
+    private databaseProvider: DatabaseProvider,
+    private loadingCtrl: LoadingController,
+    //private authProvider: AuthProvider,
     public storage: Storage
   ) {
-    this.storage.get('user').then((user) => {
-      this.uid = user.uid;
-      this.databaseProvider.getUserData(this.uid).then((data: any) => {
-        this.userName = data[0].name;
-        //console.log('user name: ' + this.userName);
-        //console.log('user data: ');
-        console.dir(this.userName);
-        console.log("dasdas: " + data[0].name);
-      });
 
-    });
 
-    
+    //console.log("uid: "+Firebase.auth().currentUser.uid)
+    // this.databaseProvider.getUserData(Firebase.auth().currentUser.uid).then((data: any) => {
+    //   console.dir(data);
+    //   // this.userName = data[0].name;
+    //   // //console.log('user name: ' + this.userName);
+    //   // //console.log('user data: ');
+    //   // console.dir(this.userName);
+    //   // console.log("dasdas: " + data[0].name);
+    // });
+
+
+
+
   }
 
+
   ionViewDidLoad() {
+    const loading = this.loadingCtrl.create();
+    loading.present();
     console.log('ionViewDidLoad UserProfilePage');
+    let userUid = Firebase.auth().currentUser.uid;
+    this.databaseProvider.getUserData(userUid).then(userData=>{
+      console.log("userName: ");
+      console.dir(userData[0].name);
+      this.userName = userData[0].name;
+      loading.dismiss();
+    });
   }
 
   goToUserProductsList() {

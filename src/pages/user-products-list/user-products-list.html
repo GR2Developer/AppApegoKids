@@ -15,11 +15,11 @@
 
 <ion-content padding>
   <!--Refresher-->
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-round-up" pullingText="Puxe para atualizar" refreshingSpinner="bubbles"
       refreshingText="Atualizando...">
     </ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
   <!---------------------------------------------------------------->
   <!--Add new document-->
   <button ion-button block color="primary" (click)="addDocument()">
@@ -27,24 +27,27 @@
   </button>
   <!---------------------------------------------------------------->
   <ion-list class="card-produto">
-      <ion-card >
-    <ion-item *ngFor="let product of myProducts; let i = index" (click)="setIndex(i)">
-        <img src="assets/img/vestido1.jpg" (click)="goToProducts()" />
-        <div class="card-title">{{ product.name }}</div>
-        <div class="card-discricao">{{ product.description }}</div>
-        <div class="card-preco"> R$ {{ product.price }} </div>
+    <ion-card>
+      <!-- <ion-item *ngFor="let product of myProducts; let i = index" (click)="setIndex(i)"> -->
+      <ion-item *ngFor="let product of myProducts">
+        <!-- <img *ngIf="!product.imgUrl" src="../../assets/img/Spinner-1s-200px.gif" /> -->
+        <img class='product-image' src="{{product.imgUrl}}" />
+        <!-- <img id="product-image" src="{{product.imgUrl}}"/> -->
+        <div class="card-title">nome: {{ product.name }}</div>
+        <div class="card-discricao">descrição: {{ product.description | uppercase }}</div>
+        <div class="card-category">categoria: {{ product.category | lowercase }}</div>
+        <div class="card-preco">preço: {{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }} </div>
 
-      <button ion-button color="secondary" (click)="updateDocument(product)">
-        Editar produto
-      </button>
-      <button ion-button color="danger" (click)="deleteDocument(product)">
-        Remover produto
-      </button>
+        <button ion-button color="secondary" (click)="updateDocument(product)">
+          Editar produto
+        </button>
+        <button ion-button color="danger" (click)="deleteDocument(product)">
+          Remover produto
+        </button>
 
 
-    </ion-item>
+      </ion-item>
     </ion-card>
 
   </ion-list>
 </ion-content>
-

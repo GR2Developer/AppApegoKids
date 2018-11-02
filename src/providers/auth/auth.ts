@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import firebase from 'firebase';
+import Firebase from 'firebase';
 
 @Injectable()
 export class AuthProvider {
   constructor() { }
 
-  loginUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
+  loginUser(email: string, password: string): Promise<Firebase.auth.UserCredential> {
     return new Promise((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(email, password)
+      Firebase.auth().signInWithEmailAndPassword(email, password)
         .then((data) => {
           resolve(data);
         })
@@ -18,9 +18,9 @@ export class AuthProvider {
 
   }
 
-  signupUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
+  signupUser(email: string, password: string): Promise<Firebase.auth.UserCredential> {
     return new Promise((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
+      Firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((data: any) => {
           resolve(data);
         })
@@ -31,15 +31,15 @@ export class AuthProvider {
   }
 
   logoutUser(): Promise<void> {
-    return firebase.auth().signOut();
+    return Firebase.auth().signOut();
   }
 
   resetPassword(email: string): Promise<void> {
-    return firebase.auth().sendPasswordResetEmail(email);
+    return Firebase.auth().sendPasswordResetEmail(email);
   }
 
   getCurrentUser(): firebase.User{
-    let user = firebase.auth().currentUser;
+    let user = Firebase.auth().currentUser;
     return user;
   }
 

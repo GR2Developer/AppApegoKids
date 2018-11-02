@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
@@ -11,14 +11,19 @@ import { AuthProvider } from '../providers/auth/auth';
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+//import { FirebaseStorageProvider } from '../providers/firebase-storage/firebase-storage';
 
 import { File } from '@ionic-native/file';
-
-import { Transfer } from '@ionic-native/transfer';
-
+//import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
-
 import { Camera } from '@ionic-native/camera';
+import { IonicImageLoader } from 'ionic-image-loader';
+
+//import { registerLocaleData } from '@angular/common';
+//import localeBr from '@angular/common/locales/br';
+
+//Seting locale to br
+//registerLocaleData(localeBr, 'br');
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { Camera } from '@ionic-native/camera';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    IonicImageLoader.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,6 +43,7 @@ import { Camera } from '@ionic-native/camera';
    
   ],
   providers: [
+    //{ provide: LOCALE_ID, useValue: 'br' },
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
@@ -44,8 +51,7 @@ import { Camera } from '@ionic-native/camera';
     DatabaseProvider,
     Camera,
     File,
-    FilePath,
-    Transfer
+    FilePath
   ]
 })
 export class AppModule {}
