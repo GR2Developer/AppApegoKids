@@ -16,8 +16,10 @@ import { DatabaseProvider } from '../../providers/database/database';
 //import { Storage } from '@ionic/storage';
 import Firebase from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import  { File }  from '@ionic-native/file';
+import  { File, FileReader }  from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
+
+declare var cordova;
 
 @IonicPage()
 @Component({
@@ -155,10 +157,10 @@ export class ManageProductPage {
   public takePicture(sourceType) {
     //opções para a foto
     let cameraOptions: CameraOptions = {
-      quality: 100,
+      quality: 60,
       destinationType: this.camera.DestinationType.FILE_URI,
-      targetHeight: 800,
-      targetWidth: 800,
+      targetHeight: 600,
+      targetWidth: 600,
       allowEdit: true,
       sourceType: sourceType,
       encodingType: this.camera.EncodingType.JPEG,
@@ -205,12 +207,12 @@ export class ManageProductPage {
   private copyFileToLocalDir(namePath, currentName, newFileName) {
     //Aqui a imagem já é um File interno do dispositivo
     this.lastImageIsUrl = false;
-    this.file.checkDir(this.file.dataDirectory, 'images').then(
+    this.file.checkDir(cordova.file.dataDirectory, 'images').then(
       dirExists => {
 
         console.log("directory exists ");
-        this.file.copyFile(namePath, currentName, this.file.dataDirectory + 'images', newFileName).then(success => {
-          this.lastImageUrl = this.file.dataDirectory + 'images/' + newFileName;
+        this.file.copyFile(namePath, currentName, cordova.file.dataDirectory + 'images', newFileName).then(success => {
+          this.lastImageUrl = cordova.file.dataDirectory + 'images/' + newFileName;
           this.lastImage = newFileName;
           console.log("(copyFileToLocalDir) lastImage: " + this.lastImage);
           console.dir(success);
@@ -221,11 +223,11 @@ export class ManageProductPage {
       }, noDir => {
         console.log("entrei no noDir ");
         console.dir(noDir);
-        this.file.createDir(this.file.dataDirectory, "images", true).then(success => {
+        this.file.createDir(cordova.file.dataDirectory, "images", true).then(success => {
           console.log("success creating dir: ");
           console.dir(success);
-          this.file.copyFile(namePath, currentName, this.file.dataDirectory + 'images', newFileName).then(success => {
-            this.lastImageUrl = this.file.dataDirectory + 'images/' + newFileName;
+          this.file.copyFile(namePath, currentName, cordova.file.dataDirectory + 'images', newFileName).then(success => {
+            this.lastImageUrl = cordova.file.dataDirectory + 'images/' + newFileName;
             this.lastImage = newFileName;
             console.log("(copyFileToLocalDir) lastImage(else): " + this.lastImage);
             console.dir(success);
@@ -329,7 +331,7 @@ export class ManageProductPage {
       else {//usuário mudou a imagem
         console.log("before delete image in storage documento with change photo");
         this.databaseProvider.deleteImageInStorage(this.lastImageStoragePath);
-        this.file.readAsDataURL(this.file.dataDirectory + 'images', this.lastImage).then(base64Str => {
+        this.file.readAsDataURL(cordova.file.dataDirectory + 'images', this.lastImage).then(base64Str => {
           //console.log("64tr: " + base64Str);
           this.databaseProvider.uploadImageAndReturnUrlAndPath(base64Str, Firebase.auth().currentUser.uid).then(
             imageData => {
@@ -371,10 +373,18 @@ export class ManageProductPage {
     }
     else {//Usuário está cadastrando um produto, adicionar as flags de visibilidade (hot, promoção, etc.)
       console.log("entrei else cadastro produto");
-      this.file.readAsDataURL(this.file.dataDirectory + 'images', this.lastImage).then(base64Str => {
-        //console.log("64tr: " + base64Str);
-        console.log("before cadastro documento with photo");
-        this.databaseProvider.uploadImageAndReturnUrlAndPath(base64Str, Firebase.auth().currentUser.uid).then(
+      console.log("dir cordova data directory com lastImage ",this.lastImage,": ");
+      this.file.listDir(cordova.file.dataDirectory,'images').then(direcs=>{
+        console.log("dir cordova data directory com lastImage ",this.lastImage,": ");
+        console.dir(direcs);
+      });
+
+      let correctDir: string = cordova.file.dataDirectory + 'images';
+      this.file.readAsDataURL(correctDir, this.lastImage).then(base64Str => {
+        console.log("li 64str");
+        const uid = Firebase.auth().currentUser.uid;
+        //console.log("64tr: ", base64Str);
+        this.databaseProvider.uploadImageAndReturnUrlAndPath(base64Str, uid).then(
           imageData => {
             this.databaseProvider.addDocument(
               this.databaseCollection,
