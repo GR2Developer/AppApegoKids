@@ -8,12 +8,9 @@ import firebase, { Unsubscribe } from 'firebase';
 import { AuthProvider } from '../providers/auth/auth';
 import { Storage } from '@ionic/storage';
 import { timer } from 'rxjs/observable/timer';
-<<<<<<< HEAD
 import { DatabaseProvider } from '../providers/database/database';
 
-=======
 import { DataServiceProvider } from '../providers/data-service/data-service';
->>>>>>> branchLukas
 
 
 
@@ -29,13 +26,10 @@ export class MyApp {
   //private databaseProvider: DatabaseProvider;
   //Mostra a aba de perfil do usuário no menu
   public showUserTabInMenu: boolean = false;
-<<<<<<< HEAD
-  private showSubmenu = false;
+  
   public categories: any[] = [];
-=======
   showSubmenu: boolean = false;
   showSubmenu2: boolean = false;
->>>>>>> branchLukas
 
   pages: any;
   hiddenPages: Array<{ title: string, component: any }>;
@@ -49,12 +43,9 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public authProvider: AuthProvider,
-<<<<<<< HEAD
-    private databaseProvider: DatabaseProvider
-=======
+    private databaseProvider: DatabaseProvider,
     public dataService: DataServiceProvider
 
->>>>>>> branchLukas
   ) {
 
     firebase.initializeApp(environment.firebase);
@@ -178,10 +169,8 @@ export class MyApp {
     });
 
   }
-<<<<<<< HEAD
 
 
-=======
  
   toggleLevel1(idx) {
     if (this.isLevel1Shown(idx)) {
@@ -210,7 +199,6 @@ export class MyApp {
   goToCategoryPage() {
     this.openPage("CategoryPage")
   }
->>>>>>> branchLukas
 
 
 }
