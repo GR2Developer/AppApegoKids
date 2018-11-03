@@ -18,6 +18,8 @@ import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { SearchPipe } from '../pipes/search/search';
+import { SortPipe } from '../pipes/sort/sort';
 
 //import { registerLocaleData } from '@angular/common';
 //import localeBr from '@angular/common/locales/br';
@@ -28,6 +30,8 @@ import { IonicImageLoader } from 'ionic-image-loader';
 @NgModule({
   declarations: [
     MyApp,
+    SearchPipe,
+    SortPipe
    
   ],
   imports: [

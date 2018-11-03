@@ -236,10 +236,8 @@ export class ManageProductPage {
             console.dir(error);
           });
         });
-
       }
     );
-
   }
 
   /*
