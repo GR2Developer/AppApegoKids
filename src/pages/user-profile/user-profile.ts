@@ -52,7 +52,7 @@ export class UserProfilePage {
     const loading = this.loadingCtrl.create();
     loading.present();
     console.log('ionViewDidLoad UserProfilePage');
-    let userUid = Firebase.auth().currentUser.uid;
+    const userUid = Firebase.auth().currentUser.uid;
     this.databaseProvider.getUserData(userUid).then(userData=>{
       console.log("userName: ");
       console.dir(userData[0].name);

@@ -10,8 +10,8 @@ import 'firebase/firestore';
 @Injectable()
 export class DatabaseProvider {
 
-  private database = Firebase.firestore();
-  private storageRef: Firebase.storage.Reference;
+  //private database = Firebase.firestore();
+  //private storageRef: Firebase.storage.Reference = Firebase.storage().ref();
 
 
   private collectionUserProfiles: string = 'UserProfiles';
@@ -20,7 +20,7 @@ export class DatabaseProvider {
 
 
   constructor() {
-    this.storageRef = Firebase.storage().ref();
+    //this.storageRef = Firebase.storage().ref();
   }
 
   /** 
@@ -30,7 +30,7 @@ export class DatabaseProvider {
   addUser(collectionObj: string,
     dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.database.collection(collectionObj).add(dataObj)
+      Firebase.firestore().collection(collectionObj).add(dataObj)
         .then((obj: any) => {
           resolve(obj);
         })
@@ -40,7 +40,32 @@ export class DatabaseProvider {
     });
   }
 
-
+  getCategoryProducts(category: string): Promise<any>{
+    return new Promise((resolve, reject) => {
+      Firebase.firestore().collection(this.collectionProducts).where('category', '==', category).get()
+        .then((querySnapshot) => {
+          let obj: any = [];
+          querySnapshot.forEach(doc => {
+            console.log("doc database");
+            console.dir(doc.data());
+            obj.push({
+              docId: doc.id,
+              name: doc.data().name,
+              description: doc.data().description,
+              price: doc.data().price,
+              category: doc.data().category,
+              subcategory: doc.data().subcategory,
+              imgUrl: doc.data().imgUrl,
+              imgPath: doc.data().imgPath
+            });
+          });
+          resolve(obj);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
 
 
   /**
@@ -50,7 +75,7 @@ export class DatabaseProvider {
    */
   getUserData(uid: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.database.collection(this.collectionUserProfiles).where('uid', '==', uid).get()
+      Firebase.firestore().collection(this.collectionUserProfiles).where('uid', '==', uid).get()
         .then((querySnapshot) => {
           let obj: any = [];
 
@@ -79,7 +104,7 @@ export class DatabaseProvider {
    */
   getAllUsers(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.database.collection(this.collectionUserProfiles)
+      Firebase.firestore().collection(this.collectionUserProfiles)
         .get()
         .then((querySnapshot) => {
 
@@ -116,7 +141,7 @@ export class DatabaseProvider {
   addDocument(collectionObj: string, dataObj: any, docObj?: string): Promise<any> {
     return new Promise((resolve, reject) => {
       if (docObj) {
-        this.database.collection(collectionObj).doc(docObj).set(dataObj)
+        Firebase.firestore().collection(collectionObj).doc(docObj).set(dataObj)
           .then(() => {
             resolve();
           })
@@ -126,7 +151,7 @@ export class DatabaseProvider {
 
       }
       else {
-        this.database.collection(collectionObj).add(dataObj)
+        Firebase.firestore().collection(collectionObj).add(dataObj)
           .then((obj: any) => {
             resolve(obj);
           })
@@ -142,7 +167,7 @@ export class DatabaseProvider {
     docId: string,
     dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.database
+      Firebase.firestore()
         .collection(collectionObj)
         .doc(docId)
         .update(dataObj)
@@ -157,7 +182,7 @@ export class DatabaseProvider {
 
   deleteDocument(collectionObj: string, docId: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.database
+      Firebase.firestore()
         .collection(collectionObj)
         .doc(docId)
         .delete()
@@ -179,7 +204,7 @@ export class DatabaseProvider {
    */
   getUserProducts(uid: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.database.collection(this.collectionProducts).where('uid', '==', uid).get()
+      Firebase.firestore().collection(this.collectionProducts).where('uid', '==', uid).get()
         .then((querySnapshot) => {
           let obj: any = [];
           querySnapshot.forEach(doc => {
@@ -208,14 +233,14 @@ export class DatabaseProvider {
 
 
   /**
-   * Retorna um vetor com {id: docID(string), category: string, categoryFilters: string[], subcategories: string[]}
-   * Caso não receba parâmetros, retorna todas as categorias disponíveis
+   * Retorna um vetor result, result[0] = {id: docID(string), category: string, categoryFilters: string[], subcategories: string[]}
+   * Caso não receba parâmetros, result tem todas as categorias, ex.: resul[0], result[1], etc.
    * @param category - Categoria desejada (documentId no firestore)
    */
   getCategoryData(category?: string): Promise<any> {
     if (category) {
       return new Promise((resolve, reject) => {
-        this.database.collection(this.collectionCategories).where('category', '==', category).get()
+        Firebase.firestore().collection(this.collectionCategories).where('category', '==', category).get()
           .then(querySnapshot => {
             let obj: any = [];
 
@@ -236,7 +261,7 @@ export class DatabaseProvider {
     }
     else{
       return new Promise((resolve, reject) => {
-        this.database.collection(this.collectionCategories).get()
+        Firebase.firestore().collection(this.collectionCategories).get()
           .then(querySnapshot => {
             let obj: any = [];
 
@@ -263,7 +288,7 @@ export class DatabaseProvider {
    */
   uploadImageAndReturnUrlAndPath(image: string, userId: string): Promise<any> {
     let imageName = this.generateUUID();
-    let imageRef = this.storageRef.child(`productsPictures/${userId}/${imageName}.jpg`);
+    let imageRef = Firebase.storage().ref().child(`productsPictures/${userId}/${imageName}.jpg`);
     let uploadTask = imageRef.putString(image, 'data_url');
     return new Promise((resolve, reject) => {
       uploadTask.on('state_changed', (snapshot: firebase.storage.UploadTaskSnapshot) => {
@@ -321,7 +346,7 @@ export class DatabaseProvider {
    */
   deleteImageInStorage(imgPath: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.storageRef.child(imgPath).delete().then(
+      Firebase.storage().ref().child(imgPath).delete().then(
         () => {
           resolve();
           console.log("deleted image from storage");

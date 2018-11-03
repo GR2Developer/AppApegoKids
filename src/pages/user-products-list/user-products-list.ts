@@ -50,6 +50,7 @@ export class UserProductsListPage {
   }
 
   ionViewDidLoad() {
+    this.loadingController.create().dismissAll();
     this.addListener();
 
 

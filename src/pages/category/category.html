@@ -4,7 +4,7 @@
       <ion-icon name="menu" color="light"></ion-icon>
     </button>
     <label ion-text class="text-primary" color="light">
-      Kids Apego
+      {{category}}
     </label>
 
 
@@ -22,31 +22,51 @@
 </ion-header>
 
 <ion-content>
- 
-  <div class="card-produto1"padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-round-up" pullingText="Puxe para atualizar" refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="card-produto1" padding>
     <div>
       <h2 text-center class="h2">MELHORES OFERTAS</h2>
     </div>
 
-    <ion-card >
-      <img src="assets/img/vestido1.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
+    <ion-card *ngFor="let product of currentDisplayedItems">
+      <!-- <ion-item *ngFor="let product of myProducts; let i = index" (click)="setIndex(i)"> -->
+      <ion-item (click)="testFunc()">
+        <!-- <img *ngIf="!product.imgUrl" src="../../assets/img/Spinner-1s-200px.gif" /> -->
+        <img class='product-image' src="{{product.imgUrl}}" />
+        <!-- <img id="product-image" src="{{product.imgUrl}}"/> -->
+        <div class="card-title" text-wrap>{{ product.name }}</div>
+        <div class="card-discricao" text-wrap>{{ product.description | uppercase }}</div>
+        <div class="card-category" text-wrap>categoria: {{ product.category | lowercase }}</div>
+        <div class="card-preco">preço: {{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }} </div>
+
+      </ion-item>
     </ion-card>
 
   </div>
+  <ion-infinite-scroll class="InfiniteScroll" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+
 
 
 <ion-footer>
-  <ion-toolbar color="blue1" class="tool" >
+  <ion-toolbar color="blue1" class="tool">
     <ion-buttons>
-      <button ion-button  >
+      <button ion-button>
         <ion-icon name="heart-outline" class="heart" style="zoom:1.8;" color="light"></ion-icon>
       </button>
-      <button ion-button (click)="goToHome()" >
-        <ion-icon name="home" class="home 10x" style="zoom:1.8;" color="light" ></ion-icon>
+      <button ion-button (click)="goToHome()">
+        <ion-icon name="home" class="home 10x" style="zoom:1.8;" color="light"></ion-icon>
       </button>
-      <button ion-button   >
+      <button ion-button>
         <ion-icon name="ios-chatbubbles" class="profile 10x" style="zoom:1.8;" color="light"></ion-icon>
       </button>
     </ion-buttons>

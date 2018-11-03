@@ -16,7 +16,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 //import { Storage } from '@ionic/storage';
 import Firebase from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { File } from '@ionic-native/file';
+import  { File }  from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 
 @IonicPage()
@@ -304,7 +304,9 @@ export class ManageProductPage {
     console.log("savdocument price: " + price);
 
     if (this.isEditable) {
+      console.log("entrei isEditable");
       if (this.lastImageIsUrl) {//usuário não mudou a imagem
+        console.log("before update documento without change photo");
         this.databaseProvider.updateDocument(this.databaseCollection,
           this.docId,
           {
@@ -325,6 +327,7 @@ export class ManageProductPage {
         });
       }
       else {//usuário mudou a imagem
+        console.log("before delete image in storage documento with change photo");
         this.databaseProvider.deleteImageInStorage(this.lastImageStoragePath);
         this.file.readAsDataURL(this.file.dataDirectory + 'images', this.lastImage).then(base64Str => {
           //console.log("64tr: " + base64Str);
@@ -367,8 +370,10 @@ export class ManageProductPage {
       }
     }
     else {//Usuário está cadastrando um produto, adicionar as flags de visibilidade (hot, promoção, etc.)
+      console.log("entrei else cadastro produto");
       this.file.readAsDataURL(this.file.dataDirectory + 'images', this.lastImage).then(base64Str => {
         //console.log("64tr: " + base64Str);
+        console.log("before cadastro documento with photo");
         this.databaseProvider.uploadImageAndReturnUrlAndPath(base64Str, Firebase.auth().currentUser.uid).then(
           imageData => {
             this.databaseProvider.addDocument(

@@ -33,9 +33,9 @@
         <!-- <img *ngIf="!product.imgUrl" src="../../assets/img/Spinner-1s-200px.gif" /> -->
         <img class='product-image' src="{{product.imgUrl}}" />
         <!-- <img id="product-image" src="{{product.imgUrl}}"/> -->
-        <div class="card-title">nome: {{ product.name }}</div>
-        <div class="card-discricao">descrição: {{ product.description | uppercase }}</div>
-        <div class="card-category">categoria: {{ product.category | lowercase }}</div>
+        <div class="card-title" text-wrap>nome: {{ product.name }}</div>
+        <div class="card-discricao" text-wrap>descrição: {{ product.description | uppercase }}</div>
+        <div class="card-category" text-wrap>categoria: {{ product.category | lowercase }}</div>
         <div class="card-preco">preço: {{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }} </div>
 
         <button ion-button color="secondary" (click)="updateDocument(product)">

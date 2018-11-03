@@ -1,24 +1,24 @@
 <ion-menu side="left" id="authenticated" [content]="content" class="menu">
   <ion-header>
-    <ion-toolbar >
-        <div class="flake2"></div>
-        <div class="flake3"></div>
+    <ion-toolbar>
+      <div class="flake2"></div>
+      <div class="flake3"></div>
       <ion-grid>
         <ion-row>
           <ion-col col-4>
-              <div class="user-avatar">
-                <img src="../assets/img/Vestidos.jpg">
-              </div>
+            <div class="user-avatar">
+              <img src="../assets/img/Vestidos.jpg">
+            </div>
           </ion-col>
-          
+
           <ion-col padding-top col-8>
             <h2 ion-text class="no-margin text-white">
               {{userName}}
             </h2>
             <span ion-text color="light">{{userName}}</span>
           </ion-col>
-            
-        
+
+
         </ion-row>
       </ion-grid>
     </ion-toolbar>
@@ -26,9 +26,32 @@
 
   <ion-content>
     <ion-list>
-        <button menuClose ion-item text-center (click)="openCategories()">
-          Categorias template
+      <!-- <button menuClose ion-item text-center (click)="openCategories()">
+        Categorias template
+      </button> -->
+
+      <!-- funcionando -->
+      <ion-item>
+        <button menuClose ion-item *ngFor="let category of categories" (click)="openCategoryPage(category.category)">
+          {{category.category}}
         </button>
+      </ion-item>
+
+      <!-- <ion-item>
+        <button menuClose ion-item *ngFor="let category of categories;let i = index" (click)="openSubCatMenu(i)">
+          {{category.category}},{{i}}
+        </button>
+      </ion-item> -->
+
+
+      <!-- <ion-item-group id='submenu' [hidden]="!showSubmenu">
+        <button menuClose ion-item *ngFor="let subcategoryofcategory of categories" (click)="openSubCatMenu(category.category)">
+          {{category.category}}
+        </button>
+      </ion-item-group> -->
+
+
+
 
       <button menuClose ion-item text-center *ngIf="!showUserTabInMenu" (click)="goToSigninPage()">
         Entrar
@@ -51,44 +74,44 @@
 </ion-menu>
 
 <div *ngIf="showSplash" class="splash">
-    <div class="sk-cube-grid">
-      <div class="sk-cube sk-cube1">
-        <img src="assets/img/q1.png">
-      </div>
-  
-      <div class="sk-cube sk-cube2">
-        <img src="assets/img/q2.png">
-      </div>
-  
-      <div class="sk-cube sk-cube3">
-        <img src="assets/img/q3.png">
-      </div>
-  
-      <div class="sk-cube sk-cube4">
-        <img src="assets/img/q6.png">
-      </div>
-  
-      <div class="sk-cube sk-cube5">
-        <img src="assets/img/q5.png">
-      </div>
-  
-      <div class="sk-cube sk-cube6">
-        <img src="assets/img/q4.png">
-      </div>
-  
-      <div class="sk-cube sk-cube7">
-        <img src="assets/img/q7.png">
-      </div>
-  
-      <div class="sk-cube sk-cube8">
-        <img src="assets/img/q8.png">
-      </div>
-  
-      <div class="sk-cube sk-cube9">
-        <img src="assets/img/q9.png">
-      </div>
+  <div class="sk-cube-grid">
+    <div class="sk-cube sk-cube1">
+      <img src="assets/img/q1.png">
+    </div>
+
+    <div class="sk-cube sk-cube2">
+      <img src="assets/img/q2.png">
+    </div>
+
+    <div class="sk-cube sk-cube3">
+      <img src="assets/img/q3.png">
+    </div>
+
+    <div class="sk-cube sk-cube4">
+      <img src="assets/img/q6.png">
+    </div>
+
+    <div class="sk-cube sk-cube5">
+      <img src="assets/img/q5.png">
+    </div>
+
+    <div class="sk-cube sk-cube6">
+      <img src="assets/img/q4.png">
+    </div>
+
+    <div class="sk-cube sk-cube7">
+      <img src="assets/img/q7.png">
+    </div>
+
+    <div class="sk-cube sk-cube8">
+      <img src="assets/img/q8.png">
+    </div>
+
+    <div class="sk-cube sk-cube9">
+      <img src="assets/img/q9.png">
     </div>
   </div>
-  
-  
-  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+</div>
+
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

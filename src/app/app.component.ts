@@ -8,6 +8,7 @@ import firebase, { Unsubscribe } from 'firebase';
 import { AuthProvider } from '../providers/auth/auth';
 import { Storage } from '@ionic/storage';
 import { timer } from 'rxjs/observable/timer';
+import { DatabaseProvider } from '../providers/database/database';
 
 
 
@@ -21,8 +22,11 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   showSplash = true;
   rootPage: any;
+  //private databaseProvider: DatabaseProvider;
   //Mostra a aba de perfil do usuário no menu
   public showUserTabInMenu: boolean = false;
+  private showSubmenu = false;
+  public categories: any[] = [];
 
   pages: Array<{ title: string, component: any }>;
   hiddenPages: Array<{ title: string, component: any }>;
@@ -32,7 +36,8 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public authProvider: AuthProvider
+    public authProvider: AuthProvider,
+    private databaseProvider: DatabaseProvider
   ) {
 
     firebase.initializeApp(environment.firebase);
@@ -40,9 +45,9 @@ export class MyApp {
     //Iniciar o aplicativo com o usuário atual
     const unsubscribe: Unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) { //Caso exista algum usuário autenticado, escrever código aqui
-        this.storage.set('user', { uid: user.uid, email: user.email }).then((data) => {
-          console.log("(app.component.ts) storage set uid: " + data.uid);
-        });
+        // this.storage.set('user', { uid: user.uid, email: user.email }).then((data) => {
+        //   console.log("(app.component.ts) storage set uid: " + data.uid);
+        // });
         this.rootPage = 'HomePage';
         unsubscribe();
         console.log("(app.component.ts) entrei no if user, storage uid");
@@ -50,9 +55,9 @@ export class MyApp {
         this.showUserTabInMenu = true;
 
       } else {  //Caso NÃO exista algum usuário autenticado, escrever código aqui
-        this.storage.set('uid', '').then((data) => {
-          console.log("(no user), uid: " + data);
-        })
+        // this.storage.set('uid', '').then((data) => {
+        //   console.log("(no user), uid: " + data);
+        // })
 
         console.log("(app.component.ts) entrei no else (no user)");
         this.rootPage = 'TutorialPage';
@@ -76,39 +81,63 @@ export class MyApp {
     ];
 
 
+    this.getCategories();
+
+
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      
 
       timer(3000).subscribe(() => this.showSplash = false) // <-- hide animation after 3s
     });
 
   }
 
-/**
- * 
- * @param page - Page para a qual se deseja settar a raiz, geralmente será uma page de this.pages
- * e neste caso, deverá ter seu valor dado pelo page.component de uma das this.pages (uma string)
- * @param params - Parâmetro para próxima página, será passado da forma {params: params}, geralmente
- * será uma string com o valor da categoria da página (ex.: Roupas, Calçados, etc)
- */
+
+  openSubCatMenu(category){
+
+  }
+
+  getCategories() {
+    this.databaseProvider.getCategoryData().then((categories: any[]) => {
+      categories.forEach(element => {
+        this.categories.push(
+          {
+            category: element.category,
+            subcategories: element.subcategories
+          }
+        );
+      });
+      console.log('this.categories: ', this.categories.join(', '));
+    });
+  }
+
+  /**
+   * 
+   * @param page - Page para a qual se deseja settar a raiz, geralmente será uma page de this.pages
+   * e neste caso, deverá ter seu valor dado pelo page.component de uma das this.pages (uma string)
+   * @param params - Parâmetro para próxima página, será passado da forma {params: params}, geralmente
+   * será uma string com o valor da categoria da página (ex.: Roupas, Calçados, etc)
+   */
   openPage(page: any, params?: any) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     if (params) {
-      this.nav.setRoot(page, {params: params});
+      this.nav.setRoot(page, { params: params });
     }
-    else{
+    else {
       this.nav.setRoot(page);
     }
- 
+
   }
 
   //teste
-  openCategories() {
-    this.openPage('CategoryPage', {category: 'Roupas'});
+  openCategoryPage(category: string) {
+    this.openPage('CategoryPage', { category: category });
   }
 
   goToSigninPage() {
@@ -126,7 +155,7 @@ export class MyApp {
     });
 
   }
- 
+
 
 
 
