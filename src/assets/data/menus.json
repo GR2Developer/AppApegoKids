@@ -48,10 +48,10 @@
                         "manufacture": "Roupas de Banho"
                     },
                     {
-                        "manufacture": "Moda Intima"
+                        "manufacture": "Moda Íntima"
                     }
-                ],
-                "click": "goToCategoryPage"
+                ]
+                
             },
             {
                 "subcategory": "Calçados",
@@ -119,7 +119,7 @@
                         "manufacture": "Gorros"
                     },
                     {
-                        "manufacture": "Trico"
+                        "manufacture": "Tricô"
                     }
                 ]
             },
@@ -145,7 +145,7 @@
                         "manufacture": "Desenhos"
                     },
                     {
-                        "manufacture": "Pelucias"
+                        "manufacture": "Pelúcias"
                     },
                     {
                         "manufacture": "Skate"

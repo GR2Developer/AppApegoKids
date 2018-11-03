@@ -1,7 +1,19 @@
 page-home {
 	$blue1: #2fb6ed;
 	$blue2: #1fdadf;
+
+	.kids{
+			font-family: 'FORMA';
+  			font-style: normal;
+  			font-weight: 400;
+  			src: url('../assets/fonts/forma/Signika-Semibold.ttf');
+	}
+	.oferta{
+		font-size: 1.3em;
+		color: $blue1;
+	}
 	.hot {
+		padding: 3px;
 		
 		img{
 			border-radius: 10px;
@@ -15,8 +27,8 @@ page-home {
 			margin-left: 18px;
 			margin-right: 18px;
 			white-space: nowrap;
-			height: 180px;					//altura
-			background: #1fdadf;
+			height: 200px;					//altura
+			background: #ebebeb;
 		}
 		.card {
 			margin-top: 5px;
@@ -25,8 +37,8 @@ page-home {
 			margin-right: 2px;
 			z-index: -1;
 			position: relative;
-			height: 170px;
-			width: 100px;
+			height: 190px;
+			width: 110px;
 			display: inline-block;
 		}
 		.card-discricao {
@@ -34,6 +46,10 @@ page-home {
 			margin-top: 10%;
 			width: 100%;
 			color: #414040;
+			font-family: 'FORMA';
+  			font-style: normal;
+  			font-weight: 400;
+  			src: url('../assets/fonts/forma/Signika-Semibold.ttf');
 		}
 		.card-preco1 {
 			font-size: 1.0em;
@@ -41,12 +57,27 @@ page-home {
 			width: 100%;
 			color: red;
 			text-decoration: line-through;
+			font-family: 'FORMA';
+  			font-style: normal;
+  			font-weight: 400;
+  			src: url('../assets/fonts/forma/Signika-Semibold.ttf');
+
 		}
 		.card-preco2 {
 			font-size: 1.0em;
 			margin-top: 5%;
 			width: 100%;
 			color:#17006b;
+			font-family: 'FORMA';
+  			font-style: normal;
+  			font-weight: 400;
+  			src: url('../assets/fonts/forma/Signika-Semibold.ttf');
+		}
+		.card-title{
+			font-family: 'FORMA';
+  			font-style: normal;
+  			font-weight: 400;
+  			src: url('../assets/fonts/forma/Signika-Semibold.ttf');
 		}
 
 		
@@ -64,7 +95,7 @@ page-home {
 		margin-left: 50px;
 	}
 	.text-primary {
-		font-size: 150%
+		font-size: 150%;
 	}
 	.toolbar-background {
 		//background: #21ade1;
