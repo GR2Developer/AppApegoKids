@@ -30,24 +30,19 @@ export class HomePage {
   showSkip = true;
   dir: string = 'ltr';
   
-  
+  private hotProducts = [];
   
 
-  /**TEST AREA */
-  public users: any;
-  public currentUser: any;
-  //public storage: Storage
-  /*--------------------------------- */
 
 
   constructor(
-    private storage: Storage,
 
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public authProvider: AuthProvider,
     public databaseProvider: DatabaseProvider
   ) {
+    this.getHotProducts();
 
     //let currentUser = firebase.auth().currentUser;
     //console.log("currentUser email: " + currentUser.email);
@@ -65,14 +60,13 @@ export class HomePage {
 
     ];
 
-    this.storage.get('user').then((user) => {
-      console.log("(hom.ts) user do storage: ");
-      console.dir(user);
-    });
-
   }
 
-
+  getHotProducts(){
+    this.databaseProvider.getProductsHot().then(products=>{
+      this.hotProducts = products;
+    });
+  }
 
   ionViewDidLoad() {
     this.menuCtrl.enable(true);

@@ -31,135 +31,27 @@
       </ion-slide>
 
       <ion-slide>
-        <img src="assets/img/padrinhos3.png" class="slide-image" (click)="goToCategory()"/>
+        <img src="assets/img/padrinhos3.png" class="slide-image" (click)="goToCategory()" />
       </ion-slide>
     </ion-slides>
   </div>
 
- 
- 
+
+
+
 
 
   <div class="card-background-page" padding>
-    <ion-card>
-      <img src="assets/img/pad1.png" (click)="goToProducts()" />
-      <div class="card-title">MODA BOY</div>
-      <div class="card-subtitle">2018</div> 
-    </ion-card>
-
-    <ion-card>
-      <img src="assets/img/pad2.png"  />
-      <div class="card-title">MODA GIRL</div>
-      <div class="card-subtitle">2018</div>
-    </ion-card>
-  </div>
-
-  <div  class="card1" padding>
-
-    <ion-card>
-      <img src="assets/img/anuncio2.jpg" (click)="goToProducts()">
-    </ion-card>
-  </div>
-
-
-
-
-  <div class="card-produto1" padding text-center>
-    <div>
-      <h1 text-center class="h2" >MELHORES OFERTAS</h1>
-    </div>
-
-
-
-    <ion-card >
-      <img src="assets/img/vestido1.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
+    <ion-card *ngFor="let product of hotProducts">
+      <img src="{{product.imgUrl}}" />
+      <div class="card-title" text-wrap>{{ product.name }}</div>
+      <div class="card-discricao" text-wrap>{{ product.description | uppercase }}</div>
+      <div class="card-category" text-wrap>categoria: {{ product.category | lowercase }}</div>
+      <div class="card-preco">preço: {{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }} </div>
     </ion-card>
 
 
-    <ion-card>
-      <img src="assets/img/vestido3.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
 
-    <ion-card>
-      <img src="assets/img/vestido4.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-
-    <ion-card>
-      <img src="assets/img/vestidos.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-
-    <ion-card>
-      <img src="assets/img/vestido6.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-
-    <ion-card>
-      <img src="assets/img/conjunto1.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-    <ion-card>
-      <img src="assets/img/conjunto2.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-    <ion-card>
-      <img src="assets/img/conjunto3.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-    <ion-card>
-      <img src="assets/img/conjunto4.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-
-    <ion-card>
-      <img src="assets/img/conjunto5.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-    <ion-card>
-      <img src="assets/img/conjunto6.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-    <ion-card>
-      <img src="assets/img/conjunto7.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-    <ion-card>
-      <img src="assets/img/conjunto8.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
-
-
-    <ion-card>
-      <img src="assets/img/conjunto9.jpg" (click)="goToProducts()" />
-      <div class="card-discricao"><b>Blusinha com saia de bolinhas</b></div>
-      <div class="card-preco">R$50,00</div>
-    </ion-card>
 
   </div>
 
@@ -168,13 +60,13 @@
 <ion-footer>
   <ion-toolbar color="blue1">
     <ion-buttons>
-      <button ion-button  >
+      <button ion-button>
         <ion-icon name="heart-outline" class="heart" style="zoom:1.8;" color="light"></ion-icon>
       </button>
       <button ion-button (click)="goToHome()">
-        <ion-icon name="home" class="home 10x" style="zoom:1.8;" color="light" ></ion-icon>
+        <ion-icon name="home" class="home 10x" style="zoom:1.8;" color="light"></ion-icon>
       </button>
-      <button ion-button   >
+      <button ion-button>
         <ion-icon name="ios-chatbubbles" class="profile 10x" style="zoom:1.8;" color="light"></ion-icon>
       </button>
     </ion-buttons>

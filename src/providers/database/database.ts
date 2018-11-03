@@ -40,7 +40,51 @@ export class DatabaseProvider {
     });
   }
 
-  getCategoryProducts(category: string): Promise<any>{
+  /**
+  * Cada produto retornado é do tipo
+  * "product: {docId: 'value', name: 'value', description: 'value', price: 'value',
+  * imgUrl: 'value', imgPath: 'value', category: 'value', subcategory: 'value', ownerUid: 'value'}"
+  */
+  getProductsHot(hotHome?: boolean): Promise<any> {
+    if (hotHome) {
+
+    }
+    else {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore().collection(this.collectionProducts).where('flagHot', '==', true).get()
+          .then((querySnapshot) => {
+            let obj: any = [];
+            querySnapshot.forEach(doc => {
+              console.log("doc flagHot");
+              console.dir(doc.data());
+              obj.push({
+                docId: doc.id,
+                name: doc.data().name,
+                description: doc.data().description,
+                price: doc.data().price,
+                category: doc.data().category,
+                subcategory: doc.data().subcategory,
+                imgUrl: doc.data().imgUrl,
+                imgPath: doc.data().imgPath,
+                ownerUid: doc.data().imgPath
+              });
+            });
+            resolve(obj);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    }
+
+  }
+
+  /**
+  * Cada produto retornado é do tipo
+  * "product: {docId: 'value', name: 'value', description: 'value', price: 'value',
+  * imgUrl: 'value', imgPath: 'value', category: 'value', subcategory: 'value', ownerUid: 'value'}"
+  */
+  getCategoryProducts(category: string): Promise<any> {
     return new Promise((resolve, reject) => {
       Firebase.firestore().collection(this.collectionProducts).where('category', '==', category).get()
         .then((querySnapshot) => {
@@ -56,7 +100,8 @@ export class DatabaseProvider {
               category: doc.data().category,
               subcategory: doc.data().subcategory,
               imgUrl: doc.data().imgUrl,
-              imgPath: doc.data().imgPath
+              imgPath: doc.data().imgPath,
+              ownerUid: doc.data().imgPath
             });
           });
           resolve(obj);
@@ -198,7 +243,7 @@ export class DatabaseProvider {
   /**
    * Cada produto retornado é do tipo
    * "product: {docId: 'value', name: 'value', description: 'value', price: 'value',
-   * imgUrl: 'value', imgPath: 'value', category: 'value', subcategory: 'value'}"
+   * imgUrl: 'value', imgPath: 'value', category: 'value', subcategory: 'value', ownerUid: 'value'}"
    * 
    * @param uid - uid do usuário para identificação
    */
@@ -218,7 +263,8 @@ export class DatabaseProvider {
               category: doc.data().category,
               subcategory: doc.data().subcategory,
               imgUrl: doc.data().imgUrl,
-              imgPath: doc.data().imgPath
+              imgPath: doc.data().imgPath,
+              ownerUid: doc.data().uid
             });
           });
           resolve(obj);
@@ -259,7 +305,7 @@ export class DatabaseProvider {
           });
       });
     }
-    else{
+    else {
       return new Promise((resolve, reject) => {
         Firebase.firestore().collection(this.collectionCategories).get()
           .then(querySnapshot => {

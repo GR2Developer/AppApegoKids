@@ -3,12 +3,13 @@ $red2:       #e1213b;
   $blue1:      #2fb6ed;
   $blue2:      #1fdadf;
 
-
+ 
+ 
 
 .toolbar-background {
 	//background: #21ade1;
 	
-			background: #e1213b;       
+			background: linear-gradient(to bottom right, $blue1, $blue2);       
 		//	background-image: linear-gradient(to bottom right,  $red2, $red1); //fixa cor tollbar Home
 		  }
 
@@ -184,3 +185,27 @@ $red2:       #e1213b;
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+ // #sidenav2 {
+  //   ion-item-group[submenu] {
+  //     overflow: hidden;
+  //     display: block;
+  //     height: 0;
+  //     transition: height .3s linear;
+  //     padding-left: 20%;
+  //     &.visible {
+  //         height: inherit;
+  //         // this is just sample value, calculate how much space you need for your menu items
+  //     }
+  //   }
+  // }

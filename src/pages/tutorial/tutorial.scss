@@ -1,54 +1,87 @@
 page-tutorial { 
-  .imgRT{
-    z-index: 22;
-    margin-top: -74px;
-    margin-left: 30px;
-    
-    height: 80px;
-    width: 80px;
-  animation: spin 2s linear infinite;
+  .skip{
+    background: transparent;
+    z-index: 1;
   }
-  .imgRT2{
-    z-index: 22;
-    margin-top: -71px;
-    margin-left: 200px;
-    
-    height: 70px;
-    width: 70px;
-  animation: spin 2s linear infinite;
   
-
+  .toolbar-background {
+    background-color: rgba(0, 0, 0, 0);
+        color: white; 
   }
-  .imgRV{
-    z-index: 22;
-    margin-top: -66px;
-    margin-left: 80px;
+  
+  .slide{
+   
+    z-index: 4;   
     
-    height: 70px;   //Altura
-    width: 70px;    //Largura
-  animation: spin 2s linear infinite;
-  }
-  .imgRV2{
-    z-index: 22;
-    margin-top: -70px;
-    margin-left: 204px;
+    margin-top: 80px;
+    height: 520px;
     
-    height: 70px;
-    width: 70px;
-  animation: spin 2s linear infinite;
+  
   }
-  @keyframes spin {
-    100% {
-      -moz-transform: rotate(360deg);
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-    
+  .slider{
+    z-index: 4;
+    background: none;
+  
   }
-
+  .trem2{
+    margin-top: 123px;
+  }
+  
+  
   .trem{
-   margin-top: -20px;
-  }
+    margin-top: -35px;
+   }
+  
+    .imgRT{
+      z-index: 22;
+      margin-top: -60px;
+      margin-left: 30px;
+    
+      height: 80px;
+      width: 80px;
+    animation: spin 2s linear infinite;
+    }
+    .imgRT2{
+      z-index: 22;
+      margin-top: -70px;
+      margin-left: 210px;
+    
+      height: 70px;
+      width: 70px;
+    animation: spin 2s linear infinite;
+    
+  
+    }
+    .imgRV{
+      z-index: 22;
+      margin-top: -45px;
+      margin-left: 85px;
+      
+      height: 60px;   //Altura
+      width: 60px;    //Largura
+    animation: spin 2s linear infinite;
+    }
+    .imgRV2{
+      z-index: 22;
+      margin-top: -60px;
+      margin-left: 205px;
+      
+      height: 60px;   //Altura
+      width: 60px;    //Largura
+    animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+      100% {
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+      
+    }
+  
+    
+
+  
 
   // ============================================= ANIMAÇÃO DA NUVEM ==================================
   // Storyboard Timeline
@@ -135,20 +168,10 @@ page-tutorial {
 
 // ============================================= FIM ANIMAÇÃO DA NUVEM ==================================
 
-  .toolbar-background {
-    background-color: rgba(0, 0, 0, 0);
-        color: white; 
-  }
+ 
   
  
-  .slide{
-    z-index: 4;   
-    background: none;
-    margin-top: 100px;
-    height: 500px;
-
-}
-
+  
 
 
 // ================= ANIMAÇÃO DO FUNDO ====================
@@ -160,7 +183,7 @@ page-tutorial {
   position: relative;
   top: 0;
   left: 0;
-  background: url("../assets/img/TF2.png");
+  background: url("../../assets/img/TF22.png");
   background-repeat: repeat;
   background-position: 0 0;
   background-size: auto 100%;
@@ -184,7 +207,7 @@ page-tutorial {
 
 .flake2,
 .flake3 {
-  z-index: -2;
+  z-index: -3;
   background: url("../../assets/img/flocos.png");
   background-repeat: repeat;
   width: 100%;
