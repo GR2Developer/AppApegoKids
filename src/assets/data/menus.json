@@ -1,0 +1,216 @@
+[
+    {
+        "category": "Categorias",
+        "subs": [
+            {
+                "subcategory": "Roupas",
+                "manufactures": [
+                    {
+                        "manufacture": "Todos"
+                    },
+                    {
+                        "manufacture": "Bodyes"
+                    },
+                    {
+                        "manufacture": "Calça"
+                    },
+                    {
+                        "manufacture": "Conjuntos"
+                    },
+                    {
+                        "manufacture": "Vestidos"
+                    },
+                    {
+                        "manufacture": "Jaquetas"
+                    },
+                    {
+                        "manufacture": "Casacos"
+                    },
+                    {
+                        "manufacture": "Shorts"
+                    },
+                    {
+                        "manufacture": "Saias"
+                    },
+                    {
+                        "manufacture": "Blusas"
+                    },
+                    {
+                        "manufacture": "Jardineira"
+                    },
+                    {
+                        "manufacture": "Macacão"
+                    },
+                    {
+                        "manufacture": "Pijama"
+                    },
+                    {
+                        "manufacture": "Roupas de Banho"
+                    },
+                    {
+                        "manufacture": "Moda Intima"
+                    }
+                ],
+                "click": "goToCategoryPage"
+            },
+            {
+                "subcategory": "Calçados",
+                "manufactures": [
+                    {
+                        "manufacture": "Todos"
+                    },
+                    {
+                        "manufacture": "Botas"
+                    },
+                    {
+                        "manufacture": "Chinelos"
+                    },
+                    {
+                        "manufacture": "Crocs"
+                    },
+                    {
+                        "manufacture": "Mocassins"
+                    },
+                    {
+                        "manufacture": "Galochas"
+                    },
+                    {
+                        "manufacture": "Sapatilhas"
+                    },
+                    {
+                        "manufacture": "Sapatos"
+                    },
+                    {
+                        "manufacture": "Tênis"
+                    },
+                    {
+                        "manufacture": "Sapatênis"
+                    },
+                    {
+                        "manufacture": "Babuche"
+                    }
+                ]
+            },
+            {
+                "subcategory": "Acessórios",
+                "manufactures": [
+                    {
+                        "manufacture": "Todos"
+                    },
+                    {
+                        "manufacture": "Laços"
+                    },
+                    {
+                        "manufacture": "Bolsas"
+                    },
+                    {
+                        "manufacture": "Capas"
+                    },
+                    {
+                        "manufacture": "Guarda Chuva"
+                    },
+                    {
+                        "manufacture": "Bijuterias"
+                    },
+                    {
+                        "manufacture": "óculos"
+                    },
+                    {
+                        "manufacture": "Gorros"
+                    },
+                    {
+                        "manufacture": "Trico"
+                    }
+                ]
+            },
+            {
+                "subcategory": "Brinquedos",
+                "manufactures": [
+                    {
+                        "manufacture": "Todos"
+                    },
+                    {
+                        "manufacture": "Educativos"
+                    },
+                    {
+                        "manufacture": "Bicicletas"
+                    },
+                    {
+                        "manufacture": "Bonecas"
+                    },
+                    {
+                        "manufacture": "Bonecos"
+                    },
+                    {
+                        "manufacture": "Desenhos"
+                    },
+                    {
+                        "manufacture": "Pelucias"
+                    },
+                    {
+                        "manufacture": "Skate"
+                    },
+                    {
+                        "manufacture": "Patins"
+                    },
+                    {
+                        "manufacture": "Jogos"
+                    }
+                ]
+            },
+            {
+                "subcategory": "Quarto",
+                "manufactures": [
+                    {
+                        "manufacture": "Todos"
+                    },
+                    {
+                        "manufacture": "Cama"
+                    },
+                    {
+                        "manufacture": "Mesa"
+                    },
+                    {
+                        "manufacture": "Cortinas"
+                    },
+                    {
+                        "manufacture": "Tapetes"
+                    },
+                    {
+                        "manufacture": "Decoração"
+                    },
+                    {
+                        "manufacture": "Luminarias"
+                    },
+                    {
+                        "manufacture": "Poltronas"
+                    }
+                ]
+            },
+            {
+                "subcategory": "Escolar",
+                "manufactures": [
+                    {
+                        "manufacture": "Agendas"
+                    },
+                    {
+                        "manufacture": "Estojos"
+                    },
+                    {
+                        "manufacture": "Garrafas"
+                    },
+                    {
+                        "manufacture": "Lancheiras"
+                    },
+                    {
+                        "manufacture": "Mochilas"
+                    },
+                    {
+                        "manufacture": "Materiais"
+                    }
+                    
+                ]
+            }
+        ]
+    }
+]
