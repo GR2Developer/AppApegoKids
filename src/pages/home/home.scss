@@ -1,168 +1,104 @@
 page-home {
+	$blue1: #2fb6ed;
+	$blue2: #1fdadf;
+	.hot {
+		
+		img{
+			border-radius: 10px;
+		}
+		background:none;
+		overflow-x:hidden;
+		margin-left:-4%;					//margem da pagina esquerda
+		margin-right:-4%;						//margem da pagina direita
 
-	$blue1:   #22aee2;
-	$peach:   #fdc29e;
-	$peixe:   #ffd1a0;
-	$pink:    #f188a7;
-	$pink1:   #ff9eb5;
-	$red:     #fc7572;
-	$yellow:  #f3ea81;
-	$purple:  #ca76a4;
-	$purple1: #da579f;
-	$gelo:		#ffff;
-	$red1:    #ed2f2f;
-	$red2:    #df1f1f;
+		ion-scroll {
+			margin-left: 18px;
+			margin-right: 18px;
+			white-space: nowrap;
+			height: 180px;					//altura
+			background: #1fdadf;
+		}
+		.card {
+			margin-top: 5px;
+			border-radius: 10px;
+			margin-left: 2px;
+			margin-right: 2px;
+			z-index: -1;
+			position: relative;
+			height: 170px;
+			width: 100px;
+			display: inline-block;
+		}
+		.card-discricao {
+			font-size: 1.0em;
+			margin-top: 10%;
+			width: 100%;
+			color: #414040;
+		}
+		.card-preco1 {
+			font-size: 1.0em;
+			margin-top: 5%;
+			width: 100%;
+			color: red;
+			text-decoration: line-through;
+		}
+		.card-preco2 {
+			font-size: 1.0em;
+			margin-top: 5%;
+			width: 100%;
+			color:#17006b;
+		}
 
+		
+	}
 	.h2 {
 		color: $red1;
 	}
-	.heart{
+	.heart {
 		margin-left: 14px;
-	
-    }
-    .home{
-        margin-left: 50px;
-    }
-    .profile{
-        margin-left: 50px;
-    }
-
-
-
-.text-primary{
-       font-size: 150%
 	}
-	
-.background{
-	position: fixed;
-	background: $gelo;
-
-}  
-.toolbar-background {
-	//background: #21ade1;
-			border-color: palegoldenrod;
-			background: $blue1;   
-			//background-image: linear-gradient(to bottom right,  $red2, $red1); //fixa cor tollbar Home
-		  }
-		  
-
-        
-.slide{
-	margin-top: 0%;    //margem do topo
-	
-}
-.tool{
-	height: 3vh;
-}
-
-
-
-
-
-
-.card-background-page {
-	
-		
-
- 	ion-card {
-		margin: 0%; 
- 		z-index: -1;
- 	  	position: relative;
- 	  	text-align: center;
- 		height: 50%;
- 		width: 49%;
- 		display: inline-block; 
- 	}
-	
- 	.card-title {
- 	  position: absolute;
- 	  top: 36%;
- 	  font-size: 2.0em;
- 	  width: 100%;
- 	  font-weight: bold;
- 	  color: #fff;
+	.home {
+		margin-left: 50px;
 	}
-  
- 	.card-subtitle {
- 	  font-size: 1.0em;
- 	  position: absolute;
- 	  top: 70%;
- 	  width: 100%;
- 	  color: #fff;
- 	}
+	.profile {
+		margin-left: 50px;
+	}
+	.text-primary {
+		font-size: 150%
+	}
+	.toolbar-background {
+		//background: #21ade1;
+		border-color: palegoldenrod;
+		background: $blue1;
+		//background-image: linear-gradient(to bottom right,  $red2, $red1); //fixa cor tollbar Home
 
-	
-  
-   }
-
-
-
+	}
+	.slide {
+		margin-top: 0%;    //margem do topo
+	}
+	.tool {
+		height: 3vh;
+	}
 }
-
-.card1 { 
+.card1 {
 	margin-top: -5%;
 	margin-left: -5%;     	//margem da pagina esquerda
 	margin-right: -5%;		//margem da pagina direita
 }
-
-
-
-
-.card-produto1 {
-	margin-top: -5px;
-	    	//margem da pagina esquerda
-	//margem da pagina direita
-	padding: 10%;
-	ion-card {
-		margin: 1px; 
-		z-index: -1;
-		  position: relative;
-	
-		  height: 50%;
-		  width: 160px;
-		display: inline-block; 
-	}
-   
-	
-	 
-	  .card-discricao {
-		font-size: 1.0em;
-		margin-top: 10%;
-		width: 100%;
-		color:#686868;
-	  }
-	  .card-preco {
-		 font-size: 1.0em;
-		 margin-top: 10%;
-		 width: 100%;
-		 color:#5f5f5f;
-	   }
-
-	}
-
-
-
-
-
 //  .home { 
 // 	 background: none;
 // 	 margin-top: -5%;					//margem do topo
 // 	 overflow-x:hidden;
 // 	 margin-left: -4%;					//margem da pagina esquerda
 // 	 margin-right: -4%;						//margem da pagina direita
-	 
-
-
 //  		ion-scroll {
 // 		white-space: nowrap;
 // 		height: 29px;					//altura
 // 		}
-	
 // 		ion-scroll img {
 // 			height: 25px;					//altura
 // 			width: inherit;				// largura
 // 			margin: 5px; 
 // 			display: inline-block;
 // 		}
-
 //  }

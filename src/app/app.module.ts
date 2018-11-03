@@ -21,21 +21,21 @@ import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { IonicImageLoader } from 'ionic-image-loader';
-import { SearchPipe } from '../pipes/search/search';
-import { SortPipe } from '../pipes/sort/sort';
+// import { SearchPipe } from '../pipes/search/search';
+// import { SortPipe } from '../pipes/sort/sort';
 import { DataServiceProvider } from '../providers/data-service/data-service';
 
 //import { registerLocaleData } from '@angular/common';
 //import localeBr from '@angular/common/locales/br';
 
 //Seting locale to br
-//registerLocaleData(localeBr, 'br');
+//registerLocaleData(localeBr, 'br');   
 
 @NgModule({
   declarations: [
     MyApp,
-    SearchPipe,
-    SortPipe
+    // SearchPipe,
+    // SortPipe
    
   ],
   imports: [

@@ -41,17 +41,18 @@
 
 
 
-  <div class="card-background-page" padding>
-    <ion-card *ngFor="let product of hotProducts">
-      <img src="{{product.imgUrl}}" />
-      <div class="card-title" text-wrap>{{ product.name }}</div>
-      <div class="card-discricao" text-wrap>{{ product.description | uppercase }}</div>
-      <div class="card-category" text-wrap>categoria: {{ product.category | lowercase }}</div>
-      <div class="card-preco">preço: {{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }} </div>
-    </ion-card>
+  <div class="hot" text-center>
+  
+    <ion-scroll scrollX="true">
 
-
-
+        <ion-card *ngFor="let product of hotProducts" class="card">
+            <img src="{{product.imgUrl}}" />
+            <div class="card-title" text-wrap>{{ product.name }}</div>
+            <div class="card-preco1">{{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }}</div>
+            <div class="card-preco2">{{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }}</div>
+          </ion-card>
+                    
+    </ion-scroll>
 
   </div>
 
