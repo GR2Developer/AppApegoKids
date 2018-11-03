@@ -150,12 +150,16 @@ export class MyApp {
   }
 
   //teste
-  openCategoryPage(category: string) {
-    this.openPage('CategoryPage', { category: category });
+  openCategoryPage(category: string, subcategory: string) {
+    this.openPage('CategoryPage', { category: category, subcategory: subcategory });
   }
 
   goToSigninPage() {
     this.nav.setRoot('SigninPage');
+  }
+
+  goToHomePage(){
+    this.nav.setRoot('HomePage');
   }
 
   logOut(): void {
@@ -170,6 +174,10 @@ export class MyApp {
 
   }
 
+  testFunc(val1:string,val2:string){
+    console.log("testeFunccccc");
+    console.log(val1,", ",val2);
+  }
 
  
   toggleLevel1(idx) {

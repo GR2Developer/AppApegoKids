@@ -146,6 +146,8 @@ export class CategoryPage {
     // depending on if we want to leave this view
     let params = this.navParams.get('params');
     this.category = params.category;
+    this.subcategory = params.subcategory;
+    console.log("viewcanenter: ",this.category,", ",this.subcategory);
 
     if (this.category != null) {
       return true;
