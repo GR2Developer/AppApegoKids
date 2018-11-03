@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -8,7 +8,7 @@ import firebase, { Unsubscribe } from 'firebase';
 import { AuthProvider } from '../providers/auth/auth';
 import { Storage } from '@ionic/storage';
 import { timer } from 'rxjs/observable/timer';
-
+import { DataServiceProvider } from '../providers/data-service/data-service';
 
 
 
@@ -23,19 +23,32 @@ export class MyApp {
   rootPage: any;
   //Mostra a aba de perfil do usuário no menu
   public showUserTabInMenu: boolean = false;
+  showSubmenu: boolean = false;
+  showSubmenu2: boolean = false;
 
-  pages: Array<{ title: string, component: any }>;
+  pages: any;
   hiddenPages: Array<{ title: string, component: any }>;
+  showLevel1 = null;
+  showLevel2 = null;
+  
 
   constructor(
     private storage: Storage,
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public authProvider: AuthProvider
+    public authProvider: AuthProvider,
+    public dataService: DataServiceProvider
+
   ) {
 
     firebase.initializeApp(environment.firebase);
+
+    this.dataService.getMenus()
+    .subscribe((response)=> {
+        this.pages = response;
+        console.log(this.pages);
+    });
 
     //Iniciar o aplicativo com o usuário atual
     const unsubscribe: Unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -127,7 +140,33 @@ export class MyApp {
 
   }
  
-
+  toggleLevel1(idx) {
+    if (this.isLevel1Shown(idx)) {
+      this.showLevel1 = null;
+    } else {
+      this.showLevel1 = idx;
+    }
+  };
+  
+  toggleLevel2(idx) {
+    if (this.isLevel2Shown(idx)) {
+      this.showLevel1 = null;
+      this.showLevel2 = null;
+    } else {
+      this.showLevel1 = idx;
+      this.showLevel2 = idx;
+    }
+  };
+  isLevel1Shown(idx) {
+    return this.showLevel1 === idx;
+  };
+  
+  isLevel2Shown(idx) {
+    return this.showLevel2 === idx;
+  };
+  goToCategoryPage() {
+    this.openPage("CategoryPage")
+  }
 
 
 }

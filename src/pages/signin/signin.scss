@@ -1,109 +1,103 @@
 page-signin {
+
+  #all{
+    z-index: 55;
+    background: transparent;
+  }
+  
+	.logo {
+		margin-top: 30%;
+	}
+	.item.item-trns {
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+	}
+	.item.item-trns2 {
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+	}
+	.image-background {
+		z-index: 1;
+		background: url("../../assets/img/login1.png");
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		position: relative;
+		top: 0;
+		left: 0;
+		background-repeat: repeat;
+		background-position: 0 0;
+		background-size: 100% 100%;
+	}
+	.Blogin {
+		margin-top: 5%;
+		width: 150px;
+	}
+	.Bsignup {
+		margin-top: 35%;
+	}
+	//=============================== Animação NEVE ==================================
+	.flake2,
+	.flake3 {
     
-    .logo{
-        margin-top: 30%;
-    }
-    .item.item-trns {
-        
-        background-color: rgba(0, 0, 0, 0);
-        color: white; 
-    }
-    .item.item-trns2 {
-        
-        background-color: rgba(0, 0, 0, 0);
-        color: white; 
-    }
-    .image-background{
-        filter:blur(0px);
-        
-        position: relative;
-        //z-index: -1;
-      //background-image: linear-gradient(#f33464,#3f33ec);
-          
-     }
-    .Blogin{
-        margin-top: 5%;
-        
-
-    }
-    .Bsignup{
-        margin-top: 5%;
-
-    }
-
-
-//=============================== Animação NEVE ==================================
-
-.flake2,
-.flake3 {
-  z-index: 1;
-  background: url("../../assets/img/flocos.png");
-  background-repeat: repeat;
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-animation: fall1 30s infinite linear;
-          animation: fall1 30s infinite linear;
-  background-size: 250px;
-  -webkit-filter: blur(1px);
-          filter: blur(1px);
-}
-
-.flake2 {
-  -webkit-animation: fall2 30s infinite linear;
-          animation: fall2 30s infinite linear;
-  background-size: 300px;
-  -webkit-filter: blur(1.6px);
-          filter: blur(1.6px);
-}
-
-.flake3 {
-  background-size: 450px;
-  -webkit-animation: fall3 30s infinite linear;
-          animation: fall3 30s infinite linear;
-  -webkit-filter: blur(1.9px);
-          filter: blur(1.9px);
-}
-
-
-
-
-@-webkit-keyframes fall2 {
-  0% {
-    background-position: 0px -400px;
-  }
-  100% {
-    background-position: -180px 1200px;
-  }
-}
-
-@keyframes fall2 {
-  0% {
-    background-position: 0px -400px;
-  }
-  100% {
-    background-position: -180px 1200px;
-  }
-}
-
-@-webkit-keyframes fall3 {
-  0% {
-    background-position: 0px 200px;
-  }
-  100% {
-    background-position: 400px 2000px;
-  }
-}
-
-@keyframes fall3 {
-  0% {
-    background-position: 0px 200px;
-  }
-  100% {
-    background-position: 400px 2000px;
-  }
-
-}
+		z-index: 2;
+		background: url("../../assets/img/flocos.png");
+		background-repeat: repeat;
+		width: 100%;
+		height: 100vh;
+		position: absolute;
+		top: 0;
+		left: 0;
+		-webkit-animation: fall1 30s infinite linear;
+		animation: fall1 30s infinite linear;
+		background-size: 250px;
+		-webkit-filter: blur(1px);
+		filter: blur(1px);
+	}
+	.flake2 {
+		-webkit-animation: fall2 30s infinite linear;
+		animation: fall2 30s infinite linear;
+		background-size: 300px;
+		-webkit-filter: blur(1.6px);
+		filter: blur(1.6px);
+	}
+	.flake3 {
+		background-size: 450px;
+		-webkit-animation: fall3 30s infinite linear;
+		animation: fall3 30s infinite linear;
+		-webkit-filter: blur(1.9px);
+		filter: blur(1.9px);
+	}
+	@-webkit-keyframes fall2 {
+		0% {
+			background-position: 0px -400px;
+		}
+		100% {
+			background-position: -180px 1200px;
+		}
+	}
+	@keyframes fall2 {
+		0% {
+			background-position: 0px -400px;
+		}
+		100% {
+			background-position: -180px 1200px;
+		}
+	}
+	@-webkit-keyframes fall3 {
+		0% {
+			background-position: 0px 200px;
+		}
+		100% {
+			background-position: 400px 2000px;
+		}
+	}
+	@keyframes fall3 {
+		0% {
+			background-position: 0px 200px;
+		}
+		100% {
+			background-position: 400px 2000px;
+		}
+	}
 }

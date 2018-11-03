@@ -1,11 +1,15 @@
 <!-- -->
-<ion-content padding>
+<div class="flake2"></div>
+<div class="flake3"></div>
+<div class="image-background"></div>
+
+<ion-content padding id="all">
   <div class="signup-content">
 
     <!-- Logo -->
     <div padding text-center>
       <div class="logo"></div>
-      <h2 ion-text class="text-primary" color="light">
+      <h2 ion-text class="text-primary" color="dark">
         <strong>Cadastre-se</strong>
       </h2>
     </div>
@@ -17,7 +21,7 @@
       <!--........... NOME .............-->
 
       <ion-item class="item item-trns">
-        <ion-label floating color="light">
+        <ion-label floating color="dark">
           <ion-icon name="person" item-start class="text-primary"></ion-icon>
           Nome completo
         </ion-label>
@@ -32,7 +36,7 @@
       <!--........... EMAIL .............-->
 
       <ion-item class="item item-trns2">
-        <ion-label floating color="light">
+        <ion-label floating color="dark">
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
           Email
         </ion-label>
@@ -51,7 +55,7 @@
       <!--........... SENHA .............-->
 
       <ion-item class="item item-trns4">
-        <ion-label floating color="light">
+        <ion-label floating color="dark">
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Senha
         </ion-label>
@@ -66,7 +70,7 @@
       <!--........... Confirme SENHA .............-->
 
       <ion-item class="item item-trns5">
-        <ion-label floating color="light">
+        <ion-label floating color="dark">
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Confirme sua senha
         </ion-label>
@@ -78,29 +82,29 @@
         <p>Confirme sua senha.</p>
       </ion-item>
 
-      <button ion-button block round color='light' type="submit" [disabled]="!signupForm.valid">
+      <button ion-button block round color="dark" type="submit" [disabled]="!signupForm.valid">
         Cadastrar
       </button>
 
     </form>
 <!-------------------------------------------------------End Form-------------------------------------->
     <div margin-top>
-      <p text-center ion-text color="primary"><strong>Entrar com:</strong></p>
+      <p text-center ion-text color="dark"><strong>Entrar com:</strong></p>
 
       <ion-grid>
         <ion-row>
           <ion-col col-4>
-            <button ion-button icon-only color="primary" round block class="btn-facebook">
+            <button ion-button icon-only color="dark" round block class="btn-facebook">
               <ion-icon name="logo-facebook"></ion-icon>
             </button>
           </ion-col>
           <ion-col col-4>
-            <button ion-button icon-only color="primary" round block class="btn-twitter">
+            <button ion-button icon-only color="dark" round block class="btn-twitter">
               <ion-icon name="logo-twitter"></ion-icon>
             </button>
           </ion-col>
           <ion-col col-4>
-            <button ion-button icon-only color="primary" round block class="btn-g">
+            <button ion-button icon-only color="dark" round block class="btn-g">
               <ion-icon name="logo-google"></ion-icon>
             </button>
           </ion-col>
@@ -110,7 +114,7 @@
 
     <!-- Other links -->
     <div text-center margin-top>
-      <span ion-text color="primary" tappable (click)="goToLogin()"><strong>Já tenho uma conta!</strong></span>
+      <span ion-text color="dark" tappable (click)="goToLogin()"><strong>Já tenho uma conta!</strong></span>
     </div>
 
   </div>
@@ -119,6 +123,4 @@
 
   </ion-content>
 
-  <ion-content class="image-background">
-  <img   src="assets/img/bg1.png">
-</ion-content>
+ 

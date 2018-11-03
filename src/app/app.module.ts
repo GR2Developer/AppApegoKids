@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+
+
+
 import { MyApp } from './app.component';
 
 
@@ -18,6 +21,7 @@ import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { DataServiceProvider } from '../providers/data-service/data-service';
 
 //import { registerLocaleData } from '@angular/common';
 //import localeBr from '@angular/common/locales/br';
@@ -35,7 +39,8 @@ import { IonicImageLoader } from 'ionic-image-loader';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    IonicImageLoader.forRoot()
+    IonicImageLoader.forRoot(),
+   
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,7 +56,9 @@ import { IonicImageLoader } from 'ionic-image-loader';
     DatabaseProvider,
     Camera,
     File,
-    FilePath
+    FilePath,
+    DataServiceProvider
+    
   ]
 })
 export class AppModule {}

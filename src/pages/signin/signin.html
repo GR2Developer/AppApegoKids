@@ -1,7 +1,9 @@
 <div class="flake2"></div>
 <div class="flake3"></div>
 
-<ion-content padding center text-center>
+  <div class="image-background"></div>
+<ion-content padding center text-center id="all">
+
     <div padding text-center>
         <div class="logo"></div>
         <h2 ion-text class="text-primary" color="light">
@@ -39,7 +41,7 @@
     </ion-item>
     
 
-    <button class="Blogin" ion-button round block type="submit" color="dark" [disabled]="!signinForm.valid">
+    <button class="Blogin" ion-button round secundary-medium type="submit" color="dark" [disabled]="!signinForm.valid">
       Entrar
     </button>
   </form>
@@ -52,10 +54,6 @@
     Esqueci a senha :(
   </button>
   
+  
 </ion-content>
 
-<ion-content class="image-background">
-
-  <img src="assets/img/login1.png">
-
-</ion-content>
