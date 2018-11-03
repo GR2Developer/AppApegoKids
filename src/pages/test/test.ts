@@ -70,11 +70,12 @@ export class TestPage {
 
 
     /**Update collections de categorias e adicionar chaves nos documentos */
-    /*
+    
     this.databaseProvider.updateDocument(
       'Categories',
       'Roupas',
-      { subcategories: ['body', 'calça', 'blusa', 'conjunto'] }
+      { subcategories: ['Bodies', 'Calça', 'Conjuntos', 'Vestidos', 'Jaquetas',
+       'Casacos', 'Shorts', 'Saias', 'Blusas', 'Jardineira', 'Macacão', 'Pijama', 'Roupas de Banho', 'Moda Íntima'] }
     )
       .then(() => {
         console.log("categoria adicionada");
@@ -82,15 +83,15 @@ export class TestPage {
     this.databaseProvider.updateDocument(
       'Categories',
       'Brinquedos',
-      { subcategories: ['carrinhos', 'barbie', 'marvel', 'brinquedos educativos'] }
+      { subcategories: ['Educativos', 'Bicicletas', 'Bonecas', 'Bonecos', 'Desenhos', 'Pelúcias', 'Skate', 'Patins', 'Jogos'] }
     )
       .then(() => {
         console.log("categoria adicionada");
       });
     this.databaseProvider.updateDocument(
       'Categories',
-      'Decoração',
-      { subcategories: ['cortinas', 'papel de parede', 'adesivos'] }
+      'Quarto',
+      { subcategories: ['Cama', 'Mesa', 'Cortinas', 'Tapetes', 'Decoração', 'Luminárias', 'Poltronas'] }
     )
       .then(() => {
         console.log("categoria adicionada");
@@ -105,8 +106,8 @@ export class TestPage {
       });
     this.databaseProvider.updateDocument(
       'Categories',
-      'Higiene',
-      { subcategories: ['escova de dentes', 'pasta de dente', 'lenço umedecido'] }
+      'Escolar',
+      { subcategories: ['Agendas', 'Estojos', 'Garrafas', 'Lancheiras', 'Materiais'] }
     )
       .then(() => {
         console.log("categoria adicionada");
@@ -114,7 +115,7 @@ export class TestPage {
     this.databaseProvider.updateDocument(
       'Categories',
       'Acessórios',
-      { subcategories: ['carrinho de bebê', 'bijouterias', 'bebê conforto', 'canguru'] }
+      { subcategories: ['Laços', 'Bolsas', 'Capas', 'Guarda-Chuva', 'Bijouterias', 'Óculos', 'Gorros', 'Tricô'] }
     )
       .then(() => {
         console.log("categoria adicionada");
@@ -130,11 +131,11 @@ export class TestPage {
     this.databaseProvider.updateDocument(
       'Categories',
       'Calçados',
-      { subcategories: ['botas', 'sandálias', 'meias', 'all-star'] }
+      { subcategories: ['Botas', 'Chinelos', 'Crocs', 'Mocassins', 'Galochas', 'Sapatilhas', 'Sapatos', 'Tênis', 'Sapatênis', 'Babuche'] }
     )
       .then(() => {
         console.log("categoria adicionada");
-      });*/
+      });
 
 
 

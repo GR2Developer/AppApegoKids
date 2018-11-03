@@ -24,6 +24,7 @@
     </ion-toolbar>
   </ion-header>
 
+<<<<<<< HEAD
   <ion-content class="lista">
       <ion-list>
         <ion-item *ngFor="let p of pages; let i=index" text-wrap (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
@@ -68,55 +69,93 @@
         </ion-item>
       </ion-list>
     </ion-content>
+=======
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item (click)="goToHomePage()">
+        Home
+      </button>
+      <button menuClose ion-item (click)="goToTutorialPage()">
+        Tutorial
+      </button>
+      <ion-item *ngFor="let p of pages; let i=index" text-wrap (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
+        <h4>
+          {{p.category}}
+          <ion-icon color="success" item-right [name]="isLevel1Shown('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+        </h4>
+        <div *ngIf="isLevel1Shown('idx'+i)">
+          <button menuClose ion-item *ngFor="let s of p.subs; let i2=index" text-wrap (click)="toggleLevel2('idx'+i+'idx'+i2); openCategoryPage(p.category,s.subcategory)"
+            [ngClass]="{active: isLevel2Shown('idx'+i+'idx'+i2)}">
+            {{s.subcategory}}
+          </button>
+        </div>
+        <button menuClose ion-item text-center *ngIf="!showUserTabInMenu" (click)="goToSigninPage()">
+          Entrar
+        </button>
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p.component)">
+          {{p.title}}
+        </button>
+      </ion-item>
+      <ion-item *ngIf="showUserTabInMenu">
+        <button menuClose ion-item *ngFor="let p of hiddenPages" (click)="openPage(p.component)">
+          Minha conta
+        </button>
+        <button menuClose ion-item (click)="logOut()">
+          Log Out
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+>>>>>>> bdca4ed5812c045ee67940baf4a7643ed4dd66bd
 
 </ion-menu>
 
 <div *ngIf="showSplash" class="splash">
-    <div class="sk-cube-grid">
-      <div class="sk-cube sk-cube1">
-        <img src="assets/img/q1.png">
-      </div>
+  <div class="sk-cube-grid">
+    <div class="sk-cube sk-cube1">
+      <img src="assets/img/q1.png">
+    </div>
 
-      <div class="sk-cube sk-cube2">
-        <img src="assets/img/q2.png">
-      </div>
+    <div class="sk-cube sk-cube2">
+      <img src="assets/img/q2.png">
+    </div>
 
-      <div class="sk-cube sk-cube3">
-        <img src="assets/img/q3.png">
-      </div>
+    <div class="sk-cube sk-cube3">
+      <img src="assets/img/q3.png">
+    </div>
 
-      <div class="sk-cube sk-cube4">
-        <img src="assets/img/q6.png">
-      </div>
+    <div class="sk-cube sk-cube4">
+      <img src="assets/img/q6.png">
+    </div>
 
-      <div class="sk-cube sk-cube5">
-        <img src="assets/img/q5.png">
-      </div>
+    <div class="sk-cube sk-cube5">
+      <img src="assets/img/q5.png">
+    </div>
 
-      <div class="sk-cube sk-cube6">
-        <img src="assets/img/q4.png">
-      </div>
+    <div class="sk-cube sk-cube6">
+      <img src="assets/img/q4.png">
+    </div>
 
-      <div class="sk-cube sk-cube7">
-        <img src="assets/img/q7.png">
-      </div>
+    <div class="sk-cube sk-cube7">
+      <img src="assets/img/q7.png">
+    </div>
 
-      <div class="sk-cube sk-cube8">
-        <img src="assets/img/q8.png">
-      </div>
+    <div class="sk-cube sk-cube8">
+      <img src="assets/img/q8.png">
+    </div>
 
-      <div class="sk-cube sk-cube9">
-        <img src="assets/img/q9.png">
-      </div>
+    <div class="sk-cube sk-cube9">
+      <img src="assets/img/q9.png">
     </div>
   </div>
+</div>
 
 
-  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
 
 
 
-   <!-- <ion-list id="sidenav">
+<!-- <ion-list id="sidenav">
       <ion-item (click)="menuItemHandler()">Categorias</ion-item>
       <ion-item-group submenu [class.visible]="showSubmenu">
         <ion-item id="sidenav2" (click)="menuItemHandler2()">Roupas</ion-item>
