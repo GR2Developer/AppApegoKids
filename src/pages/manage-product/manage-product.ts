@@ -16,8 +16,8 @@ import { DatabaseProvider } from '../../providers/database/database';
 //import { Storage } from '@ionic/storage';
 import Firebase from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import  { File, FileReader }  from '@ionic-native/file';
-import { FilePath } from '@ionic-native/file-path';
+//import { File, FileReader } from '@ionic-native/file';
+//import { FilePath } from '@ionic-native/file-path';
 
 declare var cordova;
 
@@ -45,8 +45,8 @@ export class ManageProductPage {
   private subcategories: string[] = [];
   private docId: string = '';
 
-  lastImage: string = null;
   lastImageUrl: string = null;
+  private lastImageBase64src: string = null; // string da forma "data:image/jpeg;base64, <base64String>"
   lastImageStoragePath: string = null;
 
   /**
@@ -66,13 +66,13 @@ export class ManageProductPage {
     private loadingCtrl: LoadingController,
     private actionSheetCtrl: ActionSheetController,
     private camera: Camera,
-    private file: File,
-    private filePath: FilePath,
+    //private file: File,
+    //private filePath: FilePath,
     public platform: Platform,
     private toastCtrl: ToastController
   ) {
     this.getCategories();
-    
+
 
     this.form = formBuilder.group({
       'name': [
@@ -114,13 +114,13 @@ export class ManageProductPage {
   }
 
   updateSubcategories(category) {
-    this.databaseProvider.getCategoryData(category).then(categoryData=>{
+    this.databaseProvider.getCategoryData(category).then(categoryData => {
       this.subcategories = categoryData[0].subcategories;
     })
   }
 
-  getCategories(){
-    this.databaseProvider.getCategoryData().then((categories: any[])=>{
+  getCategories() {
+    this.databaseProvider.getCategoryData().then((categories: any[]) => {
       categories.forEach(element => {
         this.categories.push(element.category);
       });
@@ -153,12 +153,11 @@ export class ManageProductPage {
     actionSheet.present();
   }
 
-
   public takePicture(sourceType) {
     //opções para a foto
     let cameraOptions: CameraOptions = {
       quality: 60,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       targetHeight: 600,
       targetWidth: 600,
       allowEdit: true,
@@ -169,24 +168,9 @@ export class ManageProductPage {
     };
 
     // Get the data of an image
-    this.camera.getPicture(cameraOptions).then((imagePath) => {
-      // Special handling for Android library
-      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-        this.filePath.resolveNativePath(imagePath)
-          .then(filePath => {
-            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-            console.log("(getpicture)correct path: " + correctPath);
-            let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-            console.log("(getpicture)current name: " + currentName);
-            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-          });
-      } else {
-        let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        console.log("(getpicture)taken photo current name: " + currentName);
-        let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        console.log("(getpicture)tken photo correct path: " + correctPath);
-        this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-      }
+    this.camera.getPicture(cameraOptions).then(imageBase64 => {
+      this.lastImageBase64src = "data:image/jpeg;base64," + imageBase64;
+      this.lastImageIsUrl = false;
     }, (err) => {
       this.presentToast('Erro ao selecionar a imagem.');
       console.dir(err);
@@ -195,78 +179,16 @@ export class ManageProductPage {
   }
 
 
+/*
   createFileName() {
     var d = new Date(),
       n = d.getTime(),
       newFileName = n + ".jpg";
     console.log(("createfilenane: " + newFileName));
     return newFileName;
-  }
-
-  // Copy the image to a local folder
-  private copyFileToLocalDir(namePath, currentName, newFileName) {
-    //Aqui a imagem já é um File interno do dispositivo
-    this.lastImageIsUrl = false;
-    this.file.checkDir(cordova.file.dataDirectory, 'images').then(
-      dirExists => {
-
-        console.log("directory exists ");
-        this.file.copyFile(namePath, currentName, cordova.file.dataDirectory + 'images', newFileName).then(success => {
-          this.lastImageUrl = cordova.file.dataDirectory + 'images/' + newFileName;
-          this.lastImage = newFileName;
-          console.log("(copyFileToLocalDir) lastImage: " + this.lastImage);
-          console.dir(success);
-        }, error => {
-          this.presentToast('Erro ao armazenar a imagem no copyfile');
-          console.dir(error);
-        });
-      }, noDir => {
-        console.log("entrei no noDir ");
-        console.dir(noDir);
-        this.file.createDir(cordova.file.dataDirectory, "images", true).then(success => {
-          console.log("success creating dir: ");
-          console.dir(success);
-          this.file.copyFile(namePath, currentName, cordova.file.dataDirectory + 'images', newFileName).then(success => {
-            this.lastImageUrl = cordova.file.dataDirectory + 'images/' + newFileName;
-            this.lastImage = newFileName;
-            console.log("(copyFileToLocalDir) lastImage(else): " + this.lastImage);
-            console.dir(success);
-          }, error => {
-            this.presentToast('Erro ao armazenar a imagem no copyfile(depois de criar dir)');
-            console.dir(error);
-          });
-        });
-      }
-    );
-  }
-
-  /*
-  uploadLastImage() {
-    console.log("entered uploadLastImage");
-    let loading = this.loadingCtrl.create({
-      content: 'Transferindo para o servidor...',
-    });
-    loading.present();
-
-    this.file.readAsDataURL(this.file.dataDirectory + 'images', this.lastImage).then(base64Str => {
-      this.databaseProvider.uploadImageAndReturnUrlAndPath(base64Str, Firebase.auth().currentUser.uid).then(
-        imageData => {
-          this.databaseProvider.addDocument(Firebase.auth().currentUser.uid, imageData.downloadUrl);
-          console.log("No Home, imageUrl: " + imageData.downloadUrl);
-          console.log("No Home, path: " + imageData.path);
-          loading.dismissAll();
-        },
-        error => {
-          console.log("error" + error);
-          loading.dismissAll();
-        }
-      );
-    }).catch(error => {
-      console.log("error" + error);
-      loading.dismissAll();
-    });
-
   }*/
+
+
 
   private presentToast(text) {
     let toast = this.toastCtrl.create({
@@ -277,19 +199,8 @@ export class ManageProductPage {
     toast.present();
   }
 
-  /*
-  public pathForImage(img) {
-    if (img === null) {
-      return '';
-    } else {
-      //console.log("cordova.file.dataDirectory: " + myvar);
-      return this.file.dataDirectory + 'images/' + img;
-    }
-  }*/
 
-
-
-  saveDocument(val: any): void {
+  saveDocument(): void {
     //Adiciona um loading na tela para bloquear interação do usuário
     const loading: Loading = this.loadingCtrl.create();
     loading.present();
@@ -299,8 +210,7 @@ export class ManageProductPage {
       description: string = this.form.controls["description"].value,
       price: string = this.form.controls["price"].value,
       category: string = this.form.controls["category"].value,
-      subcategory: string = this.form.controls["subcategory"].value,
-      uid: string = Firebase.auth().currentUser.uid;
+      subcategory: string = this.form.controls["subcategory"].value;
     console.log("savdocument price: " + price);
 
     if (this.isEditable) {
@@ -329,83 +239,31 @@ export class ManageProductPage {
       else {//usuário mudou a imagem
         console.log("before delete image in storage documento with change photo");
         this.databaseProvider.deleteImageInStorage(this.lastImageStoragePath);
-        this.file.readAsDataURL(cordova.file.dataDirectory + 'images', this.lastImage).then(base64Str => {
-          //console.log("64tr: " + base64Str);
-          this.databaseProvider.uploadImageAndReturnUrlAndPath(base64Str, Firebase.auth().currentUser.uid).then(
-            imageData => {
-              this.databaseProvider.updateDocument(
-                this.databaseCollection,
-                this.docId,
-                {
-                  name: name,
-                  description: description,
-                  price: price,
-                  category: category,
-                  subcategory: subcategory,
-                  imgUrl: imageData.downloadUrl,
-                  imgPath: imageData.path
-                }
-              ).then(() => {
-                this.clearForm();
-                loading.dismissAll();
-                this.displayAlert('Feito!', 'O produto ' + name + ' foi atualizado com sucesso');
-                this.navCtrl.pop();
-              }).catch((error) => {
-                this.displayAlert('Updating document failed', error.message);
-                loading.dismissAll();
-              });
-            },
-            error => {
-              console.log("error UploadImageandReturnData: " + error);
-              this.displayAlert('Adicionar produto falhou', error.message);
-              loading.dismissAll();
-            }
-          );
-        }).catch(error => {
-          console.log("error ReadAsDataUrl: ");
-          console.dir(error);
-          this.displayAlert('Adicionar produto falhou', error.message);
-          loading.dismissAll();
-        });
-      }
-    }
-    else {//Usuário está cadastrando um produto, adicionar as flags de visibilidade (hot, promoção, etc.)
-      console.log("entrei else cadastro produto");
-      console.log("dir cordova data directory com lastImage ",this.lastImage,": ");
-      this.file.listDir(cordova.file.dataDirectory,'images').then(direcs=>{
-        console.log("dir cordova data directory com lastImage ",this.lastImage,": ");
-        console.dir(direcs);
-      });
-
-      let correctDir: string = cordova.file.dataDirectory + 'images';
-      this.file.readAsDataURL(correctDir, this.lastImage).then(base64Str => {
-        console.log("li 64str");
-        const uid = Firebase.auth().currentUser.uid;
-        //console.log("64tr: ", base64Str);
-        this.databaseProvider.uploadImageAndReturnUrlAndPath(base64Str, uid).then(
+        const uid: string = Firebase.auth().currentUser.uid;
+        //console.log("64tr: " + base64Str);
+        this.databaseProvider.uploadImageAndReturnUrlAndPath(this.lastImageBase64src, uid).then(
           imageData => {
-            this.databaseProvider.addDocument(
+            this.databaseProvider.updateDocument(
               this.databaseCollection,
-              {//Colocar aqui os campos que vão ser armazenados no banco de dados
+              this.docId,
+              {
                 name: name,
                 description: description,
                 price: price,
-                uid: uid,
                 category: category,
                 subcategory: subcategory,
                 imgUrl: imageData.downloadUrl,
-                imgPath: imageData.path,
-                flagHot: false
+                imgPath: imageData.path
               }
-            ).then(data => {
+            ).then(() => {
               this.clearForm();
-              this.displayAlert('Produto cadastrado!', 'O produto ' + name + ' foi adicionado com sucesso.');
               loading.dismissAll();
-            }).catch(error => {
-              this.displayAlert('Adicionar produto falhou', error.message);
+              this.displayAlert('Feito!', 'O produto ' + name + ' foi atualizado com sucesso');
+              this.navCtrl.pop();
+            }).catch((error) => {
+              this.displayAlert('Updating document failed', error.message);
               loading.dismissAll();
             });
-
           },
           error => {
             console.log("error UploadImageandReturnData: " + error);
@@ -413,18 +271,52 @@ export class ManageProductPage {
             loading.dismissAll();
           }
         );
-      }).catch(error => {
-        console.log("error ReadAsDataUrl: ");
-        console.dir(error);
-        this.displayAlert('Adicionar produto falhou', error.message);
-        loading.dismissAll();
-      });
+
+      }
+    }
+    else {//Usuário está cadastrando um produto, adicionar as flags de visibilidade (hot, promoção, etc.)
+      console.log("entrei else cadastro produto");
+      const uid = Firebase.auth().currentUser.uid;
+      console.log("uid: ", uid);
+      this.databaseProvider.uploadImageAndReturnUrlAndPath(this.lastImageBase64src, uid).then(
+        imageData => {
+          console.log("uploadImageStorage and return data: ");
+          console.dir(imageData);
+          this.databaseProvider.addDocument(
+            this.databaseCollection,
+            {//Colocar aqui os campos que vão ser armazenados no banco de dados
+              name: name,
+              description: description,
+              price: price,
+              uid: uid,
+              category: category,
+              subcategory: subcategory,
+              imgUrl: imageData.downloadUrl,
+              imgPath: imageData.path,
+              flagHot: false
+            }
+          ).then(data => {
+            console.log("fiz o add document do database provider");
+            this.clearForm();
+            this.displayAlert('Produto cadastrado!', 'O produto ' + name + ' foi adicionado com sucesso.');
+            loading.dismissAll();
+          }).catch(error => {
+            this.displayAlert('Adicionar produto falhou', error.message);
+            loading.dismissAll();
+          });
+
+        },
+        error => {
+          console.log("error UploadImageandReturnData: " + error);
+          this.displayAlert('Adicionar produto falhou', error.message);
+          loading.dismissAll();
+        }
+      );
+
 
     }
-
-    //loading.dismissAll();
-
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ManageProductPage');
@@ -445,7 +337,7 @@ export class ManageProductPage {
     this.name = '';
     this.description = '';
     this.price = 0;
-    this.lastImage = null;
+    this.lastImageBase64src = null;
   }
 
 }

@@ -20,7 +20,7 @@
   </div>
   <div *ngIf="!isEditable">
     <p>isNotEditable</p>
-    <img class="img" src="{{lastImageUrl}}" style="width: 100%; height: 50%" [hidden]="lastImage === null">
+    <img class="img" src="{{lastImageBase64src}}" style="width: 100%; height: 50%" [hidden]="lastImageBase64src === null">
   </div>
 
   <form [formGroup]="form" (ngSubmit)="saveDocument(form.value)">

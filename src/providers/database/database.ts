@@ -329,13 +329,18 @@ export class DatabaseProvider {
 
   /**
    * Faz o upload a imagem e retorna um array no formato [downloadUrl: string, path: string]
-   * @param image - Imagem no formato base64
+   * @param data_url - Imagem no formato base64 do tipo data_url: "data:image/jpeg;base64, <base64String>"
    * @param userId - Uid do usuário autenticado
    */
-  uploadImageAndReturnUrlAndPath(image: string, userId: string): Promise<any> {
+  uploadImageAndReturnUrlAndPath(data_url: string, userId: string): Promise<any> {
+    console.log("entrei no database uploadImage");
     let imageName = this.generateUUID();
+    console.log("image name UUID: ", imageName);
     let imageRef = Firebase.storage().ref().child(`productsPictures/${userId}/${imageName}.jpg`);
-    let uploadTask = imageRef.putString(image, 'data_url');
+    console.log("image ref: ", imageRef);
+    let uploadTask = imageRef.putString(data_url, 'data_url');
+    console.log("databaseProvider, antes de fazer o upload, com uploadTask: ");
+    console.dir(uploadTask);
     return new Promise((resolve, reject) => {
       uploadTask.on('state_changed', (snapshot: firebase.storage.UploadTaskSnapshot) => {
         // Observe state change events such as progress, pause, and resume
