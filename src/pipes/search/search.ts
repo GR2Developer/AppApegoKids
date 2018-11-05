@@ -16,8 +16,9 @@ export class SearchPipe implements PipeTransform {
     if(!items) return [];
     if(!terms) return items;
     terms = terms.toLowerCase();
+    console.log("pipe items: ",items);
     return items.filter( it => {
-      return it.name.toLowerCase().includes(terms);
+      return it.name.toLowerCase().includes(terms) || it.description.toLowerCase().includes(terms);
     });
   }
 }

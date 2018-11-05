@@ -293,7 +293,10 @@ export class ManageProductPage {
               subcategory: subcategory,
               imgUrl: imageData.downloadUrl,
               imgPath: imageData.path,
-              flagHot: false
+              flagHot: false,
+              flagSpotlight: false,
+              flagHotHome: false,
+              flagSpotlightHome: false
             }
           ).then(data => {
             console.log("fiz o add document do database provider");

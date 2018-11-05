@@ -46,11 +46,33 @@ export class DatabaseProvider {
   * imgUrl: 'value', imgPath: 'value', category: 'value', subcategory: 'value', ownerUid: 'value'}"
   */
   getProductsHot(hotHome?: boolean): Promise<any> {
-    if (hotHome) {
-
-    }
-    else {
-      return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
+      if (hotHome) {
+        Firebase.firestore().collection(this.collectionProducts).where('flagHotHome', '==', true).get()
+          .then((querySnapshot) => {
+            let obj: any = [];
+            querySnapshot.forEach(doc => {
+              console.log("doc flagHotHome");
+              console.dir(doc.data());
+              obj.push({
+                docId: doc.id,
+                name: doc.data().name,
+                description: doc.data().description,
+                price: doc.data().price,
+                category: doc.data().category,
+                subcategory: doc.data().subcategory,
+                imgUrl: doc.data().imgUrl,
+                imgPath: doc.data().imgPath,
+                ownerUid: doc.data().imgPath
+              });
+            });
+            resolve(obj);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      }
+      else {
         Firebase.firestore().collection(this.collectionProducts).where('flagHot', '==', true).get()
           .then((querySnapshot) => {
             let obj: any = [];
@@ -74,8 +96,72 @@ export class DatabaseProvider {
           .catch((error) => {
             reject(error);
           });
-      });
-    }
+      }
+
+    });
+
+  }
+
+  /**
+  * Cada produto retornado é do tipo
+  * "product: {docId: 'value', name: 'value', description: 'value', price: 'value',
+  * imgUrl: 'value', imgPath: 'value', category: 'value', subcategory: 'value', ownerUid: 'value'}"
+  */
+  getProductsSpotlight(spotlightHome?: boolean): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (spotlightHome) {
+        Firebase.firestore().collection(this.collectionProducts).where('flagSpotlightHome', '==', true).get()
+          .then((querySnapshot) => {
+            let obj: any = [];
+            querySnapshot.forEach(doc => {
+              console.log("doc flagSpotlightHome");
+              console.dir(doc.data());
+              obj.push({
+                docId: doc.id,
+                name: doc.data().name,
+                description: doc.data().description,
+                price: doc.data().price,
+                category: doc.data().category,
+                subcategory: doc.data().subcategory,
+                imgUrl: doc.data().imgUrl,
+                imgPath: doc.data().imgPath,
+                ownerUid: doc.data().imgPath
+              });
+            });
+            resolve(obj);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      }
+      else {
+        Firebase.firestore().collection(this.collectionProducts).where('flagSpotlight', '==', true).get()
+          .then((querySnapshot) => {
+            let obj: any = [];
+            querySnapshot.forEach(doc => {
+              console.log("doc flagSpotlight");
+              console.dir(doc.data());
+              obj.push({
+                docId: doc.id,
+                name: doc.data().name,
+                description: doc.data().description,
+                price: doc.data().price,
+                category: doc.data().category,
+                subcategory: doc.data().subcategory,
+                imgUrl: doc.data().imgUrl,
+                imgPath: doc.data().imgPath,
+                ownerUid: doc.data().imgPath
+              });
+            });
+            resolve(obj);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      }
+
+    });
+
 
   }
 
@@ -88,7 +174,7 @@ export class DatabaseProvider {
     if (subcategory) {
       return new Promise((resolve, reject) => {
         Firebase.firestore().collection(this.collectionProducts)
-        .where('category', '==', category).where('subcategory', '==', subcategory).get()
+          .where('category', '==', category).where('subcategory', '==', subcategory).get()
           .then((querySnapshot) => {
             let obj: any = [];
             querySnapshot.forEach(doc => {

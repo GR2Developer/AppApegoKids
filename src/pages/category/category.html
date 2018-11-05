@@ -8,11 +8,7 @@
     </label>
 
 
-    <ion-buttons end>
-      <button ion-button (click)="search()" color="light">
-        <ion-icon ios="ios-search" md="md-search"></ion-icon>
-      </button>
-    </ion-buttons>
+
     <ion-buttons end>
       <button ion-button (click)="goToCart()" color="light">
         <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
@@ -22,6 +18,8 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+  <button ion-button type="button" (click)="sort()">Sort</button>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-round-up" pullingText="Puxe para atualizar" refreshingSpinner="circles"
@@ -34,7 +32,7 @@
       <h2 text-center class="h2">MELHORES OFERTAS</h2>
     </div>
 
-    <ion-card *ngFor="let product of currentDisplayedItems">
+    <ion-card *ngFor="let product of currentDisplayedItems | search : terms | sort: {property: sortProperty, order: order}">
       <!-- <ion-item *ngFor="let product of myProducts; let i = index" (click)="setIndex(i)"> -->
       <ion-item (click)="testFunc()">
         <!-- <img *ngIf="!product.imgUrl" src="../../assets/img/Spinner-1s-200px.gif" /> -->

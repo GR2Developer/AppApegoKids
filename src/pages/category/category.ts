@@ -32,6 +32,11 @@ export class CategoryPage {
 
   private categoryFilters: any = [];
 
+  //variáveis para o sort da list
+  private descending: boolean = false;
+  private order: number;
+  private sortProperty: string = 'description';
+
 
 
   constructor(
@@ -46,6 +51,11 @@ export class CategoryPage {
     this.resetPagesAndRemainItems();
     //console.log("this produstcs: ", this.categoryProducts);
     //this.addListenerOnCategoryProducts();
+  }
+
+  sort(){
+    this.descending = !this.descending;
+    this.order = this.descending ? 1 : -1;
   }
 
   downloadCategoryProducts(): Promise<any> {

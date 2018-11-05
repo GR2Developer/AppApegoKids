@@ -49,7 +49,7 @@
     <ion-scroll scrollX="true">
 
         <ion-card *ngFor="let product of hotProducts" class="card">
-            <img src="{{product.imgUrl}}" />
+            <img src="{{product.imgUrl}}"/>
             <div class="card-title" text-wrap>{{ product.name }}</div>
             <div class="card-preco1">{{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }}</div>
             <div class="card-preco2">{{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }}</div>

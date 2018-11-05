@@ -24,6 +24,8 @@ import { IonicImageLoader } from 'ionic-image-loader';
 // import { SearchPipe } from '../pipes/search/search';
 // import { SortPipe } from '../pipes/sort/sort';
 import { DataServiceProvider } from '../providers/data-service/data-service';
+//import { SearchPipe } from '../pipes/search/search';
+//import { SortPipe } from '../pipes/sort/sort';
 
 //import { registerLocaleData } from '@angular/common';
 //import localeBr from '@angular/common/locales/br';
@@ -34,8 +36,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
 @NgModule({
   declarations: [
     MyApp,
-    // SearchPipe,
-    // SortPipe
+    //SearchPipe,
+    //SortPipe
    
   ],
   imports: [

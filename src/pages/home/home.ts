@@ -62,6 +62,12 @@ export class HomePage {
 
   }
 
+  getSpotlightProducts(){
+    this.databaseProvider.getProductsSpotlight(true).then(products=>{
+      this.hotProducts = products;
+    });
+  }
+
   getHotProducts(){
     this.databaseProvider.getProductsHot().then(products=>{
       this.hotProducts = products;
