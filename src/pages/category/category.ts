@@ -27,8 +27,8 @@ export class CategoryPage {
   private pages: number = 0;
   private remainingItems: number = 0;
 
-  private category: string;
-  private subcategory: string;
+  private category: string = null;
+  private subcategory: string = null;
 
   private categoryFilters: any = [];
 
@@ -44,15 +44,26 @@ export class CategoryPage {
 
   ionViewDidEnter() {
     this.resetPagesAndRemainItems();
+    //console.log("this produstcs: ", this.categoryProducts);
     //this.addListenerOnCategoryProducts();
   }
 
   downloadCategoryProducts(): Promise<any> {
     return new Promise(resolve => {
-      this.databaseProvider.getCategoryProducts(this.category).then(products => {
-        this.categoryProducts = products;
-        resolve();
-      });
+      if (this.subcategory) {
+        this.databaseProvider.getCategoryProducts(this.category, this.subcategory).then(products => {
+          this.categoryProducts = products;
+          console.log("this produstcs download w/ subcat: ", this.categoryProducts);
+          resolve();
+        });
+      }
+      else {
+        this.databaseProvider.getCategoryProducts(this.category).then(products => {
+          this.categoryProducts = products;
+          console.log("this produstcs download w/o subcat: ", this.categoryProducts);
+          resolve();
+        });
+      }
     });
   }
 
@@ -83,6 +94,14 @@ export class CategoryPage {
         console.log('Async operation has ended');
         infiniteScroll.complete();
       }, 500);
+    }
+    else if(this.pages === 0) {
+      setTimeout(() => {
+        console.log('pages = 0, just disable infinite');
+        infiniteScroll.complete();
+        infiniteScroll.enable(false);
+      }, 500);
+
     }
     else {
       setTimeout(() => {
@@ -146,8 +165,9 @@ export class CategoryPage {
     // depending on if we want to leave this view
     let params = this.navParams.get('params');
     this.category = params.category;
-    this.subcategory = params.subcategory;
-    console.log("viewcanenter: ",this.category,", ",this.subcategory);
+    if (params.category)
+      this.subcategory = params.subcategory;
+    console.log("viewcanenter: ", this.category, ", ", this.subcategory);
 
     if (this.category != null) {
       return true;

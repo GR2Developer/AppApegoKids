@@ -112,9 +112,6 @@ export class MyApp {
   }
 
 
-  openSubCatMenu(category){
-
-  }
 
   getCategories() {
     this.databaseProvider.getCategoryData().then((categories: any[]) => {
@@ -126,7 +123,9 @@ export class MyApp {
           }
         );
       });
-      console.log('this.categories: ', this.categories.join(', '));
+      console.log('this.categories: ');
+      console.dir(this.categories);
+      //console.log('this.subcategories: ', this.categories.join(', '));
     });
   }
 

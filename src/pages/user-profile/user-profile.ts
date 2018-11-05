@@ -87,7 +87,7 @@ export class UserProfilePage {
 
   addListener(): any {
     const uid = Firebase.auth().currentUser.uid;
-    this.unsub = this.database.collection(this.productsCollection).where('uid', '==', uid).onSnapshot(querySnapshot => {
+    this.unsub = this.database.collection(this.productsCollection).where('ownerUid', '==', uid).onSnapshot(querySnapshot => {
       this.myProducts = [];
       querySnapshot.forEach(doc => {
         console.log("doc database");

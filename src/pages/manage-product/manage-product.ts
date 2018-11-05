@@ -288,7 +288,7 @@ export class ManageProductPage {
               name: name,
               description: description,
               price: price,
-              uid: uid,
+              ownerUid: uid,
               category: category,
               subcategory: subcategory,
               imgUrl: imageData.downloadUrl,

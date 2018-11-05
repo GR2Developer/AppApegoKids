@@ -84,32 +84,62 @@ export class DatabaseProvider {
   * "product: {docId: 'value', name: 'value', description: 'value', price: 'value',
   * imgUrl: 'value', imgPath: 'value', category: 'value', subcategory: 'value', ownerUid: 'value'}"
   */
-  getCategoryProducts(category: string): Promise<any> {
-    return new Promise((resolve, reject) => {
-      Firebase.firestore().collection(this.collectionProducts).where('category', '==', category).get()
-        .then((querySnapshot) => {
-          let obj: any = [];
-          querySnapshot.forEach(doc => {
-            console.log("doc database");
-            console.dir(doc.data());
-            obj.push({
-              docId: doc.id,
-              name: doc.data().name,
-              description: doc.data().description,
-              price: doc.data().price,
-              category: doc.data().category,
-              subcategory: doc.data().subcategory,
-              imgUrl: doc.data().imgUrl,
-              imgPath: doc.data().imgPath,
-              ownerUid: doc.data().imgPath
+  getCategoryProducts(category: string, subcategory?: string): Promise<any> {
+    if (subcategory) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore().collection(this.collectionProducts)
+        .where('category', '==', category).where('subcategory', '==', subcategory).get()
+          .then((querySnapshot) => {
+            let obj: any = [];
+            querySnapshot.forEach(doc => {
+              console.log("doc database");
+              console.dir(doc.data());
+              obj.push({
+                docId: doc.id,
+                name: doc.data().name,
+                description: doc.data().description,
+                price: doc.data().price,
+                category: doc.data().category,
+                subcategory: doc.data().subcategory,
+                imgUrl: doc.data().imgUrl,
+                imgPath: doc.data().imgPath,
+                ownerUid: doc.data().ownerUid
+              });
             });
+            resolve(obj);
+          })
+          .catch((error) => {
+            reject(error);
           });
-          resolve(obj);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+      });
+    }
+    else {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore().collection(this.collectionProducts).where('category', '==', category).get()
+          .then((querySnapshot) => {
+            let obj: any = [];
+            querySnapshot.forEach(doc => {
+              console.log("doc database");
+              console.dir(doc.data());
+              obj.push({
+                docId: doc.id,
+                name: doc.data().name,
+                description: doc.data().description,
+                price: doc.data().price,
+                category: doc.data().category,
+                subcategory: doc.data().subcategory,
+                imgUrl: doc.data().imgUrl,
+                imgPath: doc.data().imgPath,
+                ownerUid: doc.data().ownerUid
+              });
+            });
+            resolve(obj);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    }
   }
 
 
@@ -249,7 +279,7 @@ export class DatabaseProvider {
    */
   getUserProducts(uid: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      Firebase.firestore().collection(this.collectionProducts).where('uid', '==', uid).get()
+      Firebase.firestore().collection(this.collectionProducts).where('ownerUid', '==', uid).get()
         .then((querySnapshot) => {
           let obj: any = [];
           querySnapshot.forEach(doc => {
@@ -315,9 +345,12 @@ export class DatabaseProvider {
               obj.push({
                 docId: doc.id,
                 category: doc.data().category,
-                categoryFilters: doc.data().categoryFilters,
+                subcategories: doc.data().subcategories,
+                categoryFilters: doc.data().categoryFilters
               });
             });
+            console.log("database get all categories: ", obj);
+            // console.dir
 
             resolve(obj);
           }).catch(error => {

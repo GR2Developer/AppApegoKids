@@ -68,7 +68,7 @@
 
 
     <ion-item>
-      <button ion-button block color="primary" text-center padding-top padding-bottom [disabled]="!form.valid || !lastImageUrl">
+      <button ion-button block color="primary" text-center padding-top padding-bottom [disabled]="!form.valid || (!lastImageUrl && !lastImageBase64src)">
       <!-- <button ion-button block color="primary" text-center padding-top padding-bottom [disabled]="!form.valid"> -->
         <div *ngIf="!isEditable">
           Adicionar produto
