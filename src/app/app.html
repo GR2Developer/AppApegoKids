@@ -8,15 +8,17 @@
           <ion-col col-4>
             <div class="user-avatar">
               <img src="../assets/img/Vestidos.jpg">
+
             </div>
           </ion-col>
-
-          <ion-col padding-top col-8>
-            <h2 ion-text class="no-margin text-white">
-              {{userName}}
-            </h2>
-            <span ion-text color="light">{{userName}}</span>
-          </ion-col>
+          <label ion-text class="name" color="light">
+            <p>Margarida</p>
+          </label>
+          <div class="perfil">
+          <button ion-button clear menuClose color="light" *ngFor="let p of hiddenPages" (click)="openPage(p.component)">
+              Minha conta
+            </button>
+          </div>
 
 
         </ion-row>
@@ -24,89 +26,38 @@
     </ion-toolbar>
   </ion-header>
 
-<<<<<<< HEAD
-  <ion-content class="lista">
-      <ion-list>
-        <ion-item *ngFor="let p of pages; let i=index" text-wrap (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
-          <h4>
-            {{p.category}}
-            <ion-icon color="success" item-right [name]="isLevel1Shown('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-          </h4>
-          <ion-list *ngIf="isLevel1Shown('idx'+i)">
-            <ion-item *ngFor="let s of p.subs; let i2=index" text-wrap (click)="toggleLevel2('idx'+i+'idx'+i2)" [ngClass]="{active: isLevel2Shown('idx'+i+'idx'+i2)}">
-              <h4>
-                {{s.subcategory}}
-                <ion-icon color="success" item-right [name]="isLevel2Shown('idx'+i+'idx'+i2) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-              </h4>
-              <ion-list *ngIf="isLevel2Shown('idx'+i+'idx'+i2)">
-                <ion-item *ngFor="let m of s.manufactures" text-wrap >
-                {{m.manufacture}}
-                </ion-item>
-              </ion-list>
-            </ion-item>
-         
-          </ion-list>
-          <button menuClose ion-item text-center *ngIf="!showUserTabInMenu" (click)="goToSigninPage()">
-              Entrar
-            </button>
-            <button menuClose ion-item   (click)="goToHomePage()">
-                Home
-              </button>
-              <button menuClose ion-item   (click)="goToTutorialPage()">
-                  Tutorial
-                </button>
-            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p.component)">
-              {{p.title}}
-            </button>
-            <ion-item *ngIf="showUserTabInMenu">
-              <button menuClose ion-item *ngFor="let p of hiddenPages" (click)="openPage(p.component)">
-                Minha conta
-              </button>
-              <button menuClose ion-item (click)="logOut()">
-                Log Out
-              </button>
-              </ion-item>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-=======
-  <ion-content>
-    <ion-list>
+  <ion-content class="list">
+    <ion-list no-lines>
       <button menuClose ion-item (click)="goToHomePage()">
         Home
       </button>
+
       <button menuClose ion-item (click)="goToTutorialPage()">
         Tutorial
       </button>
-      <ion-item *ngFor="let p of pages; let i=index" text-wrap (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
-        <h4>
+
+      <ion-item *ngFor="let p of pages; let i=index" (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
+        <h2>
           {{p.category}}
-          <ion-icon color="success" item-right [name]="isLevel1Shown('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-        </h4>
+          <ion-icon color="success" [name]="isLevel1Shown('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+        </h2>
         <div *ngIf="isLevel1Shown('idx'+i)">
-          <button menuClose ion-item *ngFor="let s of p.subs; let i2=index" text-wrap (click)="toggleLevel2('idx'+i+'idx'+i2); openCategoryPage(p.category,s.subcategory)"
+          <button menuClose ion-item *ngFor="let s of p.subs; let i2=index" (click)="toggleLevel2('idx'+i+'idx'+i2); openCategoryPage(p.category,s.subcategory)"
             [ngClass]="{active: isLevel2Shown('idx'+i+'idx'+i2)}">
             {{s.subcategory}}
           </button>
         </div>
-        <button menuClose ion-item text-center *ngIf="!showUserTabInMenu" (click)="goToSigninPage()">
-          Entrar
-        </button>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p.component)">
-          {{p.title}}
-        </button>
       </ion-item>
-      <ion-item *ngIf="showUserTabInMenu">
-        <button menuClose ion-item *ngFor="let p of hiddenPages" (click)="openPage(p.component)">
-          Minha conta
-        </button>
-        <button menuClose ion-item (click)="logOut()">
-          Log Out
-        </button>
-      </ion-item>
+
+      <button menuClose ion-item text-center *ngIf="!showUserTabInMenu" (click)="goToSigninPage()">
+        Entrar
+      </button>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p.component)">
+        {{p.title}}
+      </button>
+
     </ion-list>
   </ion-content>
->>>>>>> bdca4ed5812c045ee67940baf4a7643ed4dd66bd
 
 </ion-menu>
 

@@ -1,21 +1,112 @@
-<ion-header>
-
-  <ion-navbar>
-      <button ion-button menuToggle color="light">
-          <ion-icon name="menu" color="light"></ion-icon>
-        </button>
-        <label ion-text class="text-primary" color="light">
-            {{userName}}
-          </label>
-  </ion-navbar>
-
-</ion-header>
+<ion-content>
 
 
-<ion-content padding>
+
+  <div class="backgorund">
+    <div>
+    <button ion-button menuToggle color="light" class="menu" clear>
+      <ion-icon name="menu" color="light" style="zoom:1.5;"></ion-icon>
+    </button>
+  </div>
+
+  <div class="user-avatar" >
+      <img src="../assets/img/Vestidos.jpg">
+
+    </div>
+  <div class="userName" text-center>
+     <label color="light">{{userName}}</label>
+  </div>
+
+
+  <div class="editar">
+ <button ion-button color="light" clear>
+      EDITAR PERFIL
+    </button>
+  </div>
+ 
+  <div class="adicionar"> 
+     <button ion-button color="light" clear (click)="addDocument()">
+        Adicionar Produto
+      </button>
+  </div>
+
+  </div>
+
+
+
+
+
   <ion-item>
     <button ion-button block clear (click)="goToUserProductsList()">
       Meus Produtos
     </button>
   </ion-item>
+
+
+  <div>
+      <ion-list class="card-produto">
+        <ion-card>
+          <!-- <ion-item *ngFor="let product of myProducts; let i = index" (click)="setIndex(i)"> -->
+          <ion-item *ngFor="let product of myProducts">
+            <!-- <img *ngIf="!product.imgUrl" src="../../assets/img/Spinner-1s-200px.gif" /> -->
+            <img class='product-image' src="{{product.imgUrl}}" />
+            <!-- <img id="product-image" src="{{product.imgUrl}}"/> -->
+            <div class="card-title" text-wrap>nome: {{ product.name }}</div>
+            <div class="card-discricao" text-wrap>descrição: {{ product.description | uppercase }}</div>
+            <div class="card-category" text-wrap>categoria: {{ product.category | lowercase }}</div>
+            <div class="card-preco">preço: {{ product.price | currency : 'BRL' : 'symbol' : '0.2-2' }} </div>
+    
+            <button ion-button color="secondary" (click)="updateDocument(product)">
+              Editar produto
+            </button>
+            <button ion-button color="danger" (click)="deleteDocument(product)">
+              Remover produto
+            </button>
+    
+    
+          </ion-item>
+        </ion-card>
+    
+      </ion-list>
+    </div>
+
+
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="blue1">
+    <ion-buttons>
+      <button ion-button>
+        <ion-icon name="heart-outline" class="heart" style="zoom:1.8;" color="light"></ion-icon>
+      </button>
+      <button ion-button (click)="goToHome()">
+        <ion-icon name="home" class="home 10x" style="zoom:1.8;" color="light"></ion-icon>
+      </button>
+      <button ion-button>
+        <ion-icon name="ios-chatbubbles" class="profile 10x" style="zoom:1.8;" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
+
+<!-- <button ion-button menuToggle color="light">
+      <ion-icon name="menu" color="light"></ion-icon>
+    </button>
+
+  <div > 
+<ion-card class="homePro">
+ 
+  
+    <p>
+      {{userName}}
+    </p>
+ 
+</ion-card>
+</div>
+
+-->

@@ -3,13 +3,25 @@ $red2:       #e1213b;
   $blue1:      #2fb6ed;
   $blue2:      #1fdadf;
 
+  .perfil{
+    margin-top: -16%;
+    margin-left: 27%;
+    font-family: 'FORMA';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/forma/Signika-Semibold.ttf');
+  }
+  .name{
+      font-size: 1.2em;
+  }
  
- .lista{
+ .list{
   font-family: 'FORMA';
   font-style: normal;
   font-weight: 400;
   src: url('../assets/fonts/forma/Signika-Semibold.ttf');
  }
+
 
 .toolbar-background {
 	//background: #21ade1;
@@ -119,7 +131,7 @@ $red2:       #e1213b;
 
 .flake2,
 .flake3 {
-  z-index: 1;
+  z-index: -1;
   background: url("../../assets/img/flocos.png");
   background-repeat: repeat;
   width: 100%;

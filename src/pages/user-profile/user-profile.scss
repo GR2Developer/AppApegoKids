@@ -1,11 +1,104 @@
 page-user-profile {
 
-
+    $blue1: #2fb6ed;
+    $blue2: #1fdadf;
+    .userName{
+        color: #ffff;
+    }
+    .user-avatar {
+        margin-top: -2%;
+        margin-left: 20vh ;
+        width: 100px;
+        height: 100px;
+        
+        border-radius: 50%;
+        box-shadow: inset 0 0 10rem rgba(0,0,0,.25), 0 0 4rem rgba(255,255,255,.45);
+        img {
+          border-radius: 50%;
+        }
+      }
+    .menu{
+        z-index: 2;
+        background: transparent;
+    }
     .toolbar-background {
-        //background: #21ade1;
-                border-color: palegoldenrod;
-                background: #e1213b;        
-               // background-image: linear-gradient(#21ade1, #24b9f0, #26c5ff );
+                background: $blue1 ;   
               }
+              .heart {
+                margin-left: 14px;
+            }
+            .home {
+                margin-left: 50px;
+            }
+            .profile {
+                margin-left: 50px;
+            }
+.backgorund{
+    background: $blue1 ;  
+    z-index: 1;
+    height: 40%;
+    border-radius: 10px;
+}
+.editar {
+    margin-left: 10%; 
+}
+.adicionar {
+    margin-left: 50%;
+    margin-top: -12.3%;
+}
+
+.card-produto {
+    .card-title {
+        font-size: 1.5em;
+        width: 100%;
+        font-weight: bold;
+        color: #21ade1;
+    }
+    .card-discricao {
+        font-size: 1.0em;
+        width: 100%;
+        color: #21ade1;
+    }
+    .card-preco {
+        font-size: 1.5em;
+        width: 100%;
+        color: #21ade1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
